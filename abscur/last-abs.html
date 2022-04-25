@@ -9,5 +9,81 @@
 <body>
     <b><a href="index.html">НА ГЛАВНУЮ</a></b>
     <br/>
+
+    <h1>Последние абсолютные курсы</h1>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['table']});
+        var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+        google.charts.setOnLoadCallback(function (){
+        // запрос к таблице
+        var queryString = encodeURIComponent("'Абсолютные валютные курсы'!A1:I46");
+        var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?headers=0&range=' + queryString  ;
+        var query = new google.visualization.Query(URL) ;
+        query.send(function (response)
+        {
+            var data = response.getDataTable();
+            var cnt_c = data.getNumberOfColumns() ;
+            var cnt_r = data.getNumberOfRows() ;
+
+            data = data.clone() ;
+
+            $('#div_cur_date').text('Дата: ' + data.getValue(0,1)) ;
+
+            data.removeRow(0) ;
+            data.removeColumn(0) ;
+
+            data.setColumnLabel(0,"Валюта") ;
+            data.setColumnLabel(1,"Курс") ;
+            data.setColumnLabel(2,"день") ;
+            data.setColumnLabel(3,"неделя") ;
+            data.setColumnLabel(4,"месяц") ;
+            data.setColumnLabel(5,"квартал") ;
+            data.setColumnLabel(6,"полгода") ;
+            data.setColumnLabel(7,"год") ;
+
+            for(var i=0;i<data.getNumberOfRows();i++)
+            {
+            var name = data.getValue(i,0) ;
+            var link = '<a href=/p/2.html?val=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
+            data.setCell(i,0,link) ;
+            }
+
+            var formatter = new google.visualization.ColorFormat();
+            formatter.addRange(-100, -0.0000000000001, 'red', 'white');
+            formatter.addRange(0.0000000000001,100, 'green', 'white');
+            formatter.format(data, 2);
+            formatter.format(data, 3);
+            formatter.format(data, 4);
+            formatter.format(data, 5);
+            formatter.format(data, 6);
+            formatter.format(data, 7);
+
+
+            // console.log(cnt_c) ;
+            // console.log(cnt_r) ;
+
+            var table = new google.visualization.Table(document.getElementById('div_table'));
+
+            //var formatter = new google.visualization.PatternFormat(
+            //  '<a href="/p/blog-page_10.html?par={0}">{0}</a>') ;
+            //formatter.format(data, [0]);
+
+            table.draw(data, {sortColumn:0, allowHtml: true,showRowNumber: false, height: '100%', width: '100%'});
+
+
+        });
+        // console.log(1) ;
+        }) ;
+        // var data_itog ;
+        
+    </script>
+
+    <div id="div_cur_date"></div>
+    <br/>
+    <div id="div_table" align=center></div>
+    <br/>
 </body>
 </html>
