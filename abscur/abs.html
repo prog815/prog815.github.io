@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валюта</title>
+</head>
+<body>
+    <b><a href="index.html">НА ГЛАВНУЮ</a></b>
+    <br/>
+    <b><a href="index.html">К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
+
+    <h1>Валюта</h1>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['table',]}) ;
+        google.charts.load('current', {'packages':['corechart',]}) ;
+        google.charts.load('current', {'packages':['line',]}) ;
+        google.charts.load('current', {'packages':['annotationchart',]}) ;
+
+        var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+        
+        $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null)
+            {
+                return "" ;
+            }
+            else
+            {
+                return decodeURIComponent(results[1]) || "" ;
+            } 
+        }
+        
+        // библиотека
+        function start(query,func) {
+            var queryString = encodeURIComponent(query);
+            var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+            var query = new google.visualization.Query(URL) ;
+            query.send(func);
+        } ;
+
+        google.charts.setOnLoadCallback(function (){
+            start("'История абсолютных курсов'!B1:AT1",onLoadValList) ;
+        }) ;
+    </script>
+</body>
+</html>
