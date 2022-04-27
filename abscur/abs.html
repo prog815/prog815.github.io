@@ -9,9 +9,12 @@
 <body>
     <b><a href="index.html">НА ГЛАВНУЮ</a></b>
     <br/>
-    <b><a href="index.html">К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
+    <b><a href="last-abs.html">К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
 
     <h1>Валюта</h1>
+
+    <div>Доступные валюты:</div>
+    <div id="div_val_links">Загрузка</div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
@@ -25,6 +28,21 @@
 
         var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
         
+        
+
+        google.charts.setOnLoadCallback(function (){
+            start("'История абсолютных курсов'!B1:AT1",onLoadValList) ;
+        }) ;
+
+        function onLoadValList(response){
+            var data = response.getDataTable();
+            var cnt_c = data.getNumberOfColumns() ;
+            var cnt_r = data.getNumberOfRows() ;
+
+
+        }
+
+        // библиотека
         $.urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null)
@@ -37,17 +55,15 @@
             } 
         }
         
-        // библиотека
+        
         function start(query,func) {
             var queryString = encodeURIComponent(query);
             var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
             var query = new google.visualization.Query(URL) ;
             query.send(func);
         } ;
-
-        google.charts.setOnLoadCallback(function (){
-            start("'История абсолютных курсов'!B1:AT1",onLoadValList) ;
-        }) ;
     </script>
+
+    
 </body>
 </html>
