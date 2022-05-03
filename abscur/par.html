@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валютная пара</title>
+</head>
+<body>
+    <b><a href="index.html">НА ГЛАВНУЮ</a></b>
+    <br/>
+    <b><a href="last-par.html">К ПОСЛЕДНИМ ПАРНЫМ КУРСАМ</a></b>
+
+    <br/>
+    <br/>
+
+    <div id="div_par_links">...Загрузка...</div>
+
+    <h1><div id="div_title">Валютная пара - ...загрузка...</div></h1>
+
+  
+    <br/>
+
+    <b><div id="div_date">...Загрузка...</div></b>
+
+    <br/>
+
+    <div id="div_table"></div>
+
+    <br/>
+
+    <div id="div_chart"></div>
+
+    <br/>
+
+    <h2><div id="div_vals"></div></h2>
+    
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['table',]}) ;
+        google.charts.load('current', {'packages':['line',]}) ;
+        google.charts.load('current', {'packages':['annotationchart',]}) ;
+        
+        var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+        
+        var cur_par = null ;
+        
+        // ------------------------------------------------------
+        // запуск начального
+
+        google.charts.setOnLoadCallback(function (){
+            start("'История парных курсов'!B1:CJ1",function (response){
+                var data = response.getDataTable();
+
+                // текущая валюта
+                var my_par = $.urlParam("par") ;
+
+                cur_par = "" ;
+
+                for(var i=0;i<data.getNumberOfColumns();i++)
+                    if(data.getValue(0,i) == my_par)
+                        cur_par = data.getValue(0,i) ;
+
+                if(cur_par.length <= 0)
+                    cur_par = data.getValue(0,Math.floor(Math.random() * data.getNumberOfColumns() )) ;
+
+                console.log('текущая пара:',cur_par) ;
+
+                // валюты текущей пары
+
+                var val1 = cur_par.substring(0,3) ;
+                var val2 = cur_par.substring(3) ;
+
+                $('#div_vals').html("Валюты в паре: <a href=abs.html?val=" + val1 + ">" + val1 + "</a>, <a href=abs.html?val=" + val2 + ">" + val2 + "</a>" ) ;
+                
+
+                // список доступных пар
+
+                start("'Расшифровка валютных пар'!A2:A88",function (response){
+                    var data = response.getDataTable();
+                    
+                    var text = "" ;
+                    var rowInds = data.getSortedRows([{column: 0}]);
+                    for (var i = 0; i < rowInds.length; i++) 
+                    {
+                        var par = data.getValue(rowInds[i], 0);
+                        var cur_text = '<a href=?par=' + encodeURIComponent(par) + '>' + par.toLowerCase() + '</a>' ;  
+                        if(par == cur_par) 
+                            cur_text = '<a href=?par=' + encodeURIComponent(par) + '><b>[' + par.toUpperCase() + ']</b></a>' ;
+                        text += cur_text + " ";
+                    }
+
+                    $('#div_par_links').html(text) ;
+                }) ;
+
+                // расшифровка пары
+
+                start("'Расшифровка валютных пар'!A2:D88",function (response){
+                    var data = response.getDataTable();
+                    
+                    for(var i=0;i<data.getNumberOfRows();i++)
+                    {
+                        var par = data.getValue(i,0) ;
+                        if(par == cur_par)
+                        {
+                            $('#div_title').text('Валютная пара - ' + data.getValue(i,1) + ' (' + par + ')') ;
+                            return ;
+                        }
+                    }
+                }) ;
+
+                // последние значения с данной парой
+
+                start("'Парные валютные курсы'!A1:H88",function (response) {
+                    console.log(1) ;
+
+                    var data = response.getDataTable();
+                    
+                    $('#div_date').text('Дата: ' + data.getColumnLabel(1).toString().substring(8)) ;
+
+                    data.setColumnLabel(0,"ПАРА") ;
+                    data.setColumnLabel(1,"КУРС") ;
+                    data.setColumnLabel(2,"день") ;
+                    data.setColumnLabel(3,"неделя") ;
+                    data.setColumnLabel(4,"месяц") ;
+                    data.setColumnLabel(5,"квартал") ;
+                    data.setColumnLabel(6,"полгода") ;
+                    data.setColumnLabel(7,"год") ;
+
+                    var formatter = new google.visualization.ColorFormat();
+                    formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
+                    formatter.addRange(0.0000000000001,100, 'yellow', 'green');
+                    formatter.format(data, 2);
+                    formatter.format(data, 3);
+                    formatter.format(data, 4);
+                    formatter.format(data, 5);
+                    formatter.format(data, 6);
+                    formatter.format(data, 7);
+
+                    var view = new google.visualization.DataView(data);
+                    view.setRows(view.getFilteredRows([{column: 0, value: cur_par}]));
+                    // view.hideColumns([0]) ;
+                    
+                    var table = new google.visualization.Table(document.getElementById('div_table'));
+                    table.draw(view, {allowHtml: true, showRowNumber: false});
+
+                }) ;
+
+                // график текущей пары
+
+                start("'История парных курсов'!A:A",function (response) {
+                    var data_dates = response.getDataTable() ;
+                    
+                    start("'История парных курсов'!B1:CJ1",function (response) {
+                        var data_pars = response.getDataTable() ;
+
+                        for(var i=0;i<data_pars.getNumberOfColumns();i++)
+                            if(data_pars.getValue(0,i) == cur_par)
+                            {
+                                var par_alpha = data_pars.getColumnId(i) ;
+                                start("'История парных курсов'!" + par_alpha + ":" + par_alpha,function (response) {
+                                    var data_par = response.getDataTable() ;
+
+                                    var data = data_dates.clone() ;
+                                    data.addColumn('number',cur_par) ;
+                                    for(var i=0;i<data.getNumberOfRows();i++)
+                                        data.setValue(i,1,data_par.getValue(i,0)) ;
+                                    
+                                    var options = {
+                                        explorer: { 
+                                            axis: 'horizontal' ,
+                                            actions: ['dragToZoom', 'rightClickToReset'],
+                                            keepInBounds: true
+                                        } ,
+                                        title: "История курса валютной пары " + cur_par,
+                                        height: 500
+                                        
+                                    } ;
+
+                                    var chart = new google.visualization.LineChart(document.getElementById('div_chart'));
+
+                                    chart.draw(data, options);
+                                }) ;
+                            }
+                    }) ;
+                }) ;
+            }) ;
+        }) ;
+        
+        // -------------------------------------------------------
+        // библиотека
+
+        function getAlpha(index)
+        {
+            var abc = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(/[\s\t ]+/) ;
+            var i = index + 1 ;
+            var mr = Math.floor(i/26) ;
+            var lr = i - mr*26 ;
+            var alpha = abc[lr] ;
+            if(mr>0) 
+                alpha = abc[mr-1] + alpha ;
+            return alpha ;
+        }
+
+        $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null)
+            {
+                return "" ;
+            }
+            else
+            {
+                return decodeURIComponent(results[1]) || "" ;
+            } 
+        }
+        
+        
+        function start(query,func) {
+            var queryString = encodeURIComponent(query);
+            var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+            var query = new google.visualization.Query(URL) ;
+            query.send(func);
+        } ;
+    </script>
+</body>
+</html>

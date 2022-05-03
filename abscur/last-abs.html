@@ -46,20 +46,21 @@
 
                 for(var i=0;i<data.getNumberOfRows();i++)
                 {
-                var name = data.getValue(i,0) ;
-                var link = '<a href=abs.html?val=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
-                data.setCell(i,0,link) ;
+                    var name = data.getValue(i,0) ;
+                    var link = '<a href=abs.html?val=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
+                    data.setCell(i,0,link) ;
                 }
 
                 var formatter = new google.visualization.ColorFormat();
-                formatter.addRange(-100, -0.0000000000001, 'red', 'white');
-                formatter.addRange(0.0000000000001,100, 'green', 'white');
+                formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
+                formatter.addRange(0.0000000000001,100, 'yellow', 'green');
                 formatter.format(data, 2);
                 formatter.format(data, 3);
                 formatter.format(data, 4);
                 formatter.format(data, 5);
                 formatter.format(data, 6);
                 formatter.format(data, 7);
+                
                 var table = new google.visualization.Table(document.getElementById('div_table'));
 
                 table.draw(data, {sortColumn:0, allowHtml: true,showRowNumber: false, height: '100%'});
