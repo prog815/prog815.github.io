@@ -9,7 +9,7 @@
 <body>
     <b><a href="index.html">НА ГЛАВНУЮ</a></b>
     <br/>
-    <b><a href="last-abs.html">К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
+    <b><a href="last-abs.html">&lt;&lt; К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
 
     <br/>
     <br/>
@@ -88,7 +88,7 @@
                 for (var i = 0; i < rowInds.length; i++) 
                 {
                     var val = data.getValue(rowInds[i], 0);
-                    var cur_text = '<a href=?val=' + encodeURIComponent(val) + '>' + val + '</a>' ;  
+                    var cur_text = '<a href=?val=' + encodeURIComponent(val) + '>' + val.toLowerCase() + '</a>' ;  
                     if(val == cur_val) 
                     {
                         cur_text = '<a href=?val=' + encodeURIComponent(val) + '><b>[' + val.toUpperCase() + ']</b></a>' ;
@@ -205,8 +205,13 @@
                                         keepInBounds: true
                                     } ,
                                     title: "История абсолютного курса для " + cur_val,
-                                    height: 500
-                                    
+                                    height: 300,
+                                    legend: {position: 'none'},
+                                    titlePosition: 'in', 
+                                    axisTitlesPosition: 'in',
+                                    chartArea: {width: '100%', height: '100%'},
+                                    hAxis: {textPosition: 'in'}, 
+                                    vAxis: {textPosition: 'in'}
                                 } ;
 
                                 var chart = new google.visualization.LineChart(document.getElementById('div_chart'));
