@@ -43,7 +43,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['table',]}) ;
-        google.charts.load('current', {'packages':['line',]}) ;
+        // google.charts.load('current', {'packages':['line',]}) ;
         google.charts.load('current', {'packages':['annotationchart',]}) ;
         
         var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
@@ -172,19 +172,7 @@
                                         data.setValue(i,1,data_par.getValue(i,0)) ;
                                     
                                     var options = {
-                                        explorer: { 
-                                            axis: 'horizontal' ,
-                                            actions: ['dragToZoom', 'rightClickToReset'],
-                                            keepInBounds: true
-                                        } ,
-                                        title: "История курса валютной пары " + cur_par,
                                         height: 300,
-                                        legend: {position: 'none'},
-                                        titlePosition: 'in',
-                                        axisTitlesPosition: 'in',
-                                        chartArea: {width: '100%', height: '100%'},
-                                        hAxis: {textPosition: 'in'},
-                                        vAxis: {textPosition: 'in'}
                                     } ;
 
                                     var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
