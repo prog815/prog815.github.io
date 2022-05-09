@@ -14,7 +14,7 @@
     <br/>
     <br/>
 
-    <div id="div_par_links">...Загрузка...</div>
+    <h3><div id="div_par_links">...Загрузка...</div></h3>
 
     <h1><div id="div_title">Валютная пара - ...загрузка...</div></h1>
 
@@ -33,7 +33,11 @@
 
     <br/>
 
-    <h2><div id="div_vals"></div></h2>
+    <div id="div_yahoo">...Ссылка на Yahoo.Finance для пары...</div>
+
+    <br/>
+
+    <h3><div id="div_vals"></div></h3>
     
     <br/>
 
@@ -59,7 +63,7 @@
             start("'История парных курсов'!B1:CJ1",function (response){
                 var data = response.getDataTable();
 
-                // текущая валюта
+                // текущая пара
                 var my_par = $.urlParam("par") ;
 
                 cur_par = "" ;
@@ -102,7 +106,7 @@
                         text += cur_text + " ";
                     }
 
-                    $('#div_par_links').html(text) ;
+                    $('#div_par_links').html("Валютные пары: " + text) ;
                 }) ;
 
                 // расшифровка пары
@@ -116,6 +120,7 @@
                         if(par == cur_par)
                         {
                             $('#div_title').text('Валютная пара - ' + data.getValue(i,1) + ' (' + par + ')') ;
+                            $('#div_yahoo').html('<a href=' + data.getValue(i,2) + ' target=_blank>Ссылка на Yahoo.Finance для пары ' + data.getValue(i,1) + '</a>') ;
                             return ;
                         }
                     }

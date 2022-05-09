@@ -14,10 +14,13 @@
     <br/>
     <br/>
 
-    <div id="div_val_links">...Загрузка...</div>
+    <h3><div id="div_val_links">...Загрузка...</div></h3>
 
     <h1><div id="div_title">Валюта - ...загрузка...</div></h1>
 
+    <br/>
+
+    <div id="div_wiki_link">...Расшифровка на Wikipedia...</div>
   
     <br/>
 
@@ -31,7 +34,7 @@
 
     <div id="div_chart"></div>
 
-    <h2><div id="div_pars"></div></h2>
+    <h3><div id="div_pars"></div></h3>
 
     <br/>
 
@@ -105,7 +108,7 @@
                     text += cur_text + " ";
                 }
 
-                $('#div_val_links').html(text) ;
+                $('#div_val_links').html("Валюты: " + text) ;
             }) ;
 
             // список пар для валюты
@@ -143,6 +146,7 @@
                     if(val == cur_val)
                     {
                         $('#div_title').text('Валюта - ' + data1.getValue(i,1) + ' (' + val + ')') ;
+                        $('#div_wiki_link').html('<a href=' + data1.getValue(i,2) + ' target=_blank>Расшифровка на Wikipedia</a>') ;
                         return ;
                     }
                 }
