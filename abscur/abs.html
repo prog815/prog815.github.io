@@ -33,6 +33,10 @@
 
     <h2><div id="div_pars"></div></h2>
 
+    <br/>
+
+    <div id="div_link_to">Ссылки на зеркала...</div>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -75,6 +79,10 @@
                 cur_val = data.getValue(0,Math.floor(Math.random() * cnt_c )) ;
 
             console.log('текущая валюта:',cur_val) ;
+
+            // Ссылки на зеркала
+
+            $('#div_link_to').html("Заркала на <a href=https://www.abscur.ru/p/2.html?val=" + cur_val + ">www.abscur.ru</a> и на <a href=https://prog815.github.io/abscur/abs.html?val=" + cur_val + ">prog815.github.io</a>") ;
 
             // список доступных валют
 

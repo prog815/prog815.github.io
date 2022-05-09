@@ -35,8 +35,10 @@
 
     <h2><div id="div_vals"></div></h2>
     
+    <br/>
 
-
+    <div id="div_link_to">Ссылки на зеркала...</div>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -70,6 +72,11 @@
                     cur_par = data.getValue(0,Math.floor(Math.random() * data.getNumberOfColumns() )) ;
 
                 console.log('текущая пара:',cur_par) ;
+
+                // Ссылки на зеркала
+
+                $('#div_link_to').html("Заркала на <a href=https://www.abscur.ru/p/blog-page_54.html?par=" + cur_par + ">www.abscur.ru</a> и на <a href=https://prog815.github.io/abscur/par.html?par=" + cur_par + ">prog815.github.io</a>") ;
+
 
                 // валюты текущей пары
 
