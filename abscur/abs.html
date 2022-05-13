@@ -9,7 +9,7 @@
 <body>
     <b><a href="index.html">НА ГЛАВНУЮ</a></b>
     <br/>
-    <b><a href="last-abs.html">&lt;&lt; К ПОСЛЕДНИМ АБСОЛЮТНЫМ КУРСАМ</a></b>
+    <b><a href="last-abs.html">&lt;&lt; К ПОСЛЕДНИМ АБСОЛЮТНЫМ ВАЛЮТНЫМ КУРСАМ</a></b>
 
     <br/>
     <br/>
@@ -17,6 +17,10 @@
     <h3><div id="div_val_links">...Загрузка...</div></h3>
 
     <h1><div id="div_title">Валюта - ...загрузка...</div></h1>
+
+    <br/>
+
+    <div>*- Что такое "абсолютный валютный курс"?</div>
 
     <br/>
 
@@ -145,8 +149,8 @@
                     var val = data1.getValue(i,0) ;
                     if(val == cur_val)
                     {
-                        $('#div_title').text('Валюта - ' + data1.getValue(i,1) + ' (' + val + ')') ;
-                        $('#div_wiki_link').html('<a href=' + data1.getValue(i,2) + ' target=_blank>Расшифровка на Wikipedia</a>') ;
+                        $('#div_title').text('Абсолютный валютный курс для "' + data1.getValue(i,1) + ' (' + val + ')"') ;
+                        $('#div_wiki_link').html('<a href=' + data1.getValue(i,2) + ' target=_blank>"' + data1.getValue(i,1) + ' (' + val + ')" на Wikipedia</a>') ;
                         return ;
                     }
                 }
@@ -218,10 +222,11 @@
                                     // } ,
                                     // title: "История абсолютного курса для " + cur_val,
                                     height: 300,
+                                    
                                     // legend: {position: 'none'},
                                     // titlePosition: 'in', 
                                     // axisTitlesPosition: 'in',
-                                    // chartArea: {width: '100%', height: '100%'},
+                                    // chartArea: {width: '95%', height: '100%'},
                                     // hAxis: {textPosition: 'in'}, 
                                     // vAxis: {textPosition: 'in'}
                                 } ;

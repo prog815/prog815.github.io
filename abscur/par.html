@@ -9,7 +9,7 @@
 <body>
     <b><a href="index.html">НА ГЛАВНУЮ</a></b>
     <br/>
-    <b><a href="last-par.html">&lt;&lt; К ПОСЛЕДНИМ ПАРНЫМ КУРСАМ</a></b>
+    <b><a href="last-par.html">&lt;&lt; К ПОСЛЕДНИМ ПАРНЫМ ВАЛЮТНЫМ КУРСАМ</a></b>
 
     <br/>
     <br/>
@@ -120,7 +120,7 @@
                         if(par == cur_par)
                         {
                             $('#div_title').text('Валютная пара - ' + data.getValue(i,1) + ' (' + par + ')') ;
-                            $('#div_yahoo').html('<a href=' + data.getValue(i,2) + ' target=_blank>Ссылка на Yahoo.Finance для пары ' + data.getValue(i,1) + '</a>') ;
+                            $('#div_yahoo').html('<a href=' + data.getValue(i,2) + ' target=_blank>Валютная пара "' + data.getValue(i,1) + ' (' + par + ')" на Yahoo.Finance</a>') ;
                             return ;
                         }
                     }
