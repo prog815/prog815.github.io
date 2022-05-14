@@ -36,7 +36,7 @@
 
     <br/>
 
-    <div id="div_chart"></div>
+    <div id="div_chart" style="width: 99%; height: 400px;"></div>
 
     <h3><div id="div_pars"></div></h3>
 
@@ -215,20 +215,7 @@
                                 console.log(data) ;
 
                                 var options = {
-                                    // explorer: { 
-                                    //     axis: 'horizontal' ,
-                                    //     actions: ['dragToZoom', 'rightClickToReset'],
-                                    //     keepInBounds: true
-                                    // } ,
-                                    // title: "История абсолютного курса для " + cur_val,
-                                    height: 300,
-                                    
-                                    // legend: {position: 'none'},
-                                    // titlePosition: 'in', 
-                                    // axisTitlesPosition: 'in',
-                                    // chartArea: {width: '95%', height: '100%'},
-                                    // hAxis: {textPosition: 'in'}, 
-                                    // vAxis: {textPosition: 'in'}
+                                    // height: 300,
                                 } ;
 
                                 var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
