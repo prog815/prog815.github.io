@@ -4,76 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Последние парные валютные курсы</title>
+    <title>Доходность (парные валютные курсы)</title>
+    <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-    <b><a href="index.html">&lt;&lt; НА ГЛАВНУЮ</a></b>
-    <br/>
+    <div class="sidenav">
+        <a href="index.html">ГЛАВНАЯ</a>
+        <a href="last-abs.html">ДОХОДНОСТЬ ВАЛЮТ</a>
+        <a>ВОЛАТИЛЬНОСТЬ ВАЛЮТ</a>
+        <a href="last-par.html">ДОХОДНОСТЬ ПАРНЫХ</a>
+        <a href="papers.html">О ПРОЕКТЕ</a>
+    </div>
 
-    <h1>Последние парные валютные курсы</h1>
-    <br/>
-    <div id="div_cur_date">...Загрузка даты...</div>
-    <br/>
-    <div id="div_table">...Загрузка таблицы...</div>
-    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <div class="main">
 
-    <script type="text/javascript">
+        <h1>Доходность (парные валютные курсы)</h1>
+        <br/>
+        <div id="div_cur_date">...Загрузка даты...</div>
+        <br/>
+        <div id="div_table">...Загрузка таблицы...</div>
+
+        <br/>
+
+        <div>Зеркала на <a href="https://www.abscur.ru/p/blog-page_57.html">www.abscur.ru</a> и на <a href="https://prog815.github.io/abscur/last-par.html">prog815.github.io</a></div>
         
-        google.charts.load('current', {'packages':['table']});
-        var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
-        // ------------------------------------------------------
-        // запуск начального
+        <script type="text/javascript">
+            
+            google.charts.load('current', {'packages':['table']});
+            var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
 
-        google.charts.setOnLoadCallback(function (){
-            start("'Парные валютные курсы'!A1:H88",function (response){
-                var data = response.getDataTable();
+            // ------------------------------------------------------
+            // запуск начального
 
-                $('#div_cur_date').text('Дата: ' + data.getColumnLabel(1).toString().substring(8)) ;
+            google.charts.setOnLoadCallback(function (){
+                start("'Парные валютные курсы'!A1:H88",function (response){
+                    var data = response.getDataTable();
 
-                data.setColumnLabel(0,"ПАРА") ;
-                data.setColumnLabel(1,"КУРС") ;
-                data.setColumnLabel(2,"день") ;
-                data.setColumnLabel(3,"неделя") ;
-                data.setColumnLabel(4,"месяц") ;
-                data.setColumnLabel(5,"квартал") ;
-                data.setColumnLabel(6,"полгода") ;
-                data.setColumnLabel(7,"год") ;
+                    $('#div_cur_date').text('Дата: ' + data.getColumnLabel(1).toString().substring(8)) ;
 
-                for(var i=0;i<data.getNumberOfRows();i++)
-                {
-                    var name = data.getValue(i,0) ;
-                    var link = '<a href=par.html?par=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
-                    data.setCell(i,0,link) ;
-                }
+                    data.setColumnLabel(0,"ПАРА") ;
+                    data.setColumnLabel(1,"КУРС") ;
+                    data.setColumnLabel(2,"день") ;
+                    data.setColumnLabel(3,"неделя") ;
+                    data.setColumnLabel(4,"месяц") ;
+                    data.setColumnLabel(5,"квартал") ;
+                    data.setColumnLabel(6,"полгода") ;
+                    data.setColumnLabel(7,"год") ;
 
-                var formatter = new google.visualization.ColorFormat();
-                formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
-                formatter.addRange(0.0000000000001,100, 'yellow', 'green');
-                formatter.format(data, 2);
-                formatter.format(data, 3);
-                formatter.format(data, 4);
-                formatter.format(data, 5);
-                formatter.format(data, 6);
-                formatter.format(data, 7);
+                    for(var i=0;i<data.getNumberOfRows();i++)
+                    {
+                        var name = data.getValue(i,0) ;
+                        var link = '<a href=par.html?par=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
+                        data.setCell(i,0,link) ;
+                    }
 
-                var table = new google.visualization.Table(document.getElementById('div_table'));
+                    var formatter = new google.visualization.ColorFormat();
+                    formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
+                    formatter.addRange(0.0000000000001,100, 'yellow', 'green');
+                    formatter.format(data, 2);
+                    formatter.format(data, 3);
+                    formatter.format(data, 4);
+                    formatter.format(data, 5);
+                    formatter.format(data, 6);
+                    formatter.format(data, 7);
 
-                table.draw(data, {sortColumn:0, allowHtml: true,showRowNumber: false, height: '100%'});
+                    var table = new google.visualization.Table(document.getElementById('div_table'));
+
+                    table.draw(data, {sortColumn:0, allowHtml: true,showRowNumber: false, height: '100%'});
+                }) ;
             }) ;
-        }) ;
-        
-        // -------------------------------------------------------
-        // библиотека
+            
+            // -------------------------------------------------------
+            // библиотека
 
-        function start(query,func) {
-            var queryString = encodeURIComponent(query);
-            var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
-            var query = new google.visualization.Query(URL) ;
-            query.send(func);
-        } ;
-    </script>
+            function start(query,func) {
+                var queryString = encodeURIComponent(query);
+                var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+                var query = new google.visualization.Query(URL) ;
+                query.send(func);
+            } ;
+        </script>
+
+
+    </div>
 </body>
 </html>
