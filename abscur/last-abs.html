@@ -11,7 +11,7 @@
     <div class="sidenav">
         <a href="index.html">ГЛАВНАЯ</a>
         <a href="last-abs.html">ДОХОДНОСТЬ ВАЛЮТ</a>
-        <a>ВОЛАТИЛЬНОСТЬ ВАЛЮТ</a>
+        <a href="volat.html">ВОЛАТИЛЬНОСТЬ ВАЛЮТ</a>
         <a href="last-par.html">ДОХОДНОСТЬ ПАРНЫХ</a>
         <a href="papers.html">О ПРОЕКТЕ</a>
     </div>
@@ -62,8 +62,8 @@
                     }
 
                     var formatter = new google.visualization.ColorFormat();
-                    formatter.addRange(-100, -0.0000000000001, 'red', 'white');
-                    formatter.addRange(0.0000000000001,100, 'blue', 'white');
+                    formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
+                    formatter.addRange(0.0000000000001,100, 'yellow', 'green');
                     formatter.format(data, 2);
                     formatter.format(data, 3);
                     formatter.format(data, 4);
@@ -71,14 +71,6 @@
                     formatter.format(data, 6);
                     formatter.format(data, 7);
 
-                    var formatter = new google.visualization.BarFormat({width: 50, colorPositive: 'blue'});
-                    formatter.format(data, 2);
-                    formatter.format(data, 3);
-                    formatter.format(data, 4);
-                    formatter.format(data, 5);
-                    formatter.format(data, 6);
-                    formatter.format(data, 7);
-                    
                     var table = new google.visualization.Table(document.getElementById('div_table'));
 
                     table.draw(data, {sortColumn:2, sortAscending:false, allowHtml: true,showRowNumber: false, height: '100%'});
