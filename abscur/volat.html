@@ -19,16 +19,73 @@
     <div class="main">
         <h1>Волатильность (абсолютные валютные курсы)</h1>
 
-        <h1>Волатильность за неделю</h1>
-        <h2>Рейтинг волатильности за неделю (справа самые стабильные)</h2>
-        <img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQrM_PN3rMWIBYtpo3TYUpwSmmef25APXt67dXpElNIMS4LNiQXxr2Sc4s6GtoZGWLBdOf4sK0L5Puq/pubchart?oid=1804914859&format=image">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['table']});
+            // google.charts.load('current', {'packages':['corechart']});
+            var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+            google.charts.setOnLoadCallback(function (){
+                // запрос к таблице
+                var queryString = encodeURIComponent("'Волатильность абсолютная'!A1:J46");
+                var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?headers=0&range=' + queryString  ;
+                var query = new google.visualization.Query(URL) ;
+                query.send(function (response)
+                {
+                    var data = response.getDataTable();
+                    var cnt_c = data.getNumberOfColumns() ;
+                    var cnt_r = data.getNumberOfRows() ;
 
+                    data = data.clone() ;
 
-        <h2>График самых волатильных за неделю</h2>
-        <img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQrM_PN3rMWIBYtpo3TYUpwSmmef25APXt67dXpElNIMS4LNiQXxr2Sc4s6GtoZGWLBdOf4sK0L5Puq/pubchart?oid=664442617&format=image">
+                    $('#div_cur_date').text('Дата: ' + data.getValue(0,1)) ;
 
-        <h2>График самых стабильных за неделю</h2>
-        <img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQrM_PN3rMWIBYtpo3TYUpwSmmef25APXt67dXpElNIMS4LNiQXxr2Sc4s6GtoZGWLBdOf4sK0L5Puq/pubchart?oid=777982924&format=image">
+                    data.removeRow(0) ;
+                    data.removeColumn(0) ;
+
+                    data.setColumnLabel(0,"Валюта") ;
+                    data.setColumnLabel(1,"Курс") ;
+                    data.setColumnLabel(2,"НЕДЕЛЯ") ;
+                    data.setColumnLabel(3,"МЕСЯЦ") ;
+                    data.setColumnLabel(4,"КВАРТАЛ") ;
+                    data.setColumnLabel(5,"ПОЛГОДА") ;
+                    data.setColumnLabel(6,"ГОД") ;
+                    data.setColumnLabel(7,"3 ГОДА") ;
+                    data.setColumnLabel(8,"5 ЛЕТ") ;
+                    
+                    for(var i=0;i<data.getNumberOfRows();i++)
+                    {
+                        var name = data.getValue(i,0) ;
+                        var link = '<a href=abs.html?val=' + encodeURIComponent(name) + '>' + name.toUpperCase()+ '</a>' ;
+                        data.setCell(i,0,link) ;
+                    }
+
+                    for(let i=2;i<9;i++)
+                    {
+                        let sum = 0 ;
+                        for(let r=0;r<data.getNumberOfRows();r++)
+                            sum += data.getValue(r,i) ;
+                        
+                        let formatter = new google.visualization.ColorFormat() ;
+                        formatter.addRange(-100000, sum/data.getNumberOfRows()-0.0000000000001, 'yellow', 'blue') ;
+                        formatter.addRange(sum/data.getNumberOfRows()+0.0000000000001,100000, 'yellow', 'red') ;
+                        formatter.format(data, i) ;
+                    }
+                    
+                    var table = new google.visualization.Table(document.getElementById('div_table'));
+
+                    table.draw(data, {sortColumn:2, sortAscending:false, allowHtml: true,showRowNumber: false, height: '100%'});
+                    
+                });
+                
+            }) ;
+            
+        </script>
+
+        <div id="div_cur_date">...Загрузка даты...</div>
+        <br/>
+        <div id="div_table">...Загрузка таблицы...</div>
+        
     </div>
 </body>
 </html>
