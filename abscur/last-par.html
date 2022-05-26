@@ -40,19 +40,21 @@
             // запуск начального
 
             google.charts.setOnLoadCallback(function (){
-                start("'Парные валютные курсы'!A1:H88",function (response){
+                start("'Парные валютные курсы'!A1:J88",function (response){
                     var data = response.getDataTable();
 
                     $('#div_cur_date').text('Дата: ' + data.getColumnLabel(1).toString().substring(8)) ;
 
                     data.setColumnLabel(0,"ПАРА") ;
                     data.setColumnLabel(1,"КУРС") ;
-                    data.setColumnLabel(2,"день") ;
-                    data.setColumnLabel(3,"неделя") ;
-                    data.setColumnLabel(4,"месяц") ;
-                    data.setColumnLabel(5,"квартал") ;
-                    data.setColumnLabel(6,"полгода") ;
-                    data.setColumnLabel(7,"год") ;
+                    data.setColumnLabel(2,"ДЕНЬ") ;
+                    data.setColumnLabel(3,"НЕДЕЛЯ") ;
+                    data.setColumnLabel(4,"МЕСЯЦ") ;
+                    data.setColumnLabel(5,"КВАРТАЛ") ;
+                    data.setColumnLabel(6,"ПОЛГОДА") ;
+                    data.setColumnLabel(7,"ГОД") ;
+                    data.setColumnLabel(8,"3 ГОДА") ;
+                    data.setColumnLabel(9,"5 ЛЕТ") ;
 
                     for(var i=0;i<data.getNumberOfRows();i++)
                     {
@@ -64,16 +66,13 @@
                     var formatter = new google.visualization.ColorFormat();
                     formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
                     formatter.addRange(0.0000000000001,100, 'yellow', 'green');
-                    formatter.format(data, 2);
-                    formatter.format(data, 3);
-                    formatter.format(data, 4);
-                    formatter.format(data, 5);
-                    formatter.format(data, 6);
-                    formatter.format(data, 7);
+                    for(let i=2;i<10;i++)
+                        formatter.format(data, i);
+                    
 
                     var table = new google.visualization.Table(document.getElementById('div_table'));
 
-                    table.draw(data, {sortColumn:0, allowHtml: true,showRowNumber: false, height: '100%'});
+                    table.draw(data, {sortColumn:2, sortAscending:false, allowHtml: true,showRowNumber: false, height: '100%'});
                 }) ;
             }) ;
             
