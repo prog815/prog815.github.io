@@ -161,7 +161,7 @@
                 
                 // последние значения с данной валютой
 
-                start("'Абсолютные валютные курсы'!A1:I46",function (response1) {
+                start("'Абсолютные валютные курсы'!A1:K46",function (response1) {
                     data1 = response1.getDataTable();
                     var cnt_c = data1.getNumberOfColumns() ;
                     var cnt_r = data1.getNumberOfRows() ;
@@ -169,22 +169,20 @@
                     var formatter = new google.visualization.ColorFormat();
                     formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
                     formatter.addRange(0.0000000000001,100, 'yellow', 'green');
-                    formatter.format(data1, 3);
-                    formatter.format(data1, 4);
-                    formatter.format(data1, 5);
-                    formatter.format(data1, 6);
-                    formatter.format(data1, 7);
-                    formatter.format(data1, 8);
-
+                    for(let i=3;i<11;i++)
+                        formatter.format(data1, i) ;
+                    
                     $('#div_date').text('Дата: ' + data1.getColumnLabel(1)) ;
                     data1.setColumnLabel(1,"ВАЛЮТА") ;
                     data1.setColumnLabel(2,"КУРС") ;
-                    data1.setColumnLabel(3,"день") ;
-                    data1.setColumnLabel(4,"неделя") ;
-                    data1.setColumnLabel(5,"месяц") ;
-                    data1.setColumnLabel(6,"квартал") ;
-                    data1.setColumnLabel(7,"полгода") ;
-                    data1.setColumnLabel(8,"год") ;
+                    data1.setColumnLabel(3,"ДЕНЬ") ;
+                    data1.setColumnLabel(4,"НЕДЕЛЯ") ;
+                    data1.setColumnLabel(5,"МЕСЯЦ") ;
+                    data1.setColumnLabel(6,"КВАРТАЛ") ;
+                    data1.setColumnLabel(7,"ПОЛГОДА") ;
+                    data1.setColumnLabel(8,"ГОД") ;
+                    data1.setColumnLabel(9,"3 ГОДА") ;
+                    data1.setColumnLabel(10,"5 ЛЕТ") ;
 
                     var view = new google.visualization.DataView(data1);
                     view.setRows(view.getFilteredRows([{column: 0, value: cur_val}]));
