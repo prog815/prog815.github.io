@@ -29,7 +29,7 @@
             var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
             google.charts.setOnLoadCallback(function (){
                 // запрос к таблице
-                var queryString = encodeURIComponent("'Абсолютные валютные курсы'!A1:I46");
+                var queryString = encodeURIComponent("'Абсолютные валютные курсы'!A1:K46");
                 var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?headers=0&range=' + queryString  ;
                 var query = new google.visualization.Query(URL) ;
                 query.send(function (response)
@@ -53,6 +53,8 @@
                     data.setColumnLabel(5,"КВАРТАЛ") ;
                     data.setColumnLabel(6,"ПОЛГОДА") ;
                     data.setColumnLabel(7,"ГОД") ;
+                    data.setColumnLabel(8,"3 ГОДА") ;
+                    data.setColumnLabel(9,"5 ЛЕТ") ;
 
                     for(var i=0;i<data.getNumberOfRows();i++)
                     {
@@ -64,12 +66,8 @@
                     var formatter = new google.visualization.ColorFormat();
                     formatter.addRange(-100, -0.0000000000001, 'yellow', 'red');
                     formatter.addRange(0.0000000000001,100, 'yellow', 'green');
-                    formatter.format(data, 2);
-                    formatter.format(data, 3);
-                    formatter.format(data, 4);
-                    formatter.format(data, 5);
-                    formatter.format(data, 6);
-                    formatter.format(data, 7);
+                    for(let i=2;i<10;i++)
+                        formatter.format(data, i) ;
 
                     var table = new google.visualization.Table(document.getElementById('div_table'));
 
