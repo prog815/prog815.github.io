@@ -30,6 +30,7 @@
         <br/>
 
         <div id="div_wiki_link">...Расшифровка на Wikipedia...</div>
+        <div id="div_tv"></div>
     
         <br/>
 
@@ -46,6 +47,8 @@
         <h3><div id="div_pars"></div></h3>
 
         <br/>
+
+        
 
         <div id="div_link_to">Ссылки на зеркала...</div>
         
@@ -144,7 +147,7 @@
 
                 // расшифровка валюты
 
-                start("'Расшифровка валют'!A2:D46",function (response1){
+                start("'Расшифровка валют'!A2:G46",function (response1){
                     var data1 = response1.getDataTable();
                     var cnt_c = data1.getNumberOfColumns() ;
                     var cnt_r = data1.getNumberOfRows() ;
@@ -156,6 +159,10 @@
                         {
                             $('#div_title').text('Абсолютный валютный курс для "' + data1.getValue(i,1) + ' (' + val + ')"') ;
                             $('#div_wiki_link').html('<a href=' + data1.getValue(i,2) + ' target=_blank>"' + data1.getValue(i,1) + ' (' + val + ')" на Wikipedia</a>') ;
+
+                            let tv_code = data1.getValue(i,6)
+                            if(tv_code.toString().length > 0)
+                                $('#div_tv').html('<a href="https://ru.tradingview.com/v/' + tv_code + '/" target=_blank>' + data1.getValue(i,1) + '(абсолютный курс) на TradingView</a>')
                             return ;
                         }
                     }
