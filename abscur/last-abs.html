@@ -23,6 +23,22 @@
 
         <h1>ДОХОДНОСТЬ АБСОЛЮТНАЯ</h1>
 
+        <br/>
+
+        Абсолютный валютный курс считается из <a href="last-par.html">парных валютных курсов</a>. 
+        Расчет производится каждые два часа. 
+        Методика расчета находится на странице <a href="papers.html">"О проекте"</a>. 
+        Здесь представлен дневной абсолютный валютный курс.
+        Полная история всех абсолютных валютных курсов за последние 5 лет доступна по <a href="https://docs.google.com/spreadsheets/d/1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U/edit#gid=1596876531" target="_blank">ссылке</a>. 
+        Ниже таблица с относительными изменениями абсолютных валютных курсов за разные временные интервалы.
+        Положительные значения выделены зеленым цетом, отрицательные красным.
+        Рейтинги валют можно сортировать нажатием в заголовках соответствующих столбцов таблицы. 
+        Для перехода к странице конкретной валюты можно воспользоваться ссылкой из первого столбца.
+
+
+        <br/>
+        <br/>
+        
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript">
@@ -30,12 +46,7 @@
             // google.charts.load('current', {'packages':['corechart']});
             var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
             google.charts.setOnLoadCallback(function (){
-                // запрос к таблице
-                var queryString = encodeURIComponent("'Абсолютные валютные курсы'!A1:K46");
-                var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?headers=0&range=' + queryString  ;
-                var query = new google.visualization.Query(URL) ;
-                query.send(function (response)
-                {
+                start("'Абсолютные валютные курсы'!A1:K46",function (response){
                     var data = response.getDataTable();
                     var cnt_c = data.getNumberOfColumns() ;
                     var cnt_r = data.getNumberOfRows() ;
@@ -78,6 +89,16 @@
                 });
                 
             }) ;
+
+            // -------------------------------------------------------
+            // библиотека
+
+            function start(query,func) {
+                var queryString = encodeURIComponent(query);
+                var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+                var query = new google.visualization.Query(URL) ;
+                query.send(func);
+            } ;
             
         </script>
 

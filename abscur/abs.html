@@ -21,12 +21,14 @@
     <div class="content">
         <h3><div id="div_val_links">...Загрузка...</div></h3>
 
+        <br/>
+
         <h1><div id="div_title">Валюта - ...загрузка...</div></h1>
 
         <br/>
 
-        <div>*- Что такое "<a href="papers.html">абсолютный валютный курс</a>"?</div>
-
+        
+        <br/>
         <br/>
 
         <div id="div_wiki_link">...Расшифровка на Wikipedia...</div>
@@ -43,6 +45,8 @@
         <br/>
 
         <div id="div_chart" style="width: 99%; height: 400px;"></div>
+
+        <br/>
 
         <h3><div id="div_pars"></div></h3>
 
@@ -163,6 +167,7 @@
                             let tv_code = data1.getValue(i,6)
                             if(tv_code.toString().length > 0)
                                 $('#div_tv').html('<a href="https://ru.tradingview.com/v/' + tv_code + '/" target=_blank>' + data1.getValue(i,1) + '(абсолютный курс) на TradingView</a>')
+                            
                             return ;
                         }
                     }
