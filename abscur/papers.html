@@ -26,8 +26,10 @@
 
         Существуют парные валютные курсы. Но они отражают отношение одной валюты к другой. 
         А если мы имеем множество таких отношений (множество парных курсов) то может стоит из них получить отдельные курсы для каждой валюты?
-        Эти курсы называются "абсолютными валютнысми курсами".
-        Методика перехода из парных валютных курсов к абсолютным валютным пурсам показана в статье ниже.
+        Эти курсы называются "абсолютными валютными курсами".
+        Методика перехода из парных валютных курсов к абсолютным валютным курсам показана в статье ниже.
+
+        <br/><br/>
 
         <h1>Формула частная</h1>
 
@@ -47,6 +49,68 @@
         <img src="formula_ln().png"> - функция взятия натурального логарифма,
         <img src="formula_exp().png"> - функция взятия экспоненты.
 
+        <br/><br/>
+
+        <h1>Пример формулы</h1>
+
+        Буквально формула расчета одного из абсолютных валютных курсов выглядит следующим образом.
+
+        <br/><br/>
+
+        <dim id="dim_formula">...Загрузка формулы...</dim>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+            // google.charts.load('current', {'packages':['table']});
+            google.charts.load('current', {'packages':['corechart']});
+            var ssid = "1CrNvvV-p6XG7lSJXftPKk_aY4nuH4WK25rPxaNKrM3U" ;
+            google.charts.setOnLoadCallback(function (){
+                start("'Матрица'!A1:AT88",function (response){
+                    var data = response.getDataTable();
+                    var cnt_c = data.getNumberOfColumns() ;
+                    var cnt_r = data.getNumberOfRows() ;
+
+                    cur_index = getRandomInt(cnt_c-1) ;
+                    cur_name = data.getColumnLabel(1+cur_index) + 'ABS' ;
+
+                    formula = cur_name + ' = exp( ' ;
+                    for(let n=0;n<cnt_r;n++)
+                    {
+                        let k = data.getValue(n,1+cur_index)
+                        if(k>=0)
+                            formula += '+' ;
+                        formula += k.toFixed(5) + '*ln(' + data.getValue(n,0) + ') ' ;
+                    }
+
+                    $('#dim_formula').text(formula + ' )') ;
+                    
+                });
+                
+            }) ;
+
+            // -------------------------------------------------------
+            // библиотека
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+
+            function start(query,func) {
+                var queryString = encodeURIComponent(query);
+                var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+                var query = new google.visualization.Query(URL) ;
+                query.send(func);
+            } ;
+            
+        </script>
+
+        <br/><br/>
+
+        Пример абсолютного валютного курса можно посмотреть по <a href="abs.html">ссылке</a>.
+
+        <br/><br/>
+
         <h1>Формула матричная</h1>
 
         Расчет абсолютных курсов в матричном виде показан в следующей формуле:
@@ -64,8 +128,6 @@
         <img src="formula_exp().png"> - функция взятия экспоненты.
 
         <br/><br/>
-
-        Пример абсолютного валютного курса можно посмотреть по <a href="abs.html">ссылке</a>.
 
         <h1>Статьи</h1>
 
