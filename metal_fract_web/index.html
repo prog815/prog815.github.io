@@ -15,16 +15,25 @@
     <p>Выберите файл с картинкой и нажмите "Предсказать".</p>
     <p>Ниже появится размеченное изображение и доли каждой компоненты.</p>
 
-    <br>
-    <input accept="image/*" type='file' id="input_button" />
-  	<br>
-    <img id="img1" src="./image.jpg" style="width: 256px ; height: 256px " /> <!-- make sure that width and height of img tag is 256x256 -->
-    <br>  <br>
-    <button   onclick="predict()">Предсказать</button>
-    <br>
-    <p id="result"> </p>
+    <table>
+      <tr>
+        <td>
+          <input accept="image/*" type='file' id="input_button" />
+          <br>
+          <img id="img1" src="./image.jpg" style="width: 256px ; height: 256px " /> <!-- make sure that width and height of img tag is 256x256 -->
+          <br>  <br>
+          
+          <p id="result"> </p>
+        </td>
+        <td>
+          <canvas id="canvas" width="128" height="128" style="zoom:2" ></canvas>
+        </td>
+      </tr>
+    </table>
 
-    <canvas id="canvas" width="128" height="128" style="zoom:2" ></canvas>
+    <button   onclick="predict()">Обработать</button>
+    <br>
+
 
     <script>
 
