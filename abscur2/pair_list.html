@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Pairs List</title>
+    
+</head>
+<body>
+
+<div id="currentPair">
+    Загрузка имени текущей пары
+</div>
+
+<br/>
+
+<div id="linkToOtherPairs">
+    Загрузка ссылок на другие пары
+</div>
+
+<br/>
+
+<div id="pairsImgs">
+    Загрузка графиков текущей пары
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['table']});
+    var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
+    
+    var data_pairs_imgs ;
+    var cur_pair ;
+    var cur_row ;
+
+
+    google.charts.setOnLoadCallback(function (){
+
+        start("'Графики парных валютных курсов'!A1:I86", function(response) {
+            var data = response.getDataTable();
+            var cnt_c = data.getNumberOfColumns() ;
+            var cnt_r = data.getNumberOfRows() ;
+
+            data_pairs_imgs = data.clone() ;
+
+            // текущая пара
+            var my_par = $.urlParam("pair") ;
+
+            cur_pair = "" ;
+
+            for(var i=1;i<cnt_r;i++)
+                if(data_pairs_imgs.getValue(i,0) == my_par)
+                    cur_pair = data_pairs_imgs.getValue(i,0) ;
+                    cur_row = i ;
+            
+            if(cur_pair.length <= 0)
+                cur_row = Math.floor(Math.random() * (cnt_r-1) + 1) ;
+                cur_pair = data_pairs_imgs.getValue(cur_row,0) ;
+
+            $('#currentPair').text('Текущая пара: ' + cur_pair) ;
+
+            // ссылки на другие пары
+
+
+            // вывод графиков текущей пары
+            var pairsImgs = "" ;
+            for(var i=1;i<cnt_c;i++){
+                pairsImgs += "<h1>" + data_pairs_imgs.getValue(0,i) + "</h1>" ;
+                pairsImgs += "<img src=" + data_pairs_imgs.getValue(cur_row,i) + "></img>"
+            }
+
+            $('#pairsImgs').html(pairsImgs) ;
+
+        }) ;
+    
+    }) ;
+
+
+
+    // -------------------------------------------------------
+    // библиотека
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null)
+        {
+            return "" ;
+        }
+        else
+        {
+            return decodeURIComponent(results[1]) || "" ;
+        } 
+    }
+    
+    
+    function start(query,func) {
+        var queryString = encodeURIComponent(query);
+        var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+        var query = new google.visualization.Query(URL) ;
+        query.send(func);
+    } ;
+</script>
+
+
+
+</body>
+</html>
