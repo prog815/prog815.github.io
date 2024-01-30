@@ -21,15 +21,18 @@
 
 <br/>
 
-<div id="pairsImgs">
+<div id="div_chart" style="width: 99%; height: 400px;">
     Загрузка графиков текущей пары
 </div>
+
+<br/>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
-    google.charts.load('current', {'packages':['table']});
+    // google.charts.load('current', {'packages':['table']});
+    google.charts.load('current', {'packages':['annotationchart']});
     var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
     
     // текущая пара
@@ -83,7 +86,18 @@
                     var pair_col = response.getDataTable() ;
                     console.log(pair_col.getNumberOfRows()) ;
 
-                    
+                    var data = dates_col.clone() ;
+                    data.addColumn('number',cur_pair) ;
+                    for(var i=0;i<data.getNumberOfRows();i++)
+                        data.setValue(i,1,pair_col.getValue(i,0)) ;
+
+                    var options = {
+                        // height: 300,
+                    } ;
+
+                    var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
+
+                    chart.draw(data, options);
                 }) ;
             }) ;
         
