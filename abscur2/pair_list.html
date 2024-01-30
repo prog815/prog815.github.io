@@ -15,7 +15,7 @@
 
 <br/>
 
-<div id="linkToOtherPairs">
+<div id="pairsLinks">
     Загрузка ссылок на другие пары
 </div>
 
@@ -32,53 +32,64 @@
     google.charts.load('current', {'packages':['table']});
     var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
     
-    var data_pairs_imgs ;
-    var cur_pair ;
-    var cur_row ;
-
-
+    // текущая пара
+    var cur_pair = "" ;
+    var cur_pair_num = 0 ;
+    var dates_col ;
+    
     google.charts.setOnLoadCallback(function (){
-
-        start("'Графики парных валютных курсов'!A1:I86", function(response) {
+        
+        start("'Парные валютные курсы'!B1:CH1",function(response){
+            // строка имен пар
             var data = response.getDataTable();
             var cnt_c = data.getNumberOfColumns() ;
-            var cnt_r = data.getNumberOfRows() ;
-
-            data_pairs_imgs = data.clone() ;
 
             // текущая пара
             var my_par = $.urlParam("pair") ;
-
             cur_pair = "" ;
-
-            for(var i=1;i<cnt_r;i++)
-                if(data_pairs_imgs.getValue(i,0) == my_par)
-                    cur_pair = data_pairs_imgs.getValue(i,0) ;
-                    cur_row = i ;
-            
-            if(cur_pair.length <= 0)
-                cur_row = Math.floor(Math.random() * (cnt_r-1) + 1) ;
-                cur_pair = data_pairs_imgs.getValue(cur_row,0) ;
-
+            for(var i=0;i<cnt_c;i++)
+                if(data.getValue(0,i) == my_par){
+                    cur_pair = data.getValue(0,i) ;
+                    cur_pair_num = i ;
+                }
+            if(cur_pair.length <= 0){
+                cur_pair_num = Math.floor(Math.random()*cnt_c)
+                cur_pair = data.getValue(0,cur_pair_num) ;
+            } 
             $('#currentPair').text('Текущая пара: ' + cur_pair) ;
-
+            
             // ссылки на другие пары
-
-
-            // вывод графиков текущей пары
-            var pairsImgs = "" ;
-            for(var i=1;i<cnt_c;i++){
-                pairsImgs += "<h1>" + data_pairs_imgs.getValue(0,i) + "</h1>" ;
-                pairsImgs += "<img src=" + data_pairs_imgs.getValue(cur_row,i) + "></img>"
+            var pairsLinks = "" ;
+            for(var i=0;i<cnt_c;i++){
+                var pair = data.getValue(0,i) ;
+                if(pair == cur_pair)
+                    pairsLinks += '<b>' + pair.toUpperCase() + '</b> ' ;
+                else
+                    pairsLinks += '<a href=?pair=' + encodeURIComponent(pair) + '>' + pair.toUpperCase() + '</a> ' ;
             }
+            $('#pairsLinks').html(pairsLinks) ;
 
-            $('#pairsImgs').html(pairsImgs) ;
+            
+            start("'Парные валютные курсы'!A2:A",function(response){
+                // столбец дат
+                dates_col = response.getDataTable() ;
+                var cnt_r = dates_col.getNumberOfRows() ;
+                console.log(cnt_r) ;
 
+                var pairAlpha = getAlpha(cur_pair_num) ;
+                console.log(pairAlpha) ;
+
+                start("'Парные валютные курсы'!" + pairAlpha + "2:" + pairAlpha,function(response){
+                    var pair_col = response.getDataTable() ;
+                    console.log(pair_col.getNumberOfRows()) ;
+
+                    
+                }) ;
+            }) ;
+        
         }) ;
     
     }) ;
-
-
 
     // -------------------------------------------------------
     // библиотека
@@ -102,6 +113,18 @@
         var query = new google.visualization.Query(URL) ;
         query.send(func);
     } ;
+
+    function getAlpha(index)
+    {
+        var abc = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(/[\s\t ]+/) ;
+        var i = index + 1 ;
+        var mr = Math.floor(i/26) ;
+        var lr = i - mr*26 ;
+        var alpha = abc[lr] ;
+        if(mr>0) 
+            alpha = abc[mr-1] + alpha ;
+        return alpha ;
+    }
 </script>
 
 
