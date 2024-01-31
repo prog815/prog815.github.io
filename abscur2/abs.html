@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПАРНЫЕ КУРСЫ</title>
+    <title>АБСОЛЮТНЫЕ КУРСЫ</title>
     
 </head>
 <body>
@@ -18,20 +18,20 @@
 </nav>
 
 
-<div id="currentPair">
-    Загрузка имени текущей пары
+<div id="currentAbs">
+    Загрузка имени текущей валюты
 </div>
 
 <br/>
 
-<div id="pairsLinks">
-    Загрузка ссылок на другие пары
+<div id="absLinks">
+    Загрузка ссылок на другие валюты
 </div>
 
 <br/>
 
 <div id="div_chart" style="width: 99%; height: 400px;">
-    Загрузка графиков текущей пары
+    Загрузка графика абсолютного курса текущей валюты
 </div>
 
 <br/>
@@ -40,65 +40,61 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
-    // google.charts.load('current', {'packages':['table']});
     google.charts.load('current', {'packages':['annotationchart']});
     var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
     
-    // текущая пара
-    var cur_pair = "" ;
-    var cur_pair_num = 0 ;
+    // текущая валюта
+    var cur_abs = "" ;
+    var cur_abs_num = 0 ;
     var dates_col ;
     
     google.charts.setOnLoadCallback(function (){
         
-        start("'Парные валютные курсы'!B1:CH1",function(response){
-            // строка имен пар
+        start("'Абсолютные валютные курсы'!B1:AT1",function(response){
+            // строка имен валют
             var data = response.getDataTable();
             var cnt_c = data.getNumberOfColumns() ;
 
             // текущая пара
-            var my_par = $.urlParam("pair") ;
-            cur_pair = "" ;
+            var my_abs = $.urlParam("abs") ;
+            cur_abs = "" ;
             for(var i=0;i<cnt_c;i++)
-                if(data.getValue(0,i) == my_par){
-                    cur_pair = data.getValue(0,i) ;
-                    cur_pair_num = i ;
+                if(data.getValue(0,i) == my_abs){
+                    cur_abs = data.getValue(0,i) ;
+                    cur_abs_num = i ;
                 }
-            if(cur_pair.length <= 0){
-                cur_pair_num = Math.floor(Math.random()*cnt_c)
-                cur_pair = data.getValue(0,cur_pair_num) ;
+            if(cur_abs.length <= 0){
+                cur_abs_num = Math.floor(Math.random()*cnt_c)
+                cur_abs = data.getValue(0,cur_abs_num) ;
             } 
-            $('#currentPair').text('Текущая пара: ' + cur_pair) ;
+            $('#currentAbs').text('Текущая валюта: ' + cur_abs) ;
             
-            // ссылки на другие пары
-            var pairsLinks = "" ;
+            // ссылки на другие валюты
+            var absLinks = "" ;
             for(var i=0;i<cnt_c;i++){
-                var pair = data.getValue(0,i) ;
-                if(pair == cur_pair)
-                    pairsLinks += '<b>' + pair.toUpperCase() + '</b> ' ;
+                var _abs = data.getValue(0,i) ;
+                if(_abs == cur_abs)
+                    absLinks += '<b>' + _abs.toUpperCase() + '</b> ' ;
                 else
-                    pairsLinks += '<a href=?pair=' + encodeURIComponent(pair) + '>' + pair.toUpperCase() + '</a> ' ;
+                    absLinks += '<a href=?abs=' + encodeURIComponent(_abs) + '>' + _abs.toUpperCase() + '</a> ' ;
             }
-            $('#pairsLinks').html(pairsLinks) ;
+            $('#absLinks').html(absLinks) ;
 
             
-            start("'Парные валютные курсы'!A2:A",function(response){
+            start("'Абсолютные валютные курсы'!A2:A",function(response){
                 // столбец дат
                 dates_col = response.getDataTable() ;
                 var cnt_r = dates_col.getNumberOfRows() ;
-                console.log(cnt_r) ;
-
-                var pairAlpha = getAlpha(cur_pair_num) ;
-                console.log(pairAlpha) ;
-
-                start("'Парные валютные курсы'!" + pairAlpha + "2:" + pairAlpha,function(response){
-                    var pair_col = response.getDataTable() ;
-                    console.log(pair_col.getNumberOfRows()) ;
-
+                
+                var absAlpha = getAlpha(cur_abs_num) ;
+                
+                start("'Абсолютные валютные курсы'!" + absAlpha + "2:" + absAlpha,function(response){
+                    var abs_col = response.getDataTable() ;
+                    
                     var data = dates_col.clone() ;
-                    data.addColumn('number',cur_pair) ;
+                    data.addColumn('number',cur_abs) ;
                     for(var i=0;i<data.getNumberOfRows();i++)
-                        data.setValue(i,1,pair_col.getValue(i,0)) ;
+                        data.setValue(i,1,abs_col.getValue(i,0)) ;
 
                     var options = {
                         // height: 300,
