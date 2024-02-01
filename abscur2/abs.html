@@ -36,6 +36,9 @@
 
 <br/>
 
+<div id="linkToBlog"></div>
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
@@ -68,6 +71,8 @@
                 cur_abs = data.getValue(0,cur_abs_num) ;
             } 
             $('#currentAbs').text('Текущая валюта: ' + cur_abs) ;
+
+            $('#linkToBlog').html("<a href=https://www.abscur.ru/p/2.html?abs=" + cur_abs + ">Посмотреть абсолютный валютный курс курс " + cur_abs + " в блоге</a>")
             
             // ссылки на другие валюты
             var absLinks = "" ;
@@ -145,6 +150,10 @@
         return alpha ;
     }
 </script>
+
+
+
+
 
 <br> Расчет абсолютных валютных курсов произведен в тетради на Kaggle: <a href="https://www.kaggle.com/code/eavprog/abscur2#Расчет-абсолютных-курсов">https://www.kaggle.com/code/eavprog/abscur2</a>
 
