@@ -36,6 +36,8 @@
 
 <br/>
 
+<div id="linkToBlog"></div>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
@@ -69,6 +71,9 @@
                 cur_pair = data.getValue(0,cur_pair_num) ;
             } 
             $('#currentPair').text('Текущая пара: ' + cur_pair) ;
+
+            $('#linkToBlog').html("<a href=https://www.abscur.ru/p/blog-page_54.html?pair=" + cur_pair + ">Посмотреть парный валютный курс курс " + cur_pair + " в блоге</a>")
+            
             
             // ссылки на другие пары
             var pairsLinks = "" ;
