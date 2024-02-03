@@ -19,24 +19,30 @@
 
 
 <div id="currentAbs">
-    Загрузка имени текущей валюты
+    Загрузка имени текущей валюты...
 </div>
 
 <br/>
 
 <div id="absLinks">
-    Загрузка ссылок на другие валюты
+    Загрузка ссылок на другие валюты...
 </div>
 
 <br/>
 
 <div id="div_chart" style="width: 99%; height: 400px;">
-    Загрузка графика абсолютного курса текущей валюты
+    Загрузка графика абсолютного курса текущей валюты...
 </div>
 
 <br/>
 
 <div id="linkToBlog"></div>
+
+<br/>
+
+<div id="div_pairs">
+    Загрузка списков парных курсов...
+</div>
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -74,6 +80,23 @@
 
             $('#linkToBlog').html("<a href=https://www.abscur.ru/p/2.html?abs=" + cur_abs + ">Посмотреть абсолютный валютный курс курс " + cur_abs + " в блоге</a>")
             
+            start("'Парные валютные курсы'!B1:CH1",function(response){
+                // строка имен пар
+                var data = response.getDataTable();
+                
+                var html = "Пары с этой валютой: "
+
+                for(var i=0;i<data.getNumberOfColumns();i++) {
+                    var pair = data.getValue(0,i) ;
+                    if(pair.substring(0, 3) == cur_abs || pair.substring(3, 6) == cur_abs)
+                        html += "<a href=pair.html?pair=" + pair + ">" + pair + "</a> " ;
+                }
+
+                $("#div_pairs").html(html) ;
+
+
+            }) ;
+
             // ссылки на другие валюты
             var absLinks = "" ;
             for(var i=0;i<cnt_c;i++){
