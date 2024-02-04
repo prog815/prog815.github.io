@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РЕЙТИНГ АБСОЛЮТНОЙ ВАЛЮТНОЙ ДОХОДНОСТИ</title>
+    
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.html">ГЛАВНАЯ</a></li>
+        <li><a href="pair.html">ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
+        <li><a href="abs.html">АБСОЛЮТНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
+        <li><a href="reit_doh.html">РЕЙТИНГ АБСОЛЮТНОЙ ДОХОДНОСТИ ВАЛЮТ</a></li>
+    </ul>
+</nav>
+
+<h1>Рейтинг абсолютной доходности в %</h1>
+
+<div id="div_table">
+    Загрузка таблицы
+</div>
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart','table']});
+    var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
+    
+    var data ;
+    var newData ;
+
+    google.charts.setOnLoadCallback(function (){
+        
+        start("'Рейтинг абсолютной доходности'!A1:I46",function(response){
+            data = response.getDataTable() ;
+            
+            var table = new google.visualization.Table(document.getElementById('div_table'));
+
+            for(var i=1;i<=8;i++){
+                var formatter = new google.visualization.NumberFormat({
+                    groupingSymbol: ' ',
+                    pattern:'#,###.##%',
+                    fractionDigits: 2
+                });
+                formatter.format(data, i) ;
+
+                formatter = new google.visualization.ColorFormat();
+                formatter.addGradientRange(data.getColumnRange(i).min, -0.0000000000001, 'black', 'red', 'yellow') ;
+                formatter.addGradientRange(0.0000000000001,data.getColumnRange(i).max+0.0000001, 'black', 'yellow', 'green') ;
+                formatter.format(data, i) ;
+            }
+
+            for(var i=0;i<data.getNumberOfRows();i++)
+            {
+                var link = '<a href=abs.html?abs=' + data.getValue(i,0) + '>' + data.getValue(i,0) + '</a>' ;
+                data.setCell(i,0,link) ;
+            }
+
+            table.draw(data, {sortColumn:1, sortAscending:false,allowHtml: true,});
+            
+        }) ;
+    
+    }) ;
+
+    // -------------------------------------------------------
+    // библиотека
+
+    function extractColumns(dataTable, columnIndex) {
+        var newDataTable = new google.visualization.DataTable();
+    
+        // Копируем первую колонку
+        newDataTable.addColumn(dataTable.getColumnType(0), dataTable.getColumnLabel(0));
+        
+        // Копируем i-ю колонку
+        newDataTable.addColumn(dataTable.getColumnType(columnIndex), dataTable.getColumnLabel(columnIndex));
+    
+        // Копируем данные
+        for (var i = 0; i < dataTable.getNumberOfRows(); i++) {
+            var rowData = [
+                dataTable.getValue(i, 0),  // Значение из первой колонки
+                dataTable.getValue(i, columnIndex)  // Значение из i-й колонки
+            ];
+            newDataTable.addRow(rowData);
+        }
+    
+        return newDataTable;
+    }
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null)
+        {
+            return "" ;
+        }
+        else
+        {
+            return decodeURIComponent(results[1]) || "" ;
+        } 
+    }
+    
+    
+    function start(query,func) {
+        var queryString = encodeURIComponent(query);
+        var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+        var query = new google.visualization.Query(URL) ;
+        query.send(func);
+    } ;
+
+    function getAlpha(index)
+    {
+        var abc = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(/[\s\t ]+/) ;
+        var i = index + 1 ;
+        var mr = Math.floor(i/26) ;
+        var lr = i - mr*26 ;
+        var alpha = abc[lr] ;
+        if(mr>0) 
+            alpha = abc[mr-1] + alpha ;
+        return alpha ;
+    }
+</script>
+
+<br> Расчет рейтинга произведен в тетради на Kaggle: <a href="https://www.kaggle.com/code/eavprog/abscur2#Рейтинг-доходности-валют">https://www.kaggle.com/code/eavprog/abscur2</a>
+
+</body>
+</html>
