@@ -85,7 +85,7 @@
                 var cur_name = data.getValue(cur_abs_num,1) ;
                 var cur_wiki_url = data.getValue(cur_abs_num,2) ;
                 console.log(cur_name,cur_wiki_url) ;
-                $('#currentAbs').html('<u>Текущая валюта</u>: ' + cur_abs + ' - <b>' + cur_name + '</b>  (<a href=' + cur_wiki_url + ' target=_blank>ссылка на Wikipedia</a>)') ;
+                $('#currentAbs').html('<u>Текущая валюта</u>: <b>' + cur_name + '</b>  (' + cur_abs + ', <a href=' + cur_wiki_url + ' target=_blank>wiki</a>)') ;
             }) ;
 
             $('#linkToBlog').html("<a href=https://www.abscur.ru/p/2.html?abs=" + cur_abs + ">Посмотреть абсолютный валютный курс курс " + cur_abs + " в блоге</a>")
