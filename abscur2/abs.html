@@ -79,7 +79,14 @@
                 cur_abs_num = Math.floor(Math.random()*cnt_c)
                 cur_abs = data.getValue(0,cur_abs_num) ;
             } 
-            $('#currentAbs').text('Текущая валюта: ' + cur_abs) ;
+
+            start("'Расшифровка валют'!A2:C46",function(response){
+                var data = response.getDataTable();
+                var cur_name = data.getValue(cur_abs_num,1) ;
+                var cur_wiki_url = data.getValue(cur_abs_num,2) ;
+                console.log(cur_name,cur_wiki_url) ;
+                $('#currentAbs').html('<u>Текущая валюта</u>: ' + cur_abs + ' - <b>' + cur_name + '</b>  (<a href=' + cur_wiki_url + ' target=_blank>ссылка на Wikipedia</a>)') ;
+            }) ;
 
             $('#linkToBlog').html("<a href=https://www.abscur.ru/p/2.html?abs=" + cur_abs + ">Посмотреть абсолютный валютный курс курс " + cur_abs + " в блоге</a>")
             
@@ -87,7 +94,7 @@
                 // строка имен пар
                 var data = response.getDataTable();
                 
-                var html = "Пары с этой валютой: "
+                var html = "<u>Пары с этой валютой</u>: "
 
                 for(var i=0;i<data.getNumberOfColumns();i++) {
                     var pair = data.getValue(0,i) ;

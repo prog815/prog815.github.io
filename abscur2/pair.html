@@ -79,14 +79,34 @@
                 cur_pair_num = Math.floor(Math.random()*cnt_c)
                 cur_pair = data.getValue(0,cur_pair_num) ;
             } 
-            $('#currentPair').text('Текущая пара: ' + cur_pair) ;
 
-            $('#linkToBlog').html("<a href=https://www.abscur.ru/p/blog-page_54.html?pair=" + cur_pair + ">Посмотреть парный валютный курс курс " + cur_pair + " в блоге</a>")
-            
             var abs1 = cur_pair.substring(0, 3) ;
             var abs2 = cur_pair.substring(3, 6) ;
 
-            $('#div_abs').html("Составляющие пару валюты: <a href=abs.html?abs=" + abs1 + ">" + abs1 + "</a> и <a href=abs.html?abs=" + abs2 + ">" + abs2 + "</a>") ;
+            start("'Расшифровка валют'!A2:C46",function(response){
+                var data = response.getDataTable();
+                var html1 = "" ;
+                var html2 = "" ;
+
+                for(var i=0;i<data.getNumberOfRows();i++)
+                {
+                    if(data.getValue(i,0) == abs1)
+                        html1 = '<b>' + data.getValue(i,1) + '</b>  (' + abs1 + ', <a href=' + data.getValue(i,2) + ' target=_blank>wiki</a>)' ;
+
+                    if(data.getValue(i,0) == abs2)
+                        html2 = '<b>' + data.getValue(i,1) + '</b>  (' + abs2 + ', <a href=' + data.getValue(i,2) + ' target=_blank>wiki</a>)' ;
+                }
+
+                $('#currentPair').html('<u>Текущая пара</u>: <b>' + cur_pair + '</b> есть отношение абсолютных курсов двух валют: ' + html1 + ' и ' + html2) ;
+                // $('#currentAbs').html('<u>Текущая валюта</u>: ' + cur_abs + ' - <b>' + cur_name + '</b>  (<a href=' + cur_wiki_url + ' target=_blank>ссылка на Wikipedia</a>)') ;
+            }) ;
+            
+
+            $('#linkToBlog').html("<a href=https://www.abscur.ru/p/blog-page_54.html?pair=" + cur_pair + ">Посмотреть парный валютный курс курс " + cur_pair + " в блоге</a>")
+            
+            
+
+            $('#div_abs').html("<u>Составляющие пару валюты</u>: <a href=abs.html?abs=" + abs1 + ">" + abs1 + "</a> и <a href=abs.html?abs=" + abs2 + ">" + abs2 + "</a>") ;
             
             // ссылки на другие пары
             var pairsLinks = "" ;
