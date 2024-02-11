@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПОСЛЕДНИЕ ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ</title>
+    <title>ПОСЛЕДНИЕ АБСОЛЮТНЫЕ ВАЛЮТНЫЕ КУРСЫ</title>
     
 </head>
 <body>
@@ -22,7 +22,7 @@
     </ul>
 </nav>
 
-<h1>Последние парные валютные курсы</h1>
+<h1>Последние абсолютные валютные курсы</h1>
 
 
 <div id="div_table">
@@ -48,7 +48,7 @@
 
     google.charts.setOnLoadCallback(function (){
         
-        start("'Последние парные валютные курсы'!A1:B86",function(response){
+        start("'Последние абсолютные валютные курсы'!A1:B46",function(response){
             data = response.getDataTable() ;
             
             var table = new google.visualization.Table(document.getElementById('div_table'));
@@ -56,8 +56,8 @@
             for(var i=1;i<=1;i++){
                 var formatter = new google.visualization.NumberFormat({
                     groupingSymbol: ' ',
-                    pattern:'#,###.###',
-                    fractionDigits: 3
+                    pattern:'#,###.####',
+                    fractionDigits: 4
                 });
                 formatter.format(data, i) ;
 
@@ -66,7 +66,7 @@
 
             for(var i=0;i<data.getNumberOfRows();i++)
             {
-                var link = '<a href=pair.html?pair=' + data.getValue(i,0) + '>' + data.getValue(i,0) + '</a>' ;
+                var link = '<a href=abs.html?abs=' + data.getValue(i,0) + '>' + data.getValue(i,0) + '</a>' ;
                 data.setCell(i,0,link) ;
             }
 
@@ -91,7 +91,7 @@
 
 <br/>
 
-<br/> Расчет последних парных курсов произведен в тетради на Kaggle: <a href="https://www.kaggle.com/code/eavprog/abscur2#Последние-парные-валютные-курсы">https://www.kaggle.com/code/eavprog/abscur2</a>
+<br/> Расчет последних абсолютных валютных курсов произведен в тетради на Kaggle: <a href="https://www.kaggle.com/code/eavprog/abscur2#Последние-абсолютные-валютные-курсы">https://www.kaggle.com/code/eavprog/abscur2</a>
 
 
 </body>
