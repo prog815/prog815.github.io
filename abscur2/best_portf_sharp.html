@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛУЧШИЕ ВАЛЮТНЫЕ ПОРТФЕЛИ ПО КОЭФФИЦИЕНТУ ШАРПА</title>
+    
+</head>
+<body>
+
+<div id="menu"></div>
+<script src="menu.js"></script>
+<script>
+    document.getElementById('menu').innerHTML = generateMenu();
+</script>
+
+<h1>Лучшие валютные портфели по коэффициенту Шарпа</h1>
+
+<div style="border: 2px solid #000; padding: 20px">
+На странице "Лучшие валютные портфели по коэффициенту Шарпа" представлена информация о лучших валютных портфелях с учетом коэффициента Шарпа. Таблица на странице содержит доли каждой валюты в этих портфелях за разные временные диапазоны. В столбцах указаны диапазоны, а в строках - названия валют. Значения в таблице представлены в процентах.
+<br/>
+<br/>
+Дополнительно, на странице присутствует табличка со статистикой по лучшим портфелям. В столбцах указаны диапазоны, а в строках представлены три основных показателя: "коэффициент Шарпа (приведенный к году)", "доходность годовая, %" и "волатильность годовая, %". Значения статистик для портфелей указаны в соответствующих ячейках таблицы.
+<br/>
+<br/>
+Внизу страницы представлен интерактивный график, отображающий развитие всех лучших портфелей во времени в процентах, начиная с 100% в начале. Этот график позволяет визуально оценить динамику развития портфелей.
+<br/>
+<br/>
+Страница "Лучшие валютные портфели по коэффициенту Шарпа" содержит подробную информацию о лучших валютных портфелях, их составе, статистике и динамике развития.
+
+</div>
+
+<br/>
+
+<h2>Доли в портфелях</h2>
+
+<div id="div_table">
+    Загрузка таблицы
+</div>
+
+<i>* - Для сортировки таблицы нажмите заголовок соответствующего столбца.</i>
+
+<br/>
+<br/>
+
+<h2>Статистики по портфелям</h2>
+
+<div id="div_table_stats">
+    Загрузка таблицы
+</div>
+
+<br/>
+<br/>
+
+<h2>Графики истории лучших портфелей, %</h2>
+
+<div id="div_chart" style="width: 99%; height: 400px;">
+    Загрузка графика
+</div>
+
+<br/>
+<br/>
+
+<a href="https://www.abscur.ru/p/blog-page_6.html">Посмотреть рейтинг валют валют по коэффициенту Шарпа в блоге</a>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart','table','annotationchart']});
+    
+    var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
+    
+    var data ;
+    var newData ;
+
+    google.charts.setOnLoadCallback(function (){
+        
+        start("'Доли лучших портфелей по Шарпу'!A1:I46",function(response){
+            data = response.getDataTable() ;
+            
+            var table = new google.visualization.Table(document.getElementById('div_table'));
+
+            for(var i=1;i<=8;i++){
+                var formatter = new google.visualization.NumberFormat({
+                    groupingSymbol: ' ',
+                    pattern:'#,###.##%',
+                    fractionDigits: 3
+                });
+                formatter.format(data, i) ;
+
+                formatter = new google.visualization.ColorFormat();
+                formatter.addGradientRange(data.getColumnRange(i).min, -0.0000000000001, 'black', 'red', 'yellow') ;
+                formatter.addGradientRange(-0.0000000000001,data.getColumnRange(i).max+0.0000001, 'black', 'yellow', 'green') ;
+                formatter.format(data, i) ;
+            }
+
+            for(var i=0;i<data.getNumberOfRows();i++)
+            {
+                var link = '<a href=abs.html?abs=' + data.getValue(i,0) + '>' + data.getValue(i,0) + '</a>' ;
+                data.setCell(i,0,link) ;
+            }
+
+            table.draw(data, {sortColumn:1, sortAscending:false,allowHtml: true,});
+            
+        }) ;
+    
+    }) ;
+
+    google.charts.setOnLoadCallback(function (){
+        
+        start("'Статистики лучших портфелей по Шарпу'!A1:I4",function(response){
+            data = response.getDataTable() ;
+            
+            var table = new google.visualization.Table(document.getElementById('div_table_stats'), {
+                'allowSorting': false,
+                'sort': 'event'
+            });
+
+            table.draw(data);
+            
+        }) ;
+    
+    }) ;
+
+    
+    google.charts.setOnLoadCallback(function (){
+            
+        start("'История лучших портфелей по Шарпу'!A:I",function(response){
+            var data = response.getDataTable() ;
+
+            for (var i = 1; i < data.getNumberOfColumns(); i++) {
+                for (var j = 0; j < data.getNumberOfRows(); j++) {
+                    if (typeof data.getValue(j, i) === 'number') {
+                        data.setValue(j, i, data.getValue(j, i) * 100);
+                    }
+                }
+            }
+            
+            var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
+
+            var options = {
+                    displayAnnotations: true,
+                    displayZoomButtons: true,
+                    displayRangeSelector: true,
+                    thickness: 2,
+                    vAxis: { title: '%' }
+                } ;
+
+            chart.draw(data, options);
+        }) ;
+    
+    }) ;
+
+    // -------------------------------------------------------
+    // библиотека
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null)
+        {
+            return "" ;
+        }
+        else
+        {
+            return decodeURIComponent(results[1]) || "" ;
+        } 
+    }
+    
+    
+    function start(query,func) {
+        var queryString = encodeURIComponent(query);
+        var URL = 'https://docs.google.com/spreadsheets/d/' + ssid + '/gviz/tq?range=' + queryString  ;
+        var query = new google.visualization.Query(URL) ;
+        query.send(func);
+    } ;
+
+    function getAlpha(index)
+    {
+        var abc = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(/[\s\t ]+/) ;
+        var i = index + 1 ;
+        var mr = Math.floor(i/26) ;
+        var lr = i - mr*26 ;
+        var alpha = abc[lr] ;
+        if(mr>0) 
+            alpha = abc[mr-1] + alpha ;
+        return alpha ;
+    }
+</script>
+
+<br/>
+
+<br> Генерация и оптимизация лучших валютных портфелей произведена в тетради на Kaggle: <a href="https://www.kaggle.com/code/eavprog/abscur2#Лучшие-валютные-портфели">https://www.kaggle.com/code/eavprog/abscur2</a>
+
+<br/>
+<br> Исходные данные находятся в Книге Google Docs: <a href="https://docs.google.com/spreadsheets/d/1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4/edit#gid=1533274180">https://docs.google.com/spreadsheets/d/1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4/edit#gid=1533274180</a>
+
+
+</body>
+</html>

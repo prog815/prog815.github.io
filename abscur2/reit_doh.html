@@ -9,18 +9,11 @@
 </head>
 <body>
 
-<nav>
-    <ul>
-        <li><a href="index.html">ГЛАВНАЯ</a></li>
-        <li><a href="pair.html">ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
-        <li><a href="pairs_last.html">ПОСЛЕДНИЕ ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
-        <li><a href="abs.html">АБСОЛЮТНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
-        <li><a href="abs_last.html">ПОСЛЕДНИЕ АБСОЛЮТНЫЕ ВАЛЮТНЫЕ КУРСЫ</a></li>
-        <li><a href="reit_doh.html">РЕЙТИНГ АБСОЛЮТНОЙ ДОХОДНОСТИ ВАЛЮТ</a></li>
-        <li><a href="reit_vol.html">РЕЙТИНГ АБСОЛЮТНОЙ ВОЛАТИЛЬНОСТИ ВАЛЮТ</a></li>
-        <li><a href="reit_sharp.html">РЕЙТИНГ ВАЛЮТ ПО КОЭФФИЦИЕНТУ ШАРПА</a></li>
-    </ul>
-</nav>
+<div id="menu"></div>
+<script src="menu.js"></script>
+<script>
+    document.getElementById('menu').innerHTML = generateMenu();
+</script>
 
 <h1>Рейтинг абсолютной доходности в %</h1>
 
