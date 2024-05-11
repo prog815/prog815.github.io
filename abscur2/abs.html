@@ -80,6 +80,7 @@
 
 <div id="div_stats">
     Загрузка таблицы статистик валюты...
+    <img src="loading.gif"/>
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -207,8 +208,12 @@
                             data.setValue(2,i,(reit_sharp.getValue(cur_abs_num,i)).toFixed(3)) ;
                         }
 
+                        data.setCell(0,0,'<a href=reit_doh.html>Абсолютная годовая доходность, %</a>') ;
+                        data.setCell(1,0,'<a href=reit_vol.html>Абсолютная годовая волатильность, %</a>') ;
+                        data.setCell(2,0,'<a href=reit_sharp.html>Коэффициент Шарпа годовой</a>') ;
+
                         var table = new google.visualization.Table(document.getElementById('div_stats'));
-                        table.draw(data, {showRowNumber: false});
+                        table.draw(data, {showRowNumber: false, sortAscending:false,allowHtml: true});
 
 
                         console.log("sharp") ;
