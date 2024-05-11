@@ -76,12 +76,17 @@
     Загрузка списков парных курсов...
 </div>
 
+<br/>
+
+<div id="div_stats">
+    Загрузка таблицы статистик валюты...
+</div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script type="text/javascript">
-    google.charts.load('current', {'packages':['annotationchart']});
+    google.charts.load('current', {'packages':['annotationchart','table']});
     var ssid = "1azH80JUolc4whN_Uu3Myrrsyv1nEScJ8LK1Lecn0uH4" ;
     
     // текущая валюта
@@ -170,6 +175,46 @@
                     var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
 
                     chart.draw(data, options);
+                }) ;
+            }) ;
+
+            start("'Рейтинг абсолютной доходности'!A1:I46", function(response){
+                var reit_doh = response.getDataTable() ;
+
+                start("'Рейтинг абсолютной волатильности'!A1:I46", function(response){
+                    var reit_vol = response.getDataTable() ;
+
+                    start("'Рейтинг валют по коэффициенту Шарпа'!A1:I46", function(response){
+                        var reit_sharp = response.getDataTable() ;
+
+                        var data = new google.visualization.DataTable();
+
+                        data.addColumn('string', 'Статистика');
+                        for (var i = 1; i < reit_sharp.getNumberOfColumns(); i++) {
+                            data.addColumn('number', reit_sharp.getColumnLabel(i));
+                        }
+
+                        data.addRow(['Абсолютная годовая доходность, %',0,0,0,0,0,0,0,0]);
+                        data.addRow(['Абсолютная годовая волатильность, %',0,0,0,0,0,0,0,0]);
+                        data.addRow(['Коэффициент Шарпа годовой',0,0,0,0,0,0,0,0]);
+
+                        console.log(cur_abs_num) ;
+
+                        for(var i=1;i<data.getNumberOfColumns();i++)
+                        {
+                            data.setValue(0,i,(reit_doh.getValue(cur_abs_num,i)*100).toFixed(1)) ;
+                            data.setValue(1,i,(reit_vol.getValue(cur_abs_num,i)*100).toFixed(1)) ;
+                            data.setValue(2,i,(reit_sharp.getValue(cur_abs_num,i)).toFixed(3)) ;
+                        }
+
+                        var table = new google.visualization.Table(document.getElementById('div_stats'));
+                        table.draw(data, {showRowNumber: false});
+
+
+                        console.log("sharp") ;
+
+
+                    }) ;
                 }) ;
             }) ;
         
