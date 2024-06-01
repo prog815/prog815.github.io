@@ -1,6 +1,7 @@
 function generateMenu() {
     const menuItems = [
       { url: 'index.html', title: 'ГЛАВНАЯ' },
+      { url: 'about.html', title: 'О ПРОЕКТЕ' },
       { url: 'pair.html', title: 'ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ' },
       { url: 'pairs_last.html', title: 'ПОСЛЕДНИЕ ПАРНЫЕ ВАЛЮТНЫЕ КУРСЫ' },
       { url: 'abs.html', title: 'АБСОЛЮТНЫЕ ВАЛЮТНЫЕ КУРСЫ' },

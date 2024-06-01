@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VY24PBC5HS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VY24PBC5HS');
+  </script>
+  
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О проекте (проект "Абсолютный курс валют")</title>
+  <link rel="stylesheet" href="style.css?6"/>
+  
+</head>
+<body>
+  
+  <div id="menu"></div>
+  <script src="menu.js"></script>
+  <script>
+      document.getElementById('menu').innerHTML = generateMenu();
+  </script>
+
+  <h1>О проекте "Абсолютный курс валют"</h1>
+
+  Проект "Абсолютные валютные курсы" - это онлайн-ресурс, предназначенный для анализа и отслеживания абсолютных валютных курсов. Сайт предлагает широкий спектр функций для анализа и сравнения абсолютных валютных курсов, включая отображение графиков, таблиц и рейтингов.
+
+  <br><br>
+
+  Сайт предназначен для инвесторов, трейдеров, аналитиков и любых лиц, которые интересуются валютными курсами и финансовыми рынками.
+
+  <h2>Методика получения абсолютных валютных курсов</h2>
+
+  Изначально мы имеем дело с парными валютными курсами. Но в парном валютном курсе участвуют две валюты. Парный валютный курс показывает отношение ценности одной валюты к ценности другой валюты. Эту ценность мы называем Абсолютным валютным курсом конкретной валюты.
+
+  <center> <br> <img src="par_cennost.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Например валютная пара EURUSD - это отношение абсолютного курса Евро к абсолютному курсу Доллара.
+
+  <center> <br> <img src="eurusd.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+
+  Абсолютные валютные курсы можно вычислить из парных валютных курсов. Для этого нужно взять все имеющиеся парные валютные курсы и записать в виде системы уравнений. В каждом таком уравнении с одной стороны будет записано отношение в виде дроби двух абсолютных валютных курсов, а с другой стороны от знака равенства будет записано текущее значение парного валютного курса. 
+  
+  <center> <br> <img src="systempair.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+  
+  Затем стоит решить эту систему уравнений. Естественно точного решения мы не получим, но есть возможность получить приближенное решение минимизировав ошибку. Для этого нужно ко всем уравнениям в системе применить логарифмирование и получить систему линейных уравнений с логарифмами  абсолютных валютных курсов. 
+  
+  <center> <br> <img src="sys_log.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Для решения системы линейных уравнений необходимо применить метод наименьших квадратов и получить значения для логарифмов абсолютных валютных курсов. 
+  
+  <center> <br> <img src="sys_res_log.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Применив функцию экспоненты к полученным значениям получим чистые абсолютные валютные курсы для каждой валюты. 
+  
+  <center> <br> <img src="sys_res_abs.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Проделав описанную выше процедуру для каждого дня в имеющейся истории парных валютных курсов можно получить историю абсолютных валютных курсов на всем промежутке дат что и для парных валютных курсов. Код для расчета абсолютных валютных курсов можно посмотреть в <a href="https://www.kaggle.com/code/eavprog/abscur2/notebook#Расчет-абсолютных-курсов" target="_blank">тетради на Kaggle</a>.
+
+  <h2>Зачем нужны абсолютные валютные курсы?</h2>
+
+
+  В портфельной теории Марковица описывается методика получения сбалансированного портфеля активов с целью минимизации риска и/или максимизации доходности. Но для составления валютного портфеля необходимо, чтобы все валюты были выражены в одной единице измерения. Парные валютные курсы имеют разные основания. Потому их нельзя использовать для сборки валютного портфеля.
+  
+  <center> <br> <img src="portf_pairs.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Абсолютные валютные курсы позволяют выразить ценность каждой валюты через одно синтетическое основание, вычисленное из всех имеющихся парных валютных курсов. 
+  
+  <center> <br> <img src="portf_abs.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+  
+  Это дает возможность составить сбалансированный валютный портфель, используя методику Марковица, так как теперь все валюты выражены через одно основание - Абс. Для этой синтетической валюты есть изображение. Вот оно.
+
+  <center> <br> <img src="abscur_znak.jpg" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  <h2>Парные валютные курсы</h2>
+
+  На <a href="pair.html">странице "Парные валютные курсы"</a>  отображаются все имеющиеся парные валютные курсы. Там можно видеть интерактивный график текущей валютной пары, который предоставляет возможность масштабирования. 
+  
+  <center> <br> <img src="pair.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Пользователи могут перейти к страницам других валютных пар, используя ссылки. Для каждой валютной пары есть ссылки на страницы с абсолютными валютными курсами, составляющими пару валют.
+  
+  <h2>Абсолютные валютные курсы</h2>
+
+  На <a href="abs.html">странице "Абсолютные валютные курсы"</a> показывается интерактивный график абсолютного валютного курса для текущей валюты. График позволяет делать масштабирование. По ссылкам можно переходить к страницам других валют и просматривать их графики абсолютных валютных курсов. Под графиками выводятся ссылки на страницы с парными валютными курсами, где участвует текущая валюта.
+
+  <center> <br> <img src="abs_graph.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Кроме того приводится таблица с тремя статистиками (абсолютными доходностями, волатильностями и коэффициентом Шарпа) по валюте в разрезе разных временных диапазонов.
+
+  <center> <br> <img src="abs_stat.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  <h2>Рейтинг абсолютной доходности</h2>
+  
+  На <a href="reit_doh.html">странице с рейтингами абсолютной доходности</a> можно найти таблицу, выражающую среднюю годовую доходность абсолютных валютных курсов для каждой валюты, вычисленную на разных временных промежутках от месяца до всего временного промежутка имеющихся данных почти в 10 лет. Таблицу можно сортировать, нажимая на заголовок столбца. Производя такие действия, можно увидеть, что самой доходной валютой в мире является Швейцарский франк. Его абсолютный валютный курс растет в среднем на 4,8% в год.
+
+  <center> <br> <img src="reit_doh.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  <h2>Рейтинг абсолютной волатильности</h2>
+
+  На <a href="reit_vol.html">странице с рейтингами абсолютной волатильности</a> доступна также таблица. В ней показаны волатильности абсолютного валютного курса для каждой валюты рассчитанные на основе данных за разные временные промежутки от месяца до полного имеющегося диапазона почти в 10 лет и нормированные к году. Таблицу можно сортировать по значениям нажимая на заголовки столбцов. Изучив таблицу можно увидеть, что валюта с самой низкой волатильностью абсолютного валютного курса на всем диапазоне исторических данных - это Сингапурский доллар. Его среднегодовая волатильность составляет всего 2,7%.
+
+  <center> <br> <img src="reit_vol.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  <h2>Рейтинг валют по коэффициенту Шарпа</h2>
+
+  На <a href="reit_sharp.html">странице рейтинга валют по коэффициенту Шарпа</a> доступна страница. В ней показаны коэффициенты Шарпа абсолютных валютных курсов для каждой валюты рассчитанные на основе данных за разные временные промежутки от месяца до полного имеющегося диапазона почти в 10 лет и нормированные к году. Таблицу можно сортировать по значениям нажимая на заголовки столбцов. Изучив таблицу можно увидеть, что самая выгодная для вложений валюта - это Сингапурский доллар. Он имеет самый высокий коэффициент Шарпа на всем временном промежутке более чем 1,3.
+
+  <center> <br> <img src="reit_sharp.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  <h2>Лучшие валютные портфели по коэффициенту Шарпа</h2>
+
+  На <a href="best_portf_sharp.html">странице лучших валютных портфелей</a> можно найти таблицу, где показаны доли для каждой валюты в оптимальном валютном портфеле. Портфели оптимизированы (максимизирован коэффициент Шарпа для всего портфеля) для разных временных диапазонов от месяца до полного имеющегося почти в 10 лет. Доли в портфеле можно сортировать нажимая на заголовки полей таблицы. 
+
+  <center> <br> <img src="portf_doli.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  Под таблицей с долями можно видеть небольшую таблицу со статистиками оптимизированных портфелей за каждый временной промежуток. 
+
+  <center> <br> <img src="portf_stat.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+
+  В самом низу страницы отображаются графики истории лучших портфелей выраженные в процентах.
+
+  <center> <br> <img src="portf_graf.png" style="border: 1px solid black; padding: 10px; max-width: 90%;"> <br> <br> </center>
+  
+  Изучив таблицы можно увидеть, что наилучший портфель рассчитанный на промежутке в три года включает в себя 21 валюту. Большую долю в портфеле составляют Сингапурский доллар (25%), Дирхам ОАЭ (11%), Саудовский риял (9%), Швейцарский франк (9%). Коэффициент Шарпа в годовом выражении составил 3,63. Годовая доходность составляет 5,67%. Годовая волатильность портфеля 1,52%. 
+  
+  При этом коэффициент Шарпа для оптимального портфеля выше чем лучший <a href="reit_sharp.html">в рейтинге валют</a>, волатильность портфеля лучше чем <a href="reit_vol.html">в рейтинге волатильности валют</a>.
+
+
+  <h2>Публикации</h2>
+
+  <br> 26.02.2022 <a href="https://habr.com/ru/articles/652187/" target="_blank">Абсолютные валютные курсы</a>
+
+  <br> 17.02.2022 <a href="https://habr.com/ru/articles/651925/" target="_blank">Связанность мировой экономики через абсолютные валютные курсы</a>
+
+  <br> 09.02.2022 <a href="https://habr.com/ru/articles/650681/" target="_blank">Рейтинг стабильности мировых валют на основе их абсолютных курсов</a>
+
+  <br> 03.05.2019 <a href="https://habr.com/ru/post/450368/" target="_blank">Получаем абсолютные курсы из парных кросс-курсов валют</a>
+
+  <br> 21.04.2019 <a href="https://habr.com/ru/post/448866/" target="_blank">Детали перехода от парных (относительных) валютных курсов к абсолютным. Работа над ошибками</a>
+
+  <br> 20.03.2019 <a href="https://habr.com/ru/sandbox/128240/" target="_blank">Исследование связаности мировых валют через корреляцию абсолютных курсов</a>
+
+  <br> 20.02.2019 <a href="https://docs.google.com/document/d/1PB0QMO80M4befqjV3WHuEmRSBZ9IPxYjV3AHUPm8YZQ/edit?usp=sharing" target="_blank">Сравнение парного и абсолютного курса валют</a>
+
+  <br> 11.02.2019 <a href="https://docs.google.com/document/d/1IAL9UhrwtnO25ms3EBuQ4pAWmjIb4vSK1Oo6tw4efIw/edit?usp=sharing" target="_blank">Портфельный метод Марковица применительно к валютному рынку</a>
+
+  <br> 02.01.2019 <a href="https://docs.google.com/document/d/140zGGda14n-tB1xkeBfTlOgokheiwTIj8m5GoY1psMA/edit?usp=sharing" target="_blank">Как подбирать стабильную валюту для вложений?</a>
+
+  <br> 25.09.2017 <a href="https://drive.google.com/file/d/0B57trm8LmQPja3dwUElsMC1iRHc/view?usp=sharing" target="_blank">Моделирование прогона портфеля из мировых валют</a>
+
+  <br> 21.09.2017 <a href="https://drive.google.com/file/d/0B57trm8LmQPjTGNVTGhLajB3aW8/view?usp=sharing" target="_blank">Первые оценки портфеля из мировых валют</a>
+
+  <br> 29.08.2017 <a href="https://drive.google.com/file/d/0B57trm8LmQPjYWVKVnNzQWxKcW8/view?usp=sharing&resourcekey=0-PT9XCu72uHEDCwoF9VPvsA" target="_blank">Связанность мировых валют</a>
+
+  <br> 24.05.2017 <a href="https://drive.google.com/file/d/0B57trm8LmQPjbWQyMS1xOWZPeVJhaGp3Tk5sX2RRMW1yMW1J/view?usp=sharing&resourcekey=0-z6l7GXA5c94THMsPk6HpUQ" target="_blank">От валютных пар к абсолютным курсам отдельных валют.</a>
+
+  <br> 10.08.2015 <a href="https://drive.google.com/file/d/0B57trm8LmQPjZ3p4MHZtZnpnQ0M0QWRxc3Njd2RYY2ZLT1FB/view?usp=sharing&resourcekey=0-R-WDa6A7UwwENok6CAVeAA" target="_blank">Первый способ получения абсолютных курсов</a>
+
+  <br> 26.06.2015 <a href="https://drive.google.com/file/d/0B57trm8LmQPjdUFIRGFJYUhfcGs/view?usp=sharing&resourcekey=0-AlZ-F9-8ICmWqAmA2Y4Xmw" target="_blank">Кто растет, и кто падает в валютной паре?</a>
+
+  <br> 30.01.2015 <a href="https://drive.google.com/file/d/0B57trm8LmQPjcnRDTGpuaVN4WUk/view?usp=sharing&resourcekey=0-vrEFa5v9kxX7xC3GphrESg" target="_blank">Абсолютные курсы валют FOREX</a>
+
+  <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym(37941595, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/37941595" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</body>
+</html>
