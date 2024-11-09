@@ -73,6 +73,11 @@
     Загрузка списка валют...
 </div>
 
+<h1>Деление парных курсов на составляющие абсолютные валютные в разрезе периодов</h1>
+<div id="div_par_abs">
+    Загрузка графиков валют...
+</div>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -171,12 +176,150 @@
                     var chart = new google.visualization.AnnotationChart(document.getElementById('div_chart'));
 
                     chart.draw(data, options);
+
+                    // ищем номера валют
+                    start("'Абсолютные валютные курсы'!B1:AT1",function(response){
+                        // строка имен валют
+                        var data = response.getDataTable();
+                        var cnt_c = data.getNumberOfColumns() ;
+            
+                        // текущая пара
+                        var my_abs = $.urlParam("abs") ;
+                        var abs1_num = 0 ;
+                        var abs2_num = 0 ;
+                        for(var i=0;i<cnt_c;i++)
+                        {
+                            if(data.getValue(0,i) == abs1){
+                                abs1_num = i ;
+                            }
+                            if(data.getValue(0,i) == abs2){
+                                abs2_num = i ;
+                            }
+                        }
+                        
+                        var abs1Alpha = getAlpha(abs1_num) ;
+                        var abs2Alpha = getAlpha(abs2_num) ;
+
+                        console.log(abs1,abs1_num,abs1Alpha) ;
+                        console.log(abs2,abs2_num,abs2Alpha) ;
+
+                        // загружаем абсолютный курс первой валюты
+                        start("'Абсолютные валютные курсы'!" + abs1Alpha + "2:" + abs1Alpha,function(response){
+                            var abs1_col = response.getDataTable() ;
+                            
+                            // загружаем абсолютный курс второй валюты
+                            start("'Абсолютные валютные курсы'!" + abs2Alpha + "2:" + abs2Alpha,function(response){
+                                var abs2_col = response.getDataTable() ;
+
+                                console.log("абсолютные курсы загружены!") ;
+
+                                // определение диапазонов
+                                var timeIntervals = [
+                                    [30, 'за месяц', '1m'],
+                                    [90, 'за квартал', '1kv'],
+                                    [180, 'за полгода', '6m'],
+                                    [365, 'за год', '1y'],
+                                    [730, 'за два года', '2y'],
+                                    [1095, 'за три года', '3y'],
+                                    [1825, 'за пять лет', '5y'],
+                                    [18250, 'за все время', 'all']
+                                ];
+                                timeIntervals[timeIntervals.length - 1][0] = cnt_r;
+                                console.log(timeIntervals) ;
+
+                                // цикл по диапазонам (выводим div-ы)
+                                var div_par_abs_html = ""
+                                for(var c=0;c<timeIntervals.length;c++) {
+                                    div_par_abs_html += "<h2>" + timeIntervals[c][1] + "</h2>\n<div id=\"div_par_abs_" + timeIntervals[c][2].toString() + "_par\" style=\"width: 99%; height: 400px;\"> Загрузка графиков... </div>\n\n<div id=\"div_par_abs_" + timeIntervals[c][2].toString() + "_abs12\" style=\"width: 99%; height: 400px;\"> Загрузка графиков... </div>"
+                                }
+                                document.getElementById('div_par_abs').innerHTML = div_par_abs_html ;
+                                
+                                // собираем полные таблицы для графиков
+                                var data_pair = dates_col.clone() ;
+                                var data_abs12 = dates_col.clone() ;
+                                
+                                data_pair.addColumn('number',cur_pair + " (парный курс)") ;
+                                data_abs12.addColumn('number',abs1 + " (абсолютный курс)") ;
+                                data_abs12.addColumn('number',abs2 + " (абсолютный курс)") ;
+
+                                for(var i=0;i<cnt_r;i++) {
+                                    data_pair.setValue(i,1,pair_col.getValue(i,0)) ;
+                                    data_abs12.setValue(i,1,abs1_col.getValue(i,0)) ;
+                                    data_abs12.setValue(i,2,abs2_col.getValue(i,0)) ;
+                                }
+                                
+                                function trimRowsToLastN(dataTable, numRowsToKeep) {
+                                    var totalRows = dataTable.getNumberOfRows();
+                                    if (totalRows > numRowsToKeep) {
+                                        dataTable.removeRows(0, totalRows - numRowsToKeep);
+                                    }
+                                }
+
+                                // Цикл по диапазонам (выводим графики)
+                                for(var c=0;c<timeIntervals.length;c++) {
+                                    
+                                    // график парного курса
+                                    var data_par_cur = data_pair.clone() ;
+
+                                    trimRowsToLastN(data_par_cur,timeIntervals[c][0]) ;
+
+                                    var chart = new google.visualization.LineChart(document.getElementById("div_par_abs_" + timeIntervals[c][2].toString() + "_par"));
+
+                                    var options = {
+                                        title: 'Парный валютный курс ' + cur_pair + " " + timeIntervals[c][1].toString(),
+                                        legend: { position: 'top' }, // Расположить легенду над графиком
+                                        colors: ['green'], // Установить цвет графика зеленым
+                                        // hAxis: { title: 'Дата' },
+                                        // vAxis: { title: 'Курс' },
+                                        // chartArea: { width: '100%', height: '100%' },
+                                        // chart: { width: '100%', height: '400px' },
+                                        // enableInteractivity: false, // Отключить интерактивность
+                                    } ;
+
+                                    chart.draw(data_par_cur, options);
+                                    
+                                    // график первого абсолютного курса
+                                    var data_abs12_cur = data_abs12.clone() ;
+
+                                    trimRowsToLastN(data_abs12_cur,timeIntervals[c][0]) ;
+
+                                    var chart = new google.visualization.LineChart(document.getElementById("div_par_abs_" + timeIntervals[c][2].toString() + "_abs12"));
+
+                                    var materialOptions = {
+                                        title: 'Абсолютные валютные курсы ' + abs1 + " и " + abs2 + " " + timeIntervals[c][1].toString(),
+                                        legend: { position: 'top' }, // Расположить легенду над графиком
+                                        colors: ['blue','red'], // Установить цвет графика зеленым
+                                        // hAxis: { title: 'Дата' },
+                                        vAxes: {
+                                            0: { title: abs1 + " (абсолютный курс)"},
+                                            1: { title: abs2 + " (абсолютный курс)"}
+                                        },
+                                        series: {
+                                            0: { targetAxisIndex: 0 },
+                                            1: { targetAxisIndex: 1 }
+                                        },
+                                        // chartArea: { width: '100%', height: '100%' },
+                                        // chart: { width: '100%', height: '400px' },
+                                        // enableInteractivity: false // Отключить интерактивность
+                                      };
+
+                                    chart.draw(data_abs12_cur, materialOptions);
+
+                                    
+
+                                }
+
+                            }) ;
+                        }) ;
+                    });
                 }) ;
             }) ;
         
         }) ;
     
     }) ;
+
+    
 
     // -------------------------------------------------------
     // библиотека
