@@ -52,6 +52,12 @@
 
 <br/>
 
+<div id="pairsFormulaContainer" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div id="pairsFormula">Загрузка формулы для пары...</div>
+</div>
+
+<br/>
+
 <div id="pairsLinks">
     Загрузка ссылок на другие пары...
 </div>
@@ -113,7 +119,7 @@
 
             var abs1 = cur_pair.substring(0, 3) ;
             var abs2 = cur_pair.substring(3, 6) ;
-
+            
             start("'Расшифровка валют'!A2:C46",function(response){
                 var data = response.getDataTable();
                 var html1 = "" ;
@@ -212,6 +218,22 @@
                                 var abs2_col = response.getDataTable() ;
 
                                 console.log("абсолютные курсы загружены!") ;
+
+                                var pair_last = pair_col.getValue(cnt_r-1,0) ;
+                                var abs1_last = abs1_col.getValue(cnt_r-1,0) ;
+                                var abs2_last = abs2_col.getValue(cnt_r-1,0) ;
+
+                                var delta_last = pair_last - abs1_last/abs2_last ;
+                                if(delta_last >= 0)
+                                    delta_last = "+" + delta_last.toFixed(4)
+                                else
+                                    delta_last = delta_last.toFixed(4) ;
+
+                                // http://mathurl.com/render.cgi?14.21%20%3D%20USDRUB%3D%5Cfrac%7BUSD%7D%7BRUB%7D+%5CDelta_%7Berror%7D%20%3D%20%5Cfrac%7B29.352%7D%7B2.066%7D-0.0028%5Cnocache
+                                var pairsFormula = "http://mathurl.com/render.cgi?" + pair_last.toFixed(4) + "%20%3D%20" + cur_pair + "%3D%5Cfrac%7B" + abs1 + "%7D%7B" + abs2 + "%7D+%5CDelta_%7Berror%7D%20%3D%20%5Cfrac%7B"+ abs1_last.toFixed(4) +"%7D%7B"+ abs2_last.toFixed(4) +"%7D" + delta_last + "%5Cnocache" ;
+                                pairsFormula = "<img src=\"" + pairsFormula + "\"/>"
+
+                                document.getElementById('pairsFormula').innerHTML = pairsFormula ;
 
                                 // определение диапазонов
                                 var timeIntervals = [
