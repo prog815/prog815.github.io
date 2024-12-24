@@ -1,4 +1,4 @@
-var data = google.visualization.arrayToDataTable([
+var data = [
 ['Тикер', 'Относительное изменение (%)'],
 ['ARS', -80.78],
 ['EGP', -45.11],
@@ -45,4 +45,4 @@ var data = google.visualization.arrayToDataTable([
 ['GBP', 17.33],
 ['PLN', 19.84],
 ['COP', 21.44],
-]);
+];
