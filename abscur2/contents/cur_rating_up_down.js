@@ -79,5 +79,13 @@ function displayData(period) {
 
 // Вызов функции для отображения данных при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    displayData('1M'); // Измените на нужный период по умолчанию
+   displayData('1m');
+   displayData('1q');
+   displayData('y2');
+   displayData('1y');
+   displayData('2y');
+   displayData('3y');
+   displayData('5y');
+   displayData('10y');
+
 });
