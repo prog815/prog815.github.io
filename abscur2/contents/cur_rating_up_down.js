@@ -113,13 +113,13 @@ function displayData(period) {
     let htmlContent = `<h2>${title}</h2><h3>Наибольший рост</h3><table border='1' style='border-collapse: collapse; width: 100%; text-align: center;'><tr><th>Тикер</th><th>Имя валюты</th><th>Изменение (%)</th></tr>`;
     
     for (const [ticker, change] of Object.entries(gainers)) {
-        htmlContent += `<tr><td>${ticker}</td><td>${currencyNames[ticker]}</td><td>${change.toFixed(2)}</td></tr>`;
+        htmlContent += `<tr><td><a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker}</a></td><td>${currencyNames[ticker]}</td><td>${change.toFixed(2)}</td></tr>`;
     }
 
     htmlContent += `</table><h3>Наибольшее падение</h3><table border='1' style='border-collapse: collapse; width: 100%; text-align: center;'><tr><th>Тикер</th><th>Имя валюты</th><th>Изменение (%)</th></tr>`;
     
     for (const [ticker, change] of Object.entries(losers)) {
-        htmlContent += `<tr><td>${ticker}</td><td>${currencyNames[ticker]}</td><td>${change.toFixed(2)}</td></tr>`;
+        htmlContent += `<tr><td><a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker}</a></td><td>${currencyNames[ticker]}</td><td>${change.toFixed(2)}</td></tr>`;
     }
 
     htmlContent += `</table>`;
