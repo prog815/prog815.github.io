@@ -5,14 +5,21 @@ function createTable() {
     const table = document.createElement('table');
     table.style.borderCollapse = 'collapse';  // Убираем промежутки между ячейками
     table.border = '1';
+    table.style.width = '100%';  // Задаем ширину таблицы
 
     // Заголовок таблицы
     const header = table.createTHead();
     const headerRow = header.insertRow(0);
-    headerRow.insertCell(0).innerText = 'Тикер (Дата: 2024-12-31)';  // Включаем дату в заголовок первого столбца
-    headerRow.insertCell(1).innerText = 'Название товара';
-    headerRow.insertCell(2).innerText = 'Абсолютная цена';
-    headerRow.insertCell(3).innerText = 'Долларовая цена';
+    
+    // Заголовки с жирным шрифтом и отступами
+    const headers = ['Тикер (Дата: 2024-12-31)', 'Название товара', 'Абсолютная цена', 'Долларовая цена'];
+    headers.forEach((text, index) => {
+        const cell = headerRow.insertCell(index);
+        cell.innerText = text;
+        cell.style.fontWeight = 'bold';  // Жирный шрифт
+        cell.style.padding = '10px';  // Отступы внутри ячеек
+        cell.style.textAlign = 'center';  // Выравнивание по центру
+    });
 
     // Заполнение таблицы данными
     const tbody = table.createTBody();
@@ -23,9 +30,11 @@ function createTable() {
         row.insertCell(2).innerText = Number(item['Absolute Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
         row.insertCell(3).innerText = Number(item['Dollar Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
 
-        // Выравнивание цен по правой стороне
-        row.cells[2].style.textAlign = 'right';
-        row.cells[3].style.textAlign = 'right';
+        // Выравнивание цен по правой стороне и отступы внутри ячеек
+        for (let i = 0; i < row.cells.length; i++) {
+            row.cells[i].style.textAlign = (i === 2 || i === 3) ? 'right' : 'left';
+            row.cells[i].style.padding = '10px';  // Отступы внутри ячеек
+        }
     });
 
     document.getElementById('table-container').appendChild(table);
