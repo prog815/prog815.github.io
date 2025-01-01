@@ -9,7 +9,7 @@ function createTable() {
     // Заголовок таблицы
     const header = table.createTHead();
     const headerRow = header.insertRow(0);
-    headerRow.insertCell(0).innerText = 'Тикер (Дата: NG=F)';  // Включаем дату в заголовок первого столбца
+    headerRow.insertCell(0).innerText = 'Тикер (Дата: 2024-12-31 00:00:00)';  // Включаем дату в заголовок первого столбца
     headerRow.insertCell(1).innerText = 'Название товара';
     headerRow.insertCell(2).innerText = 'Абсолютная цена';
     headerRow.insertCell(3).innerText = 'Долларовая цена';
