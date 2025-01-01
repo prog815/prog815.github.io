@@ -12,7 +12,7 @@ function createTable() {
     const headerRow = header.insertRow(0);
     
     // Заголовки с жирным шрифтом и отступами
-    const headers = ['Тикер (Дата: 2024-12-31)', 'Название товара', 'Абсолютная цена', 'Долларовая цена'];
+    const headers = ['Тикер (Дата: 2024-12-31)', 'Название товара', 'Абсолютная цена', 'Долларовая цена', 'Графики'];
     headers.forEach((text, index) => {
         const cell = headerRow.insertCell(index);
         cell.innerText = text;
@@ -29,6 +29,10 @@ function createTable() {
         row.insertCell(1).innerText = item['Commodity Name'];
         row.insertCell(2).innerText = Number(item['Absolute Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
         row.insertCell(3).innerText = Number(item['Dollar Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
+        
+        // Создаем ссылку на график Yahoo Finance
+        const linkCell = row.insertCell(4);
+        linkCell.innerHTML = '<a href="https://finance.yahoo.com/quote/' + item.Ticker + '/" target="_blank">Yahoo</a>';  // Ссылка на график
 
         // Выравнивание цен по правой стороне и отступы внутри ячеек
         for (let i = 0; i < row.cells.length; i++) {
