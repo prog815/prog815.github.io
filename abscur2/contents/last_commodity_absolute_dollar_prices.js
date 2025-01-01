@@ -20,8 +20,8 @@ function createTable() {
         const row = tbody.insertRow();
         row.insertCell(0).innerText = item.Ticker;
         row.insertCell(1).innerText = item['Commodity Name'];
-        row.insertCell(2).innerText = item['Absolute Price'].toFixed(2);  // Форматируем цену до двух знаков
-        row.insertCell(3).innerText = item['Dollar Price'].toFixed(2);  // Форматируем цену до двух знаков
+        row.insertCell(2).innerText = Number(item['Absolute Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
+        row.insertCell(3).innerText = Number(item['Dollar Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
 
         // Выравнивание цен по правой стороне
         row.cells[2].style.textAlign = 'right';
