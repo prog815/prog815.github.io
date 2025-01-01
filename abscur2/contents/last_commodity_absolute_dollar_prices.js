@@ -23,7 +23,7 @@ function createTable() {
         row.insertCell(3).innerText = item['Dollar Price'];
     });
 
-    document.body.appendChild(table);
+    document.getElementById('table-container').appendChild(table);
 }
 
 createTable();
