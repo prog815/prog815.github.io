@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("charts-container");
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За месяц (начало: 2024-12-04)</strong>";
+    header.innerHTML = "<strong>За месяц (начало: 2024-12-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_1m.png";
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За квартал (начало: 2024-10-04)</strong>";
+    header.innerHTML = "<strong>За квартал (начало: 2024-10-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_1q.png";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За полгода (начало: 2024-07-04)</strong>";
+    header.innerHTML = "<strong>За полгода (начало: 2024-07-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_y2.png";
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За год (начало: 2024-01-04)</strong>";
+    header.innerHTML = "<strong>За год (начало: 2024-01-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_1y.png";
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За два года (начало: 2023-01-04)</strong>";
+    header.innerHTML = "<strong>За два года (начало: 2023-01-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_2y.png";
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За три года (начало: 2022-01-04)</strong>";
+    header.innerHTML = "<strong>За три года (начало: 2022-01-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_3y.png";
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За пять лет (начало: 2020-01-04)</strong>";
+    header.innerHTML = "<strong>За пять лет (начало: 2020-01-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_5y.png";
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.style.width = "100%";
     container.appendChild(img);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За десять лет (начало: 2015-01-04)</strong>";
+    header.innerHTML = "<strong>За десять лет (начало: 2015-01-05)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sharp_risk_doh_10y.png";
