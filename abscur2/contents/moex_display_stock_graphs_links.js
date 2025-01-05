@@ -25,7 +25,7 @@ function displayStockLinks() {
 
     for (const [ticker, name] of Object.entries(stockTickers)) {
         if (ticker === selectedTicker) {
-            linksHTML += `<strong>${name}</strong> `;  // Текущая акция без ссылки
+            linksHTML += `<strong style="background-color: yellow;">${name}</strong> `;  // Текущая акция с желтой подложкой
         } else {
             linksHTML += `<a href="?akcia=${ticker}">${name}</a> `;  // Ссылка на акцию
         }
