@@ -1,8 +1,8 @@
 
 // JavaScript код для отображения диаграмм акций
 document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById("charts-container");
-    const h2 = document.createElement("h2");
+    var container = document.getElementById("charts-container");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за месяц";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_1m_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLRP">Мечел ап (MTLRP)</a> - 33.14%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PIKK">ПИК ао (PIKK)</a> - 19.05%, `;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=TGKA">ТГК-1 (TGKA)</a> - 16.90%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за квартал";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_1q_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=ROSN">Роснефть (ROSN)</a> - 7.22%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=LSRG">ЛСР ао (LSRG)</a> - 5.11%, `;
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=GMKN">ГМКНорНик (GMKN)</a> - -4.90%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за полгода";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_y2_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - -6.08%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=LSRG">ЛСР ао (LSRG)</a> - -8.06%, `;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=GAZP">ГАЗПРОМ ао (GAZP)</a> - -16.01%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за год";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_1y_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 43.68%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=AFLT">Аэрофлот (AFLT)</a> - 39.91%, `;
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=LKOH">ЛУКОЙЛ (LKOH)</a> - -6.83%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за два года";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_2y_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 162.33%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=AFLT">Аэрофлот (AFLT)</a> - 67.78%, `;
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SBER">Сбербанк (SBER)</a> - 42.39%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за три года";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_3y_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 260.17%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=TATNP">Татнфт 3ап (TATNP)</a> - 24.78%, `;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MOEX">МосБиржа (MOEX)</a> - 12.85%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за пять лет";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_5y_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 375.77%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SELG">Селигдар (SELG)</a> - 139.92%, `;
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MOEX">МосБиржа (MOEX)</a> - 34.81%`;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
-    const h2 = document.createElement("h2");
+    var h2 = document.createElement("h2");
     h2.innerText = "Рейтинг роста акций за десять лет";
     container.appendChild(h2);
     var img = document.createElement("img");
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
     img.alt = "moex_10y_stock_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
-    const stockList = document.createElement("p");
+    var stockList = document.createElement("p");
     stockList.innerHTML = "Топ акции по росту: "; 
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 1173.70%, `;
     stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 1115.32%, `;
