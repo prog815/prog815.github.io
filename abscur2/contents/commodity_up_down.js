@@ -1,46 +1,142 @@
 
-// JavaScript код для отображения диаграмм
+// JavaScript код для отображения диаграмм товаров
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("charts-container");
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за месяц";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/1m_commodity_up_down.png";
     img.alt = "1m_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 21.41%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 11.33%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 8.08%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 1.69%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=PL=F">Платина (PL=F)</a> - 1.63%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за квартал";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/1q_commodity_up_down.png";
     img.alt = "1q_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 40.24%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 33.99%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 13.56%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 5.31%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 4.37%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за полгода";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/y2_commodity_up_down.png";
     img.alt = "y2_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 61.12%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 40.03%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 20.08%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 16.30%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 4.36%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за год";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/1y_commodity_up_down.png";
     img.alt = "1y_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 89.11%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 41.30%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 40.18%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 32.67%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 22.60%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за два года";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/2y_commodity_up_down.png";
     img.alt = "2y_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 126.92%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 59.57%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 43.61%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 21.82%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 19.05%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за три года";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/3y_commodity_up_down.png";
     img.alt = "3y_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 81.60%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 67.58%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 65.26%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SB=F">Сахар (SB=F)</a> - 32.46%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=PL=F">Платина (PL=F)</a> - 20.10%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за пять лет";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/5y_commodity_up_down.png";
     img.alt = "5y_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 252.62%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 126.17%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 123.41%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 121.21%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 93.06%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
+    var h2 = document.createElement("h2");
+    h2.innerText = "Рейтинг роста товаров за десять лет";
+    container.appendChild(h2);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/10y_commodity_up_down.png";
     img.alt = "10y_commodity_up_down.png";
     img.style.width = "100%";
     container.appendChild(img);
+    var commodityList = document.createElement("p");
+    commodityList.innerHTML = "Топ товары по росту: "; 
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 246.28%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 194.30%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 185.63%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 139.11%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 133.18%  `;
+    commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
+    container.appendChild(commodityList);
 
 });
