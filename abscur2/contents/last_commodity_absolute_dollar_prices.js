@@ -12,7 +12,7 @@ function createTable() {
     const headerRow = header.insertRow(0);
     
     // Заголовки с жирным шрифтом и отступами
-    const headers = ['Тикер (Дата: 2025-01-06)', 'Название товара', 'Абсолютная цена', 'Долларовая цена', 'Графики'];
+    const headers = ['Тикер', 'Название товара', 'Абсолютная цена (Дата: 2025-01-07)', 'Долларовая цена (Дата: 2025-01-06)'];
     headers.forEach((text, index) => {
         const cell = headerRow.insertCell(index);
         cell.innerText = text;
@@ -25,14 +25,11 @@ function createTable() {
     const tbody = table.createTBody();
     lastCommodityPrices.forEach(item => {
         const row = tbody.insertRow();
-        row.insertCell(0).innerText = item.Ticker;
-        row.insertCell(1).innerText = item['Commodity Name'];
+        row.insertCell(0).innerHTML = `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=${item.Ticker}">${item.Ticker}</a>`;
+        row.insertCell(1).innerHTML = `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=${item.Ticker}">${item['Commodity Name']}</a>`;
         row.insertCell(2).innerText = Number(item['Absolute Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
         row.insertCell(3).innerText = Number(item['Dollar Price']).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // Форматируем цену до двух знаков с разделением разрядов
         
-        // Создаем ссылки на график Yahoo Finance и страницу с графиком товара в одной ячейке
-        const linkCell = row.insertCell(4);
-        linkCell.innerHTML = '<a href="https://finance.yahoo.com/quote/' + item.Ticker + '/" target="_blank">Yahoo</a>, <a href="https://www.abscur.ru/p/blog-page_2.html?tovar=' + item.Ticker + '">Здесь</a>';  // Ссылки на график
         // Выравнивание цен по правой стороне и отступы внутри ячеек
         for (let i = 0; i < row.cells.length; i++) {
             row.cells[i].style.textAlign = (i === 2 || i === 3) ? 'right' : 'left';
