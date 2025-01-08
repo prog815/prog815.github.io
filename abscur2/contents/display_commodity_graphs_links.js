@@ -25,7 +25,7 @@ function displayCommodityLinks() {
 
     for (const [ticker, name] of Object.entries(commodityTickers)) {
         if (ticker === selectedTicker) {
-            linksHTML += `<strong>${name}</strong> `;  // Текущий товар без ссылки
+            linksHTML += `<strong style="background-color: yellow;">${name}</strong> `;  // Текущий товар без ссылки
         } else {
             linksHTML += `<a href="?tovar=${ticker}">${name}</a> `;  // Ссылка на товар
         }
