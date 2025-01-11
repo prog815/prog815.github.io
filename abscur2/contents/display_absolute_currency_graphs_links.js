@@ -27,7 +27,7 @@ function displayAbsoluteCurrencyLinks() {
         if (ticker === selectedTicker) {
             linksHTML += `<strong style="background-color: yellow;">${name} (${ticker})</strong> `;  // Текущий курс без ссылки
         } else {
-            linksHTML += `<a href="?abs=${ticker}">${name} (${ticker})</a> `;  // Ссылка на курс
+            linksHTML += `<a href="?abs=${ticker}">${ticker}</a> `;  // Ссылка на курс
         }
     }
 
