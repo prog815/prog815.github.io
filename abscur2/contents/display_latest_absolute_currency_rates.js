@@ -10,9 +10,9 @@ tableHTML += '<th style="border: 1px solid black; text-align: right;">Абсол
 for (const [ticker, data] of Object.entries(absoluteCurrencyRates)) {
     tableHTML += `<tr>
         <td style="border: 1px solid black; text-align: center;">
-            <a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker} (${data.name})</a>
+            <a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker} ({data.name})</a>
         </td>
-        <td style="border: 1px solid black; text-align: right;">${data.rate:.4f}</td>
+        <td style="border: 1px solid black; text-align: right;">${data.rate.toFixed(4).replace('.', ',')}</td>
     </tr>`;
 }
 
