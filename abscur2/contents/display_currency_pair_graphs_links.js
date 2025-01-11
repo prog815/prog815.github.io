@@ -14,7 +14,7 @@ let selectedPair = getURLParameter('pair');
 // Проверка наличия валютной пары в списке возможных пар
 if (!(selectedPair in currencyPairs)) {
     // Если пара не найдена, выбираем случайную пару
-    const pairs = currencyPairs;
+    const pairs = Object.keys(currencyPairs);
     selectedPair = pairs[Math.floor(Math.random() * pairs.length)];
 }
 
