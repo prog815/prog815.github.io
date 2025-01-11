@@ -4,13 +4,17 @@ const absoluteCurrencyRates = {"AED": {"name": "\u0414\u0438\u0440\u0445\u0430\u
 
 // Создание HTML-кода для таблицы
 let tableHTML = '<table style="border-collapse: collapse; border: 1px solid black;">';
-tableHTML += '<tr><th style="border: 1px solid black; text-align: center;">Тикер и валюта</th>';
-tableHTML += '<th style="border: 1px solid black; text-align: right;">Абсолютный курс</th></tr>';
+tableHTML += '<tr><th style="border: 1px solid black; text-align: center;">Тикер</th>';
+tableHTML += '<th style="border: 1px solid black; text-align: center;">Валюта</th>';
+tableHTML += '<th style="border: 1px solid black; text-align: right;">Абсолютный курс на 2025-01-11</th></tr>';
 
 for (const [ticker, data] of Object.entries(absoluteCurrencyRates)) {
     tableHTML += `<tr>
         <td style="border: 1px solid black; text-align: center;">
-            <a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker} (${data.name})</a>
+            <a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${ticker}</a>
+        </td>
+        <td style="border: 1px solid black; text-align: center;">
+            <a href="https://www.abscur.ru/p/2.html?abs=${ticker}">${data.name}</a>
         </td>
         <td style="border: 1px solid black; text-align: right;">${data.rate.toFixed(4).replace('.', ',')}</td>
     </tr>`;
