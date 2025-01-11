@@ -1,6 +1,6 @@
 
 // Список возможных валютных пар и их названий
-const currencyPairs = ["AUDHKD", "AUDJPY", "AUDSEK", "AUDUSD", "CADJPY", "CADSEK", "CHFAUD", "CHFHKD", "CHFJPY", "EURAUD", "EURCAD", "EURCHF", "EURCNY", "EURCZK", "EURGBP", "EURHKD", "EURILS", "EURJPY", "EURNOK", "EURNZD", "EURRUB", "EURSEK", "EURSGD", "EURUSD", "EURZAR", "GBPAUD", "GBPCAD", "GBPCHF", "GBPHKD", "GBPJPY", "GBPNOK", "GBPRUB", "GBPSEK", "GBPSGD", "GBPUSD", "HKDSEK", "HKDSGD", "JPYHKD", "JPYSEK", "NZDSEK", "NZDUSD", "SGDAUD", "SGDCHF", "SGDJPY", "USDAED", "USDARS", "USDBRL", "USDCAD", "USDCHF", "USDCLP", "USDCNY", "USDCOP", "USDCZK", "USDDKK", "USDEGP", "USDGBP", "USDHKD", "USDHUF", "USDIDR", "USDILS", "USDINR", "USDISK", "USDJPY", "USDKRW", "USDKWD", "USDKZT", "USDMXN", "USDMYR", "USDNOK", "USDPEN", "USDPHP", "USDPKR", "USDPLN", "USDQAR", "USDRON", "USDRUB", "USDSAR", "USDSEK", "USDSGD", "USDTHB", "USDTRY", "USDTWD", "USDUAH", "USDVND", "USDZAR"];
+const currencyPairs = {"AUDHKD": "AUDHKD", "AUDJPY": "AUDJPY", "AUDSEK": "AUDSEK", "AUDUSD": "AUDUSD", "CADJPY": "CADJPY", "CADSEK": "CADSEK", "CHFAUD": "CHFAUD", "CHFHKD": "CHFHKD", "CHFJPY": "CHFJPY", "EURAUD": "EURAUD", "EURCAD": "EURCAD", "EURCHF": "EURCHF", "EURCNY": "EURCNY", "EURCZK": "EURCZK", "EURGBP": "EURGBP", "EURHKD": "EURHKD", "EURILS": "EURILS", "EURJPY": "EURJPY", "EURNOK": "EURNOK", "EURNZD": "EURNZD", "EURRUB": "EURRUB", "EURSEK": "EURSEK", "EURSGD": "EURSGD", "EURUSD": "EURUSD", "EURZAR": "EURZAR", "GBPAUD": "GBPAUD", "GBPCAD": "GBPCAD", "GBPCHF": "GBPCHF", "GBPHKD": "GBPHKD", "GBPJPY": "GBPJPY", "GBPNOK": "GBPNOK", "GBPRUB": "GBPRUB", "GBPSEK": "GBPSEK", "GBPSGD": "GBPSGD", "GBPUSD": "GBPUSD", "HKDSEK": "HKDSEK", "HKDSGD": "HKDSGD", "JPYHKD": "JPYHKD", "JPYSEK": "JPYSEK", "NZDSEK": "NZDSEK", "NZDUSD": "NZDUSD", "SGDAUD": "SGDAUD", "SGDCHF": "SGDCHF", "SGDJPY": "SGDJPY", "USDAED": "USDAED", "USDARS": "USDARS", "USDBRL": "USDBRL", "USDCAD": "USDCAD", "USDCHF": "USDCHF", "USDCLP": "USDCLP", "USDCNY": "USDCNY", "USDCOP": "USDCOP", "USDCZK": "USDCZK", "USDDKK": "USDDKK", "USDEGP": "USDEGP", "USDGBP": "USDGBP", "USDHKD": "USDHKD", "USDHUF": "USDHUF", "USDIDR": "USDIDR", "USDILS": "USDILS", "USDINR": "USDINR", "USDISK": "USDISK", "USDJPY": "USDJPY", "USDKRW": "USDKRW", "USDKWD": "USDKWD", "USDKZT": "USDKZT", "USDMXN": "USDMXN", "USDMYR": "USDMYR", "USDNOK": "USDNOK", "USDPEN": "USDPEN", "USDPHP": "USDPHP", "USDPKR": "USDPKR", "USDPLN": "USDPLN", "USDQAR": "USDQAR", "USDRON": "USDRON", "USDRUB": "USDRUB", "USDSAR": "USDSAR", "USDSEK": "USDSEK", "USDSGD": "USDSGD", "USDTHB": "USDTHB", "USDTRY": "USDTRY", "USDTWD": "USDTWD", "USDUAH": "USDUAH", "USDVND": "USDVND", "USDZAR": "USDZAR"};
 
 // Функция для получения параметра из URL
 function getURLParameter(param) {
@@ -22,8 +22,8 @@ if (!(selectedPair in currencyPairs)) {
 function displayCurrencyPairLinks() {
     const linksContainer = document.getElementById('currency-pair-links');
     let linksHTML = '';
-
-    for (const pair of currencyPairs) {
+    
+    for (const [pair, name] of Object.entries(currencyPairs)) {
         if (pair === selectedPair) {
             linksHTML += `<strong style="background-color: yellow;">${pair}</strong> `;  // Текущая пара без ссылки
         } else {
