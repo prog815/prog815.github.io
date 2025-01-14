@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=RUB">Российский рубль (RUB)</a> - 3.84%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=EGP">Египетский фунт (EGP)</a> - 2.38%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=VND">Вьетнамский донг (VND)</a> - 2.01%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 1.94%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 1.85%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=EGP">Египетский фунт (EGP)</a> - 2.35%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=COP">Колумбийское песо (COP)</a> - 1.93%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=RUB">Российский рубль (RUB)</a> - 1.88%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 1.69%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=VND">Вьетнамский донг (VND)</a> - 1.66%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 7.54%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 4.99%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 4.92%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 4.92%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 4.88%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 8.22%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 4.50%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 4.49%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 4.48%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 4.48%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 9.26%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MYR">Малайзийский ринггит (MYR)</a> - 8.72%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=JPY">Японская иена (JPY)</a> - 5.66%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HKD">Гонконгский доллар (HKD)</a> - 5.34%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=VND">Вьетнамский донг (VND)</a> - 5.20%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 9.13%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MYR">Малайзийский ринггит (MYR)</a> - 8.47%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HKD">Гонконгский доллар (HKD)</a> - 5.12%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=JPY">Японская иена (JPY)</a> - 4.98%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=VND">Вьетнамский донг (VND)</a> - 4.80%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -63,11 +63,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MYR">Малайзийский ринггит (MYR)</a> - 11.69%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 9.93%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PKR">Пакистанская рупия (PKR)</a> - 9.00%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HKD">Гонконгский доллар (HKD)</a> - 8.84%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 8.75%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MYR">Малайзийский ринггит (MYR)</a> - 11.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 10.84%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PKR">Пакистанская рупия (PKR)</a> - 8.68%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 8.63%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HKD">Гонконгский доллар (HKD)</a> - 8.60%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=COP">Колумбийское песо (COP)</a> - 24.32%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PLN">Польский злотый (PLN)</a> - 19.00%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ISK">Исландская крона (ISK)</a> - 16.53%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 16.40%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PEN">Перуанский новый соль (PEN)</a> - 15.98%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=COP">Колумбийское песо (COP)</a> - 25.18%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PLN">Польский злотый (PLN)</a> - 19.53%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 16.08%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ISK">Исландская крона (ISK)</a> - 15.78%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PEN">Перуанский новый соль (PEN)</a> - 15.36%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -97,11 +97,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PEN">Перуанский новый соль (PEN)</a> - 29.54%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 25.60%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HKD">Гонконгский доллар (HKD)</a> - 25.55%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 25.53%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 25.53%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PEN">Перуанский новый соль (PEN)</a> - 27.91%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 25.15%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 25.11%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 25.10%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 25.10%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -114,11 +114,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 40.65%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 32.76%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 32.75%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 32.75%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 32.73%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 39.85%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 32.45%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 32.45%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 32.44%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 32.44%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -131,11 +131,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по росту: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 77.48%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 70.99%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 59.65%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 59.56%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=USD">Доллар США (USD)</a> - 59.55%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CHF">Швейцарский франк (CHF)</a> - 77.06%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=ILS">Новый израильский шекель (ILS)</a> - 70.84%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SAR">Саудовский риял (SAR)</a> - 59.31%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=QAR">Катарский риал (QAR)</a> - 59.26%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AED">Дирхам ОАЭ (AED)</a> - 59.25%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
 
