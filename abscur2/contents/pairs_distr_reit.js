@@ -10,7 +10,7 @@ function displayCharts() {
     const graphsContainer = document.getElementById('graphs-container');
     
     for (const [periodName, data] of Object.entries(periodData)) {
-        const (0.29489106160681455, <function kurtosis at 0x7b0f84339d80>, '10y') = data;
+        const {skewness, kurtosis, suffix} = data;
 
         // Создание элемента для графика
         const chartDiv = document.createElement('div');
