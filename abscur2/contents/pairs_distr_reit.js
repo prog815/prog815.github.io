@@ -25,15 +25,14 @@ function displayCharts() {
         
         // Выводим список тикеров с наименьшей нормой (последние 5)
         const minTickersList = currencyPairs.slice(-5);
-        const tickerList = document.createElement('ul');
+        const tickerLinks = minTickersList.map(ticker => 
+            `<a href="https://www.abscur.ru/p/blog-page_71.html?pair=${ticker}">${ticker}</a>`
+        ).join(' ');  // Объединяем ссылки через пробел
         
-        minTickersList.forEach(ticker => {
-            const listItem = document.createElement('li');
-            listItem.textContent = ticker;
-            tickerList.appendChild(listItem);
-        });
+        const tickerContainer = document.createElement('div');
+        tickerContainer.innerHTML = tickerLinks;  // Добавляем HTML со ссылками
+        chartDiv.appendChild(tickerContainer);
         
-        chartDiv.appendChild(tickerList);
         graphsContainer.appendChild(chartDiv);
     }
 }
