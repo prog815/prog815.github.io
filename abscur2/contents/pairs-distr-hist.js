@@ -12,7 +12,7 @@ function getURLParameter(param) {
 let selectedTicker = getURLParameter('pair');
 
 // Проверка наличия тикера в списке возможных валютных пар
-if (!(selectedTicker in currencyPairs)) {
+if (!currencyPairs.includes(selectedTicker)) {
     // Если тикер не найден, выбираем случайный тикер
     const tickers = currencyPairs;
     selectedTicker = tickers[Math.floor(Math.random() * tickers.length)];
