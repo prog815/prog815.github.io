@@ -38,12 +38,20 @@ function displayCurrencyPairLinks() {
 function displayCurrencyPairHistograms() {
     const graphsContainer = document.getElementById('graphs-container');
     
-    // Генерация имени файла по формату pairs-distr-{тикер}.png
+    // Создание элемента для графика
     const imgElement = document.createElement('img');
     imgElement.src = `https://prog815.github.io/abscur2/contents/pairs-distr-${selectedTicker}.png`;
     imgElement.alt = `Гистограмма распределения для ${selectedTicker}`;
     imgElement.style.width = '100%';  // Устанавливаем ширину изображения
     graphsContainer.appendChild(imgElement);
+
+    // Создание ссылки на страницу с графиком валютной пары
+    const linkElement = document.createElement('a');
+    linkElement.href = `https://www.abscur.ru/p/blog-page_54.html?pair=${selectedTicker}`;
+    linkElement.textContent = `График валютной пары ${selectedTicker}`;
+    linkElement.style.display = 'block';  // Отображаем как блочный элемент
+    linkElement.style.marginTop = '5px';   // Добавляем небольшой отступ сверху
+    graphsContainer.appendChild(linkElement);
 }
 
 // Вызов функций для отображения ссылок и графиков
