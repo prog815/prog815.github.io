@@ -38,7 +38,7 @@ function displayCharts() {
         ).join(' ');  // Объединяем ссылки через пробел
         
         const tickerContainer = document.createElement('div');
-        tickerContainer.innerHTML = tickerLinks;  // Добавляем HTML со ссылками
+        tickerContainer.innerHTML = "Лучшие распределения в парах: " + tickerLinks;  // Добавляем HTML со ссылками
         chartDiv.appendChild(tickerContainer);
         
         graphsContainer.appendChild(chartDiv);
