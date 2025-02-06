@@ -13,11 +13,12 @@ function displayCharts() {
         const {suffix, lowestNormTickers, startDate} = data;
 
         // Формирование заголовка с датами начала и окончания периода
-        const headerText = `За {periodName} (${startDate} - 2025-02-06)`;
+        const headerText = `За ${periodName} (с ${startDate} по 2025-02-06)`;
 
         // Создание заголовка для временного диапазона
         const header = document.createElement('h2');
         header.textContent = headerText;
+        header.style.marginTop = '20px';  // Добавляем отступ сверху
         graphsContainer.appendChild(header);
 
         // Создание элемента для графика
