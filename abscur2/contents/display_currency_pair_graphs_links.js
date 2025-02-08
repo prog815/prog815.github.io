@@ -60,6 +60,13 @@ function displayCurrencyPairGraph() {
     link2.textContent = `График абсолютного курса ${currency2}`;
     link2.style.display = 'inline-block';
     graphsContainer.appendChild(link2);
+
+    // Создание ссылок на распределения для этой пары
+    const link3 = document.createElement('a');
+    link3.href = `https://www.abscur.ru/p/2.html?abs=${selectedPair}`;
+    link3.textContent = `Распределение для парного валютного курса ${selectedPair}`;
+    link3.style.display = 'inline-block';
+    graphsContainer.appendChild(link3);
 }
 
 // Вызов функций для отображения ссылок и графика
