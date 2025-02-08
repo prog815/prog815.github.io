@@ -64,7 +64,7 @@ function displayCurrencyPairGraph() {
 
     // Создание ссылок на распределения для этой пары
     const link3 = document.createElement('a');
-    link3.href = `https://www.abscur.ru/p/2.html?abs=${selectedPair}`;
+    link3.href = `https://www.abscur.ru/p/blog-page_71.html?pair=${selectedPair}`;
     link3.textContent = `Распределение для парного валютного курса ${selectedPair}`;
     link3.style.display = 'inline-block';
     link3.style.marginRight = '10px';
