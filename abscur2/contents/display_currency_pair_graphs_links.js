@@ -59,6 +59,7 @@ function displayCurrencyPairGraph() {
     link2.href = `https://www.abscur.ru/p/2.html?abs=${currency2}`;
     link2.textContent = `График абсолютного курса ${currency2}`;
     link2.style.display = 'inline-block';
+    link2.style.marginRight = '10px';
     graphsContainer.appendChild(link2);
 
     // Создание ссылок на распределения для этой пары
@@ -66,6 +67,7 @@ function displayCurrencyPairGraph() {
     link3.href = `https://www.abscur.ru/p/2.html?abs=${selectedPair}`;
     link3.textContent = `Распределение для парного валютного курса ${selectedPair}`;
     link3.style.display = 'inline-block';
+    link3.style.marginRight = '10px';
     graphsContainer.appendChild(link3);
 }
 
