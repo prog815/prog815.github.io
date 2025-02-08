@@ -42,6 +42,24 @@ function displayCurrencyPairGraph() {
     imgElement.alt = `График для ${selectedPair}`;
     imgElement.style.width = '100%';  // Устанавливаем ширину изображения
     graphsContainer.appendChild(imgElement);
+
+    // Получение тикеров валют из выбранной пары
+    const currency1 = selectedPair.substring(0, 3);
+    const currency2 = selectedPair.substring(3, 6);
+
+    // Создание ссылок на графики абсолютных курсов
+    const link1 = document.createElement('a');
+    link1.href = `https://www.abscur.ru/p/2.html?abs=${currency1}`;
+    link1.textContent = `График абсолютного курса ${currency1}`;
+    link1.style.display = 'inline-block';
+    link1.style.marginRight = '10px';
+    graphsContainer.appendChild(link1);
+
+    const link2 = document.createElement('a');
+    link2.href = `https://www.abscur.ru/p/2.html?abs=${currency2}`;
+    link2.textContent = `График абсолютного курса ${currency2}`;
+    link2.style.display = 'inline-block';
+    graphsContainer.appendChild(link2);
 }
 
 // Вызов функций для отображения ссылок и графика
