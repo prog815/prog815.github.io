@@ -5,7 +5,7 @@ const currencyRates = {"AUDHKD": "4.9128", "AUDJPY": "93.9840", "AUDSEK": "6.405
 // Создание HTML-кода для таблицы
 let tableHTML = '<table style="border-collapse: collapse; border: 1px solid black;">';
 tableHTML += '<tr><th style="border: 1px solid black; text-align: center;">Тикер пары</th>';
-tableHTML += '<th style="border: 1px solid black; text-align: right;">Курс на 14.03.2025</th></tr>';
+tableHTML += '<th style="border: 1px solid black; text-align: right;">Курс на 15.03.2025</th></tr>';
 
 for (const [ticker, rate] of Object.entries(currencyRates)) {
     tableHTML += `<tr>
