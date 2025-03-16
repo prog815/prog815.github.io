@@ -6,7 +6,7 @@ const absoluteCurrencyRates = {"AED": {"name": "\u0414\u0438\u0440\u0445\u0430\u
 let tableHTML = '<table style="border-collapse: collapse; border: 1px solid black;">';
 tableHTML += '<tr><th style="border: 1px solid black; text-align: center;">Тикер</th>';
 tableHTML += '<th style="border: 1px solid black; text-align: center;">Валюта</th>';
-tableHTML += '<th style="border: 1px solid black; text-align: right;">Абсолютный курс на 2025-03-14</th></tr>';
+tableHTML += '<th style="border: 1px solid black; text-align: right;">Абсолютный курс на 2025-03-15</th></tr>';
 
 for (const [ticker, data] of Object.entries(absoluteCurrencyRates)) {
     tableHTML += `<tr>
