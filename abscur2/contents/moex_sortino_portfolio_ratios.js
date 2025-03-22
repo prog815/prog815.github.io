@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("charts-container");
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За месяц (начало: 2025-02-21)</strong>";
+    header.innerHTML = "<strong>За месяц (начало: 2025-02-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_1m.png";
@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MVID">М.видео (MVID)</a> - 63.87%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLR">Мечел ао (MTLR)</a> - 26.83%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MVID">М.видео (MVID)</a> - 88.28%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLR">Мечел ао (MTLR)</a> - 11.72%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За квартал (начало: 2024-12-21)</strong>";
+    header.innerHTML = "<strong>За квартал (начало: 2024-12-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_1q.png";
@@ -46,15 +46,13 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 40.73%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLR">Мечел ао (MTLR)</a> - 21.57%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=AFKS">Система ао (AFKS)</a> - 12.71%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTSS">МТС-ао (MTSS)</a> - 8.67%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLRP">Мечел ап (MTLRP)</a> - 8.60%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 44.87%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLR">Мечел ао (MTLR)</a> - 32.19%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=MTLRP">Мечел ап (MTLRP)</a> - 19.95%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За год (начало: 2024-03-21)</strong>";
+    header.innerHTML = "<strong>За год (начало: 2024-03-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_1y.png";
@@ -73,15 +71,12 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=AFLT">Аэрофлот (AFLT)</a> - 49.78%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=LKOH">ЛУКОЙЛ (LKOH)</a> - 12.31%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 11.37%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=RTKM">Ростел -ао (RTKM)</a> - 9.45%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=IRAO">ИнтерРАОао (IRAO)</a> - 8.45%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=AFLT">Аэрофлот (AFLT)</a> - 56.54%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 43.46%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За три года (начало: 2022-03-21)</strong>";
+    header.innerHTML = "<strong>За три года (начало: 2022-03-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_3y.png";
@@ -100,14 +95,14 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 54.01%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=TATN">Татнфт 3ао (TATN)</a> - 23.27%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SELG">Селигдар (SELG)</a> - 10.92%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=ROSN">Роснефть (ROSN)</a> - 10.80%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 51.85%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PHOR">ФосАгро ао (PHOR)</a> - 15.86%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=TATNP">Татнфт 3ап (TATNP)</a> - 12.20%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SBERP">Сбербанк-п (SBERP)</a> - 10.65%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За пять лет (начало: 2020-03-21)</strong>";
+    header.innerHTML = "<strong>За пять лет (начало: 2020-03-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_5y.png";
@@ -126,12 +121,13 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 56.73%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PHOR">ФосАгро ао (PHOR)</a> - 43.27%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=BSPB">БСП ао (BSPB)</a> - 46.62%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SELG">Селигдар (SELG)</a> - 33.73%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PHOR">ФосАгро ао (PHOR)</a> - 14.14%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За десять лет (начало: 2015-03-21)</strong>";
+    header.innerHTML = "<strong>За десять лет (начало: 2015-03-22)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/moex_sortino_risk_return_10y.png";
@@ -150,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var stockList = document.createElement("p");
     stockList.innerHTML = "<strong>Топ акции по долям в портфеле:</strong> "; 
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 64.34%, `;
-    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SELG">Селигдар (SELG)</a> - 35.66%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=PLZL">Полюс (PLZL)</a> - 62.44%, `;
+    stockList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_68.html?akcia=SELG">Селигдар (SELG)</a> - 37.56%, `;
     stockList.innerHTML = stockList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(stockList);
 
