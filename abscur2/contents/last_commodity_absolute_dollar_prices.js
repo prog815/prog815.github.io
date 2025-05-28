@@ -12,7 +12,7 @@ function createTable() {
     const headerRow = header.insertRow(0);
     
     // Заголовки с жирным шрифтом и отступами
-    const headers = ['Тикер', 'Название товара', 'Абсолютная цена (Дата: 2025-05-26)', 'Долларовая цена (Дата: 2025-05-23)'];
+    const headers = ['Тикер', 'Название товара', 'Абсолютная цена (Дата: 2025-05-27)', 'Долларовая цена (Дата: 2025-05-23)'];
     headers.forEach((text, index) => {
         const cell = headerRow.insertCell(index);
         cell.innerText = text;
