@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ валют по коэффициенту Сортино: "; 
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=EGP">Египетский фунт (EGP)</a> - 0.833, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MXN">Мексиканское песо (MXN)</a> - 0.555, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CZK">Чешская крона (CZK)</a> - 0.435, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=HUF">Венгерский форинт (HUF)</a> - 0.351, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=KWD">Кувейтский динар (KWD)</a> - 0.338  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=EGP">Египетский фунт (EGP)</a> - 0.774, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=MXN">Мексиканское песо (MXN)</a> - 0.537, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=KWD">Кувейтский динар (KWD)</a> - 0.400, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CZK">Чешская крона (CZK)</a> - 0.355, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.349  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
