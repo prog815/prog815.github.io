@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.10%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.27%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 0.29%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.29%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=KRW">Южнокорейская вона (KRW)</a> - 0.30%  `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=THB">Тайский бат (THB)</a> - 0.27%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.30%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=PHP">Филиппинское песо (PHP)</a> - 0.31%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=KRW">Южнокорейская вона (KRW)</a> - 0.31%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
     var h2 = document.createElement("h2");
@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.13%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.31%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.37%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.39%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.32%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.39%, `;
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.40%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.13%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.31%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.37%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.39%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.32%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.39%, `;
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.40%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
@@ -64,9 +64,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.13%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.31%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.37%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.39%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.32%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.39%, `;
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.40%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.13%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.31%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.37%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.39%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.32%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.39%, `;
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.40%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var currencyList = document.createElement("p");
     currencyList.innerHTML = "Топ стабильные валюты: "; 
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=SGD">Сингапурский доллар (SGD)</a> - 0.13%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.31%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.37%, `;
-    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.39%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CAD">Канадский доллар (CAD)</a> - 0.32%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=AUD">Австралийский доллар (AUD)</a> - 0.38%, `;
+    currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=IDR">Индонезийская рупия (IDR)</a> - 0.39%, `;
     currencyList.innerHTML += `<a href="https://www.abscur.ru/p/2.html?abs=CNY">Китайский юань (CNY)</a> - 0.40%  `;
     currencyList.innerHTML = currencyList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(currencyList);
