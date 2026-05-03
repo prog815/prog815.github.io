@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("charts-container");
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За месяц (начало: 2026-04-02)</strong>";
+    header.innerHTML = "<strong>За месяц (начало: 2026-04-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_1m.png";
@@ -22,16 +22,19 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 52.12%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZN=F">Цинк (ZN=F)</a> - 12.65%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 11.77%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 7.48%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 4.57%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 4.46%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 40.17%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SI=F">Серебро (SI=F)</a> - 11.84%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=PL=F">Платина (PL=F)</a> - 11.71%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 5.69%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 5.63%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 4.77%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZS=F">Соя (ZS=F)</a> - 4.28%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 4.21%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=NG=F">Природный газ (NG=F)</a> - 3.97%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За квартал (начало: 2026-02-02)</strong>";
+    header.innerHTML = "<strong>За квартал (начало: 2026-02-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_1q.png";
@@ -50,14 +53,15 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 37.06%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 31.59%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZN=F">Цинк (ZN=F)</a> - 16.51%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZS=F">Соя (ZS=F)</a> - 11.54%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 39.74%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZS=F">Соя (ZS=F)</a> - 18.77%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZC=F">Кукуруза (ZC=F)</a> - 13.86%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 13.54%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 5.54%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За год (начало: 2025-05-02)</strong>";
+    header.innerHTML = "<strong>За год (начало: 2025-05-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_1y.png";
@@ -76,12 +80,12 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 81.68%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 12.33%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 76.90%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 17.17%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За три года (начало: 2023-05-02)</strong>";
+    header.innerHTML = "<strong>За три года (начало: 2023-05-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_3y.png";
@@ -100,16 +104,14 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 29.92%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 27.90%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 14.91%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 6.84%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZW=F">Пшеница (ZW=F)</a> - 6.17%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 5.46%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 44.89%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 27.91%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 13.05%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 6.78%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За пять лет (начало: 2021-05-02)</strong>";
+    header.innerHTML = "<strong>За пять лет (начало: 2021-05-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_5y.png";
@@ -128,14 +130,15 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 47.29%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 18.53%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=SB=F">Сахар (SB=F)</a> - 18.11%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 6.83%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 46.05%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ZN=F">Цинк (ZN=F)</a> - 14.49%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 12.69%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=CL=F">Нефть WTI (CL=F)</a> - 11.10%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 6.82%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
     var header = document.createElement("p");
-    header.innerHTML = "<strong>За десять лет (начало: 2016-05-02)</strong>";
+    header.innerHTML = "<strong>За десять лет (начало: 2016-05-03)</strong>";
     container.appendChild(header);
     var img = document.createElement("img");
     img.src = "https://prog815.github.io/abscur2/contents/commodity_portfolio_sortino_risk_doh_10y.png";
@@ -154,10 +157,10 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(img);
     var commodityList = document.createElement("p");
     commodityList.innerHTML = "<strong>Топ товары по долям в портфеле:</strong> "; 
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 59.68%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 17.57%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 11.41%, `;
-    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 9.32%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=GC=F">Золото (GC=F)</a> - 59.11%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=KC=F">Кофе (KC=F)</a> - 15.73%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=ALI=F">Алюминий (ALI=F)</a> - 11.66%, `;
+    commodityList.innerHTML += `<a href="https://www.abscur.ru/p/blog-page_2.html?tovar=HG=F">Медь (HG=F)</a> - 10.08%, `;
     commodityList.innerHTML = commodityList.innerHTML.slice(0, -2); // Удаляем последнюю запятую
     container.appendChild(commodityList);
 
