@@ -127,7 +127,7 @@
   .tags{display:flex; flex-wrap:wrap; gap:6px; margin:auto 0 0; padding:12px 0 0; list-style:none}
   .tags li{font-size:12px; color:var(--muted); background:var(--chip); border-radius:6px; padding:3px 8px}
 
-  /* Footer (2 rows) */
+  /* Footer (3 rows) */
   .footer{margin-top:56px; padding:22px 0; background:var(--card); border-top:1px solid var(--border)}
   .footer__row{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 22px;
     margin:0; padding:0; list-style:none}
@@ -135,6 +135,13 @@
   .footer a{font-size:14px; color:var(--muted); text-decoration:none}
   .footer a:hover{color:var(--accent)}
   .footer__meta{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; color:var(--muted)}
+
+  /* Contacts row */
+  .footer__contacts{justify-content:flex-start; gap:8px 20px}
+  .footer__contacts .footer__label{font-size:13px; color:var(--muted); font-weight:500}
+  .footer__contacts a{display:inline-flex; align-items:center; gap:4px}
+  .footer__contacts a:hover{color:var(--accent)}
+  .footer__contacts a:focus-visible{outline:2px solid var(--accent-ring); outline-offset:2px; border-radius:4px}
 
   @media (max-width:640px){
     .hero{padding-top:36px}
@@ -151,6 +158,14 @@
   "name": "Классик — общероссийские классификаторы и открытые данные",
   "description": "Единая витрина 14 общероссийских классификаторов и справочников на основе открытых данных.",
   "inLanguage": "ru",
+  "author": {
+    "@type": "Person",
+    "sameAs": [
+      "https://m.vk.ru/alekseyenin",
+      "https://t.me/eavprog",
+      "https://www.linkedin.com/in/eavprog/"
+    ]
+  },
   "isPartOf": {
     "@type": "WebSite",
     "@id": "https://prog815.github.io/#website",
@@ -162,19 +177,19 @@
     "numberOfItems": 14,
     "itemListElement": [
       {"@type":"ListItem","position":1,"name":"ОКПД2 — Продукция по видам экономической деятельности","url":"https://prog815.github.io/okpd2/"},
-      {"@type":"ListItem","position":2,"name":"ОКВЭД2 — Виды экономической деятельности","url":"https://prog815.github.io/okved2/"},
+      {"@type":"ListItem","position":2,"name":"ПП 1875 — Национальный режим в закупках","url":"https://prog815.github.io/okpd2-pp1875/"},
       {"@type":"ListItem","position":3,"name":"ОКЕИ — Единицы измерения","url":"https://prog815.github.io/okei/"},
-      {"@type":"ListItem","position":4,"name":"ОКАТО — Объекты административно-территориального деления","url":"https://prog815.github.io/okato/"},
-      {"@type":"ListItem","position":5,"name":"ОКТМО — Территории муниципальных образований","url":"https://prog815.github.io/oktmo/"},
-      {"@type":"ListItem","position":6,"name":"ОКЗ — Занятия","url":"https://prog815.github.io/okz/"},
-      {"@type":"ListItem","position":7,"name":"ОКСО — Специальности по образованию","url":"https://prog815.github.io/okso/"},
-      {"@type":"ListItem","position":8,"name":"ОКОПФ — Организационно-правовые формы","url":"https://prog815.github.io/okopf/"},
-      {"@type":"ListItem","position":9,"name":"ОКФС — Формы собственности","url":"https://prog815.github.io/okfs/"},
+      {"@type":"ListItem","position":4,"name":"ОКВЭД2 — Виды экономической деятельности","url":"https://prog815.github.io/okved2/"},
+      {"@type":"ListItem","position":5,"name":"ОКОПФ — Организационно-правовые формы","url":"https://prog815.github.io/okopf/"},
+      {"@type":"ListItem","position":6,"name":"ОКФС — Формы собственности","url":"https://prog815.github.io/okfs/"},
+      {"@type":"ListItem","position":7,"name":"ОКОГУ — Органы государственной власти и управления","url":"https://prog815.github.io/okogu/"},
+      {"@type":"ListItem","position":8,"name":"ОКТМО — Территории муниципальных образований","url":"https://prog815.github.io/oktmo/"},
+      {"@type":"ListItem","position":9,"name":"ОКАТО — Объекты административно-территориального деления","url":"https://prog815.github.io/okato/"},
       {"@type":"ListItem","position":10,"name":"ОКОФ — Основные фонды","url":"https://prog815.github.io/okof/"},
-      {"@type":"ListItem","position":11,"name":"ОКУД — Управленческая документация","url":"https://prog815.github.io/okud/"},
-      {"@type":"ListItem","position":12,"name":"ОКВ — Валюты","url":"https://prog815.github.io/okv/"},
-      {"@type":"ListItem","position":13,"name":"ОКСМ — Страны мира","url":"https://prog815.github.io/oksm/"},
-      {"@type":"ListItem","position":14,"name":"ОКИН — Информация о населении","url":"https://prog815.github.io/okin/"}
+      {"@type":"ListItem","position":11,"name":"ОКЗ — Занятия","url":"https://prog815.github.io/okz/"},
+      {"@type":"ListItem","position":12,"name":"ОКСО — Специальности по образованию","url":"https://prog815.github.io/okso/"},
+      {"@type":"ListItem","position":13,"name":"ОКВ — Валюты","url":"https://prog815.github.io/okv/"},
+      {"@type":"ListItem","position":14,"name":"ОКСМ — Страны мира","url":"https://prog815.github.io/oksm/"}
     ]
   }
 }
@@ -202,19 +217,19 @@
   <div class="wrap">
     <ul>
       <li><a href="#okpd2">ОКПД2</a></li>
-      <li><a href="#okved2">ОКВЭД2</a></li>
+      <li><a href="#pp1875">ПП 1875</a></li>
       <li><a href="#okei">ОКЕИ</a></li>
-      <li><a href="#okato">ОКАТО</a></li>
-      <li><a href="#oktmo">ОКТМО</a></li>
-      <li><a href="#okz">ОКЗ</a></li>
-      <li><a href="#okso">ОКСО</a></li>
+      <li><a href="#okved2">ОКВЭД2</a></li>
       <li><a href="#okopf">ОКОПФ</a></li>
       <li><a href="#okfs">ОКФС</a></li>
+      <li><a href="#okogu">ОКОГУ</a></li>
+      <li><a href="#oktmo">ОКТМО</a></li>
+      <li><a href="#okato">ОКАТО</a></li>
       <li><a href="#okof">ОКОФ</a></li>
-      <li><a href="#okud">ОКУД</a></li>
+      <li><a href="#okz">ОКЗ</a></li>
+      <li><a href="#okso">ОКСО</a></li>
       <li><a href="#okv">ОКВ</a></li>
       <li><a href="#oksm">ОКСМ</a></li>
-      <li><a href="#okin">ОКИН</a></li>
       <li><a href="#minjust">Минюст</a></li>
     </ul>
   </div>
@@ -226,6 +241,7 @@
     <h2 id="h-classifiers">Классификаторы <span class="hcount">14</span></h2>
     <div class="grid">
 
+      <!-- Закупки и продукция -->
       <article class="card" id="okpd2">
         <div class="card__top"><span class="code">ОКПД2</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/okpd2/">Продукция по видам экономической деятельности</a></h3>
@@ -233,11 +249,11 @@
         <ul class="tags"><li>товары</li><li>закупки</li><li>экономика</li></ul>
       </article>
 
-      <article class="card" id="okved2">
-        <div class="card__top"><span class="code">ОКВЭД2</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okved2/">Виды экономической деятельности</a></h3>
-        <p>Коды видов деятельности для регистрации бизнеса и отчётности.</p>
-        <ul class="tags"><li>бизнес</li><li>статистика</li><li>коды</li></ul>
+      <article class="card" id="pp1875">
+        <div class="card__top"><span class="code">ПП 1875</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okpd2-pp1875/">Национальный режим в закупках</a></h3>
+        <p>Ограничения и запреты на иностранные товары по кодам ОКПД2.</p>
+        <ul class="tags"><li>закупки</li><li>нацрежим</li><li>44-ФЗ</li></ul>
       </article>
 
       <article class="card" id="okei">
@@ -247,32 +263,12 @@
         <ul class="tags"><li>единицы</li><li>измерения</li></ul>
       </article>
 
-      <article class="card" id="okato">
-        <div class="card__top"><span class="code">ОКАТО</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okato/">Объекты административно-территориального деления</a></h3>
-        <p>Коды регионов, районов и населённых пунктов.</p>
-        <ul class="tags"><li>регионы</li><li>география</li></ul>
-      </article>
-
-      <article class="card" id="oktmo">
-        <div class="card__top"><span class="code">ОКТМО</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/oktmo/">Территории муниципальных образований</a></h3>
-        <p>Муниципальные образования: города, районы, поселения.</p>
-        <ul class="tags"><li>муниципалитеты</li><li>география</li></ul>
-      </article>
-
-      <article class="card" id="okz">
-        <div class="card__top"><span class="code">ОКЗ</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okz/">Занятия</a></h3>
-        <p>Классификатор профессий и занятий для рынка труда.</p>
-        <ul class="tags"><li>профессии</li><li>труд</li><li>HR</li></ul>
-      </article>
-
-      <article class="card" id="okso">
-        <div class="card__top"><span class="code">ОКСО</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okso/">Специальности по образованию</a></h3>
-        <p>Коды специальностей и направлений подготовки.</p>
-        <ul class="tags"><li>образование</li><li>вузы</li></ul>
+      <!-- Бизнес и организации -->
+      <article class="card" id="okved2">
+        <div class="card__top"><span class="code">ОКВЭД2</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okved2/">Виды экономической деятельности</a></h3>
+        <p>Коды видов деятельности для регистрации бизнеса и отчётности.</p>
+        <ul class="tags"><li>бизнес</li><li>статистика</li><li>коды</li></ul>
       </article>
 
       <article class="card" id="okopf">
@@ -289,6 +285,28 @@
         <ul class="tags"><li>собственность</li><li>юрлица</li></ul>
       </article>
 
+      <article class="card" id="okogu">
+        <div class="card__top"><span class="code">ОКОГУ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okogu/">Органы государственной власти и управления</a></h3>
+        <p>Классификатор органов власти для отчётности и документов.</p>
+        <ul class="tags"><li>власть</li><li>управление</li></ul>
+      </article>
+
+      <!-- Территория и имущество -->
+      <article class="card" id="oktmo">
+        <div class="card__top"><span class="code">ОКТМО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/oktmo/">Территории муниципальных образований</a></h3>
+        <p>Муниципальные образования: города, районы, поселения.</p>
+        <ul class="tags"><li>муниципалитеты</li><li>география</li></ul>
+      </article>
+
+      <article class="card" id="okato">
+        <div class="card__top"><span class="code">ОКАТО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okato/">Объекты административно-территориального деления</a></h3>
+        <p>Коды регионов, районов и населённых пунктов.</p>
+        <ul class="tags"><li>регионы</li><li>география</li></ul>
+      </article>
+
       <article class="card" id="okof">
         <div class="card__top"><span class="code">ОКОФ</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/okof/">Основные фонды</a></h3>
@@ -296,11 +314,19 @@
         <ul class="tags"><li>учёт</li><li>активы</li><li>бухгалтерия</li></ul>
       </article>
 
-      <article class="card" id="okud">
-        <div class="card__top"><span class="code">ОКУД</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okud/">Управленческая документация</a></h3>
-        <p>Унифицированные формы и коды управленческих документов.</p>
-        <ul class="tags"><li>документы</li><li>формы</li></ul>
+      <!-- Люди, мир, деньги -->
+      <article class="card" id="okz">
+        <div class="card__top"><span class="code">ОКЗ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okz/">Занятия</a></h3>
+        <p>Классификатор профессий и занятий для рынка труда.</p>
+        <ul class="tags"><li>профессии</li><li>труд</li><li>HR</li></ul>
+      </article>
+
+      <article class="card" id="okso">
+        <div class="card__top"><span class="code">ОКСО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okso/">Специальности по образованию</a></h3>
+        <p>Коды специальностей и направлений подготовки.</p>
+        <ul class="tags"><li>образование</li><li>вузы</li></ul>
       </article>
 
       <article class="card" id="okv">
@@ -315,13 +341,6 @@
         <h3><a href="https://prog815.github.io/oksm/">Страны мира</a></h3>
         <p>Коды и наименования стран мира.</p>
         <ul class="tags"><li>страны</li><li>география</li></ul>
-      </article>
-
-      <article class="card" id="okin">
-        <div class="card__top"><span class="code">ОКИН</span><span class="badge">классификатор</span></div>
-        <h3><a href="https://prog815.github.io/okin/">Информация о населении</a></h3>
-        <p>Классификатор сведений о населении: пол, возраст, статусы.</p>
-        <ul class="tags"><li>население</li><li>демография</li></ul>
       </article>
 
     </div>
@@ -347,9 +366,15 @@
       <li><a href="#content">Все разделы</a></li>
       <li><a href="#top">Наверх ↑</a></li>
     </ul>
+    <ul class="footer__row footer__contacts">
+      <li class="footer__label">Связаться:</li>
+      <li><a href="https://m.vk.ru/alekseyenin" rel="me noopener" target="_blank">ВКонтакте</a></li>
+      <li><a href="https://t.me/eavprog" rel="me noopener" target="_blank">Telegram</a></li>
+      <li><a href="https://www.linkedin.com/in/eavprog/" rel="me noopener" target="_blank">LinkedIn</a></li>
+    </ul>
     <ul class="footer__row footer__meta">
       <li>© 2026 Экосистема «Классик»</li>
-      <li>v1.0</li>
+      <li>v1.2</li>
       <li>обновлено 01.11.2026</li>
     </ul>
   </div>
