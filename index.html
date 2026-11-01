@@ -119,7 +119,6 @@
 
   .card h3{margin:4px 0 0; font-size:17px; line-height:1.3}
   .card h3 a{text-decoration:none; color:inherit; outline:none}
-  /* Вся карточка кликабельна без JS: ссылка в заголовке растягивается */
   .card h3 a::after{content:""; position:absolute; inset:0; border-radius:var(--radius)}
   .card h3 a:focus-visible::after{outline:3px solid var(--accent-ring); outline-offset:2px}
   .card p{margin:0; font-size:14px; color:var(--muted)}
@@ -136,17 +135,41 @@
   .footer a:hover{color:var(--accent)}
   .footer__meta{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; color:var(--muted)}
 
-  /* Contacts row */
   .footer__contacts{justify-content:flex-start; gap:8px 20px}
   .footer__contacts .footer__label{font-size:13px; color:var(--muted); font-weight:500}
   .footer__contacts a{display:inline-flex; align-items:center; gap:4px}
-  .footer__contacts a:hover{color:var(--accent)}
   .footer__contacts a:focus-visible{outline:2px solid var(--accent-ring); outline-offset:2px; border-radius:4px}
 
   @media (max-width:640px){
     .hero{padding-top:36px}
   }
 </style>
+
+<!-- Yandex.Metrika counter -->
+<script>
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(105817342, "init", {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true
+  });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105817342" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SM54ENZHYS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SM54ENZHYS');
+</script>
+<!-- /Google tag -->
 
 <!-- Structured data (не исполняемый скрипт, для поисковиков) -->
 <script type="application/ld+json">
@@ -163,6 +186,7 @@
     "sameAs": [
       "https://m.vk.ru/alekseyenin",
       "https://t.me/eavprog",
+      "https://max.ru/channel_prog815",
       "https://www.linkedin.com/in/eavprog/"
     ]
   },
@@ -241,7 +265,6 @@
     <h2 id="h-classifiers">Классификаторы <span class="hcount">14</span></h2>
     <div class="grid">
 
-      <!-- Закупки и продукция -->
       <article class="card" id="okpd2">
         <div class="card__top"><span class="code">ОКПД2</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/okpd2/">Продукция по видам экономической деятельности</a></h3>
@@ -263,7 +286,6 @@
         <ul class="tags"><li>единицы</li><li>измерения</li></ul>
       </article>
 
-      <!-- Бизнес и организации -->
       <article class="card" id="okved2">
         <div class="card__top"><span class="code">ОКВЭД2</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/okved2/">Виды экономической деятельности</a></h3>
@@ -292,7 +314,6 @@
         <ul class="tags"><li>власть</li><li>управление</li></ul>
       </article>
 
-      <!-- Территория и имущество -->
       <article class="card" id="oktmo">
         <div class="card__top"><span class="code">ОКТМО</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/oktmo/">Территории муниципальных образований</a></h3>
@@ -314,7 +335,6 @@
         <ul class="tags"><li>учёт</li><li>активы</li><li>бухгалтерия</li></ul>
       </article>
 
-      <!-- Люди, мир, деньги -->
       <article class="card" id="okz">
         <div class="card__top"><span class="code">ОКЗ</span><span class="badge">классификатор</span></div>
         <h3><a href="https://prog815.github.io/okz/">Занятия</a></h3>
@@ -370,15 +390,39 @@
       <li class="footer__label">Связаться:</li>
       <li><a href="https://m.vk.ru/alekseyenin" rel="me noopener" target="_blank">ВКонтакте</a></li>
       <li><a href="https://t.me/eavprog" rel="me noopener" target="_blank">Telegram</a></li>
+      <li><a href="https://max.ru/channel_prog815" rel="me noopener" target="_blank">MAX</a></li>
       <li><a href="https://www.linkedin.com/in/eavprog/" rel="me noopener" target="_blank">LinkedIn</a></li>
     </ul>
     <ul class="footer__row footer__meta">
       <li>© 2026 Экосистема «Классик»</li>
-      <li>v1.2</li>
+      <li>v1.4</li>
       <li>обновлено 01.11.2026</li>
     </ul>
   </div>
 </footer>
+
+<!-- Трекинг кликов по карточкам (Метрика: цели hub_click_*, GA4: catalog_click) -->
+<script>
+(function () {
+  function slug(s) {
+    return String(s).toLowerCase()
+      .replace(/ё/g, "е")
+      .replace(/[^a-zа-я0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  }
+  document.querySelectorAll(".card a[href]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var card = a.closest(".card");
+      if (!card) return;
+      var codeEl = card.querySelector(".code");
+      var code = codeEl ? codeEl.textContent.trim() : "";
+      var goal = "hub_click_" + slug(code);
+      try { if (window.ym && typeof window.ym === "function") window.ym(105817342, "reachGoal", goal); } catch (e) {}
+      try { if (window.gtag) window.gtag("event", "catalog_click", { catalog: code, link_url: a.href, link_text: a.textContent.trim() }); } catch (e) {}
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
