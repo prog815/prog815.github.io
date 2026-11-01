@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 64" role="img" aria-label="Экосистема «Классик» — все справочники">
+  <!-- Логотип: исходный viewBox 64×64, scale 0.625 → 40×40, позиция (20, 12) -->
+  <g transform="translate(20 12) scale(0.625)">
+    <circle cx="32" cy="32" r="32" fill="#e8f0f7"/>
+    <g fill="none" stroke="#16263f" stroke-width="10" stroke-linecap="butt">
+      <path d="M17 14 V50"/>
+      <path d="M22 32 L41 13"/>
+      <path d="M22 32 L46 50"/>
+    </g>
+    <circle cx="44" cy="23" r="10" fill="#ffffff"/>
+    <circle cx="44" cy="23" r="10" fill="none" stroke="#16263f" stroke-width="3.5"/>
+    <path d="M51 30 L57.5 36.5" fill="none" stroke="#16263f" stroke-width="5" stroke-linecap="round"/>
+    <g fill="none" stroke="#16263f" stroke-width="2.2" stroke-linecap="round">
+      <path d="M39 19 q2.5 -2 5 0 t5 0"/>
+      <path d="M38.5 23 q2.5 -2 5.5 0 t5.5 0"/>
+      <path d="M39 27 q2.5 -2 5 0 t5 0"/>
+    </g>
+  </g>
+
+  <!-- Вордмарк -->
+  <text x="72" y="33"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif"
+        font-size="20" font-weight="700" fill="#16263f" letter-spacing="-0.3">Классик</text>
+
+  <!-- Подзаголовок -->
+  <text x="72" y="51"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif"
+        font-size="12" fill="#5b6b7f">Справочники и открытые данные</text>
+
+  <!-- Правая подсказка — что баннер кликабельный -->
+  <text x="1180" y="39" text-anchor="end"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif"
+        font-size="13" font-weight="600" fill="#2563eb">← Все справочники</text>
+</svg>
