@@ -1,18 +1,359 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="yandex-verification" content="733570f95b272ff8" />
-  <title>Енин А.В. - Оренбург</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Классик — общероссийские классификаторы и открытые данные</title>
+<meta name="description" content="Единая витрина 14 общероссийских классификаторов (ОКПД2, ОКВЭД2, ОКЕИ, ОКТМО и др.) и справочников на основе открытых данных. Переход по коду и названию.">
+<link rel="canonical" href="https://prog815.github.io/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Экосистема «Классик»">
+<meta property="og:title" content="Классик — общероссийские классификаторы и открытые данные">
+<meta property="og:description" content="14 общероссийских классификаторов и справочники на основе открытых данных в одном месте.">
+<meta property="og:url" content="https://prog815.github.io/">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Классик — общероссийские классификаторы и открытые данные">
+<meta name="twitter:description" content="14 общероссийских классификаторов и справочники на основе открытых данных в одном месте.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --bg-blur:rgba(245,247,251,.85);
+    --bg-grad:radial-gradient(1100px 600px at 15% -10%, #dbeafe 0%, transparent 60%),
+              radial-gradient(900px 500px at 90% 0%, #ede9fe 0%, transparent 55%);
+    --card:#ffffff;
+    --chip:#f1f5f9;
+    --text:#0f172a;
+    --muted:#5b6b7f;
+    --border:#e2e8f0;
+    --accent:#2563eb;
+    --accent-soft:#eff6ff;
+    --accent-ring:rgba(37,99,235,.25);
+    --accent-2:#7c3aed;
+    --warn:#b45309;
+    --shadow:0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1120; --bg-blur:rgba(11,17,32,.85); --card:#111a2c; --chip:rgba(148,163,184,.12);
+      --text:#e6edf7; --muted:#94a3b8; --border:#1e293b;
+      --accent:#60a5fa; --accent-soft:rgba(96,165,250,.12); --accent-ring:rgba(96,165,250,.35);
+      --accent-2:#a78bfa; --warn:#fbbf24;
+      --bg-grad:radial-gradient(900px 500px at 15% -10%, rgba(37,99,235,.18), transparent 60%),
+                radial-gradient(800px 400px at 90% 0%, rgba(124,58,237,.16), transparent 55%);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; line-height:1.5;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    color:var(--text); background-color:var(--bg); background-image:var(--bg-grad);
+    background-attachment:fixed; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(1180px,100% - 32px); margin-inline:auto}
+  a{color:inherit}
+
+  /* Skip link */
+  .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+  .skip:focus{left:8px; top:8px; width:auto; height:auto; padding:10px 14px; z-index:100;
+    background:var(--card); color:var(--text); border:1px solid var(--accent); border-radius:10px; text-decoration:none}
+
+  /* Hero */
+  .hero{padding:56px 0 8px}
+  .brand{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent); background:var(--accent-soft); padding:6px 12px; border-radius:999px}
+  h1{font-size:clamp(28px,5vw,44px); line-height:1.1; letter-spacing:-.02em; margin:16px 0 12px}
+  .lead{max-width:64ch; margin:0; font-size:17px; color:var(--muted)}
+  .stats{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; padding:0; list-style:none}
+  .stat{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px 14px;
+    font-size:13px; color:var(--muted); box-shadow:var(--shadow)}
+  .stat b{display:block; font-size:19px; color:var(--text); line-height:1.2}
+
+  /* Quick nav (chips) */
+  .quicknav{position:sticky; top:0; z-index:10; padding:12px 0; margin-top:20px;
+    background:var(--bg-blur); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border)}
+  .quicknav ul{display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none}
+  .quicknav a{display:inline-block; padding:6px 10px; font-size:13px; font-weight:600; text-decoration:none;
+    color:var(--muted); background:var(--card); border:1px solid var(--border); border-radius:999px;
+    transition:color .15s, border-color .15s, background .15s}
+  .quicknav a:hover{color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
+  .quicknav a:focus-visible{outline:2px solid var(--accent-ring); outline-offset:2px}
+
+  /* Sections & cards */
+  section{margin-top:34px}
+  h2{display:flex; align-items:center; gap:10px; font-size:20px; margin:0 0 14px; letter-spacing:-.01em}
+  .hcount{font-size:12px; font-weight:600; color:var(--muted); background:var(--card);
+    border:1px solid var(--border); border-radius:999px; padding:3px 9px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px}
+
+  .card{position:relative; display:flex; flex-direction:column; gap:8px; padding:18px;
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    scroll-margin-top:80px}
+  .card:hover{transform:translateY(-3px); border-color:var(--accent); box-shadow:0 12px 28px var(--accent-ring)}
+  .card:focus-within{outline:3px solid var(--accent-ring); outline-offset:2px}
+  .card--soon{opacity:.72}
+  .card--soon:hover{transform:none; border-color:var(--border); box-shadow:var(--shadow)}
+
+  .card__top{display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .code{font:600 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.02em;
+    color:var(--accent); background:var(--accent-soft); padding:6px 10px; border-radius:8px}
+  .badge{font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+    border:1px solid var(--border); border-radius:999px; padding:4px 8px; white-space:nowrap}
+  .badge--opendata{color:var(--accent-2); border-color:currentColor}
+  .badge--soon{color:var(--warn); border-color:currentColor}
+
+  .card h3{margin:4px 0 0; font-size:17px; line-height:1.3}
+  .card h3 a{text-decoration:none; color:inherit; outline:none}
+  /* Вся карточка кликабельна без JS: ссылка в заголовке растягивается */
+  .card h3 a::after{content:""; position:absolute; inset:0; border-radius:var(--radius)}
+  .card h3 a:focus-visible::after{outline:3px solid var(--accent-ring); outline-offset:2px}
+  .card p{margin:0; font-size:14px; color:var(--muted)}
+
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin:auto 0 0; padding:12px 0 0; list-style:none}
+  .tags li{font-size:12px; color:var(--muted); background:var(--chip); border-radius:6px; padding:3px 8px}
+
+  /* Footer (2 rows) */
+  .footer{margin-top:56px; padding:22px 0; background:var(--card); border-top:1px solid var(--border)}
+  .footer__row{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 22px;
+    margin:0; padding:0; list-style:none}
+  .footer__row + .footer__row{margin-top:14px; padding-top:14px; border-top:1px solid var(--border)}
+  .footer a{font-size:14px; color:var(--muted); text-decoration:none}
+  .footer a:hover{color:var(--accent)}
+  .footer__meta{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; color:var(--muted)}
+
+  @media (max-width:640px){
+    .hero{padding-top:36px}
+  }
+</style>
+
+<!-- Structured data (не исполняемый скрипт, для поисковиков) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://prog815.github.io/#page",
+  "url": "https://prog815.github.io/",
+  "name": "Классик — общероссийские классификаторы и открытые данные",
+  "description": "Единая витрина 14 общероссийских классификаторов и справочников на основе открытых данных.",
+  "inLanguage": "ru",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://prog815.github.io/#website",
+    "url": "https://prog815.github.io/",
+    "name": "Экосистема «Классик»"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": 14,
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"ОКПД2 — Продукция по видам экономической деятельности","url":"https://prog815.github.io/okpd2/"},
+      {"@type":"ListItem","position":2,"name":"ОКВЭД2 — Виды экономической деятельности","url":"https://prog815.github.io/okved2/"},
+      {"@type":"ListItem","position":3,"name":"ОКЕИ — Единицы измерения","url":"https://prog815.github.io/okei/"},
+      {"@type":"ListItem","position":4,"name":"ОКАТО — Объекты административно-территориального деления","url":"https://prog815.github.io/okato/"},
+      {"@type":"ListItem","position":5,"name":"ОКТМО — Территории муниципальных образований","url":"https://prog815.github.io/oktmo/"},
+      {"@type":"ListItem","position":6,"name":"ОКЗ — Занятия","url":"https://prog815.github.io/okz/"},
+      {"@type":"ListItem","position":7,"name":"ОКСО — Специальности по образованию","url":"https://prog815.github.io/okso/"},
+      {"@type":"ListItem","position":8,"name":"ОКОПФ — Организационно-правовые формы","url":"https://prog815.github.io/okopf/"},
+      {"@type":"ListItem","position":9,"name":"ОКФС — Формы собственности","url":"https://prog815.github.io/okfs/"},
+      {"@type":"ListItem","position":10,"name":"ОКОФ — Основные фонды","url":"https://prog815.github.io/okof/"},
+      {"@type":"ListItem","position":11,"name":"ОКУД — Управленческая документация","url":"https://prog815.github.io/okud/"},
+      {"@type":"ListItem","position":12,"name":"ОКВ — Валюты","url":"https://prog815.github.io/okv/"},
+      {"@type":"ListItem","position":13,"name":"ОКСМ — Страны мира","url":"https://prog815.github.io/oksm/"},
+      {"@type":"ListItem","position":14,"name":"ОКИН — Информация о населении","url":"https://prog815.github.io/okin/"}
+    ]
+  }
+}
+</script>
 </head>
-<body>
-  <br> <b><a href="/abscur2/index.html">Абсолютный курс валют</a></b>
+<body id="top">
 
-  <br> <b><a href="/metal_fract_web/index.html">Фрактография</a></b>
+<a class="skip" href="#content">Перейти к содержимому</a>
 
-  <br> <b><a href="/ls6/">Поисковый сервис для локальной сети предприятия (Версия - 6)</a></b>
-  
+<header class="hero">
+  <div class="wrap">
+    <span class="brand">📚 Экосистема «Классик»</span>
+    <h1>Справочники и открытые данные</h1>
+    <p class="lead">Единая витрина общероссийских классификаторов и справочников на основе открытых данных.
+      Переход по коду, без поиска и лишних кликов.</p>
+    <ul class="stats">
+      <li class="stat"><b>14</b>классификаторов</li>
+      <li class="stat"><b>1</b>набор открытых данных</li>
+      <li class="stat"><b>регулярно</b>обновление данных</li>
+    </ul>
+  </div>
+</header>
+
+<nav class="quicknav" aria-label="Быстрый переход по коду">
+  <div class="wrap">
+    <ul>
+      <li><a href="#okpd2">ОКПД2</a></li>
+      <li><a href="#okved2">ОКВЭД2</a></li>
+      <li><a href="#okei">ОКЕИ</a></li>
+      <li><a href="#okato">ОКАТО</a></li>
+      <li><a href="#oktmo">ОКТМО</a></li>
+      <li><a href="#okz">ОКЗ</a></li>
+      <li><a href="#okso">ОКСО</a></li>
+      <li><a href="#okopf">ОКОПФ</a></li>
+      <li><a href="#okfs">ОКФС</a></li>
+      <li><a href="#okof">ОКОФ</a></li>
+      <li><a href="#okud">ОКУД</a></li>
+      <li><a href="#okv">ОКВ</a></li>
+      <li><a href="#oksm">ОКСМ</a></li>
+      <li><a href="#okin">ОКИН</a></li>
+      <li><a href="#minjust">Минюст</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="content">
+
+  <section aria-labelledby="h-classifiers">
+    <h2 id="h-classifiers">Классификаторы <span class="hcount">14</span></h2>
+    <div class="grid">
+
+      <article class="card" id="okpd2">
+        <div class="card__top"><span class="code">ОКПД2</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okpd2/">Продукция по видам экономической деятельности</a></h3>
+        <p>Иерархический классификатор товаров, работ и услуг для закупок и статистики.</p>
+        <ul class="tags"><li>товары</li><li>закупки</li><li>экономика</li></ul>
+      </article>
+
+      <article class="card" id="okved2">
+        <div class="card__top"><span class="code">ОКВЭД2</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okved2/">Виды экономической деятельности</a></h3>
+        <p>Коды видов деятельности для регистрации бизнеса и отчётности.</p>
+        <ul class="tags"><li>бизнес</li><li>статистика</li><li>коды</li></ul>
+      </article>
+
+      <article class="card" id="okei">
+        <div class="card__top"><span class="code">ОКЕИ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okei/">Единицы измерения</a></h3>
+        <p>Общероссийский классификатор единиц измерения и их кодов.</p>
+        <ul class="tags"><li>единицы</li><li>измерения</li></ul>
+      </article>
+
+      <article class="card" id="okato">
+        <div class="card__top"><span class="code">ОКАТО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okato/">Объекты административно-территориального деления</a></h3>
+        <p>Коды регионов, районов и населённых пунктов.</p>
+        <ul class="tags"><li>регионы</li><li>география</li></ul>
+      </article>
+
+      <article class="card" id="oktmo">
+        <div class="card__top"><span class="code">ОКТМО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/oktmo/">Территории муниципальных образований</a></h3>
+        <p>Муниципальные образования: города, районы, поселения.</p>
+        <ul class="tags"><li>муниципалитеты</li><li>география</li></ul>
+      </article>
+
+      <article class="card" id="okz">
+        <div class="card__top"><span class="code">ОКЗ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okz/">Занятия</a></h3>
+        <p>Классификатор профессий и занятий для рынка труда.</p>
+        <ul class="tags"><li>профессии</li><li>труд</li><li>HR</li></ul>
+      </article>
+
+      <article class="card" id="okso">
+        <div class="card__top"><span class="code">ОКСО</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okso/">Специальности по образованию</a></h3>
+        <p>Коды специальностей и направлений подготовки.</p>
+        <ul class="tags"><li>образование</li><li>вузы</li></ul>
+      </article>
+
+      <article class="card" id="okopf">
+        <div class="card__top"><span class="code">ОКОПФ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okopf/">Организационно-правовые формы</a></h3>
+        <p>ООО, АО, ПАО, НКО и другие формы юридических лиц.</p>
+        <ul class="tags"><li>юрлица</li><li>бизнес</li></ul>
+      </article>
+
+      <article class="card" id="okfs">
+        <div class="card__top"><span class="code">ОКФС</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okfs/">Формы собственности</a></h3>
+        <p>Государственная, муниципальная, частная и иные формы собственности.</p>
+        <ul class="tags"><li>собственность</li><li>юрлица</li></ul>
+      </article>
+
+      <article class="card" id="okof">
+        <div class="card__top"><span class="code">ОКОФ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okof/">Основные фонды</a></h3>
+        <p>Классификатор основных средств и нематериальных активов.</p>
+        <ul class="tags"><li>учёт</li><li>активы</li><li>бухгалтерия</li></ul>
+      </article>
+
+      <article class="card" id="okud">
+        <div class="card__top"><span class="code">ОКУД</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okud/">Управленческая документация</a></h3>
+        <p>Унифицированные формы и коды управленческих документов.</p>
+        <ul class="tags"><li>документы</li><li>формы</li></ul>
+      </article>
+
+      <article class="card" id="okv">
+        <div class="card__top"><span class="code">ОКВ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okv/">Валюты</a></h3>
+        <p>Коды валют и их наименования по общероссийскому классификатору.</p>
+        <ul class="tags"><li>валюты</li><li>финансы</li></ul>
+      </article>
+
+      <article class="card" id="oksm">
+        <div class="card__top"><span class="code">ОКСМ</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/oksm/">Страны мира</a></h3>
+        <p>Коды и наименования стран мира.</p>
+        <ul class="tags"><li>страны</li><li>география</li></ul>
+      </article>
+
+      <article class="card" id="okin">
+        <div class="card__top"><span class="code">ОКИН</span><span class="badge">классификатор</span></div>
+        <h3><a href="https://prog815.github.io/okin/">Информация о населении</a></h3>
+        <p>Классификатор сведений о населении: пол, возраст, статусы.</p>
+        <ul class="tags"><li>население</li><li>демография</li></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="h-opendata">
+    <h2 id="h-opendata">Открытые данные <span class="hcount">1</span></h2>
+    <div class="grid">
+      <article class="card card--soon" id="minjust" aria-disabled="true">
+        <div class="card__top"><span class="code">Минюст</span><span class="badge badge--soon">скоро</span></div>
+        <h3><span>Перечень нежелательных организаций</span></h3>
+        <p>Актуальный реестр организаций, признанных нежелательными.</p>
+        <ul class="tags"><li>реестр</li><li>НКО</li><li>Минюст</li><li>открытые данные</li></ul>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <ul class="footer__row">
+      <li><a href="#content">Все разделы</a></li>
+      <li><a href="#top">Наверх ↑</a></li>
+    </ul>
+    <ul class="footer__row footer__meta">
+      <li>© 2026 Экосистема «Классик»</li>
+      <li>v1.0</li>
+      <li>обновлено 01.11.2026</li>
+    </ul>
+  </div>
+</footer>
+
 </body>
 </html>
