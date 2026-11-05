@@ -1,4 +1,4 @@
-// share.js — версия 1.0.0
+// share.js — версия 1.0.1
 // Общая библиотека «Поделиться» проекта «Классик».
 // На мобильных устройствах вызывает системное меню (navigator.share).
 // На десктопах открывает модалку с веб-почтами и копированием.
@@ -116,20 +116,18 @@
       super();
       this.attachShadow({ mode: 'open' });
       this._onClickBound = this._handleClick.bind(this);
-      this._onKeyDownBound = this._handleKeyDown.bind(this);
       this._toastTimer = null;
     }
 
     connectedCallback() {
       if (!this.shadowRoot.firstChild) this.render();
       this.shadowRoot.addEventListener('click', this._onClickBound);
-      document.addEventListener('keydown', this._onKeyDownBound);
     }
 
     disconnectedCallback() {
       this.shadowRoot.removeEventListener('click', this._onClickBound);
-      document.removeEventListener('keydown', this._onKeyDownBound);
       clearTimeout(this._toastTimer);
+      document.body.style.overflow = '';
     }
 
     get catalog() {
@@ -148,12 +146,17 @@
     _handleClick(event) {
       const path = event.composedPath();
 
+      // Игнорируем клики внутри самого диалога, тоста или на бэкдропе
       for (const el of path) {
         if (el === this.shadowRoot) break;
         if (el && el.nodeType === 1 && el.classList) {
           if (el.classList.contains('ks-modal') ||
               el.classList.contains('ks-toast') ||
-              el.classList.contains('ks-backdrop')) {
+              el.tagName === 'DIALOG') {
+            // Клик по самому диалогу (не по внутренностям) закрывает его
+            if (el.tagName === 'DIALOG' && event.target === el) {
+               this._closeModal();
+            }
             return;
           }
         }
@@ -197,8 +200,17 @@
     _openModal() {
       const modal = this.shadowRoot.querySelector('.ks-modal');
       if (!modal) return;
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
+      
+      if (typeof modal.showModal === 'function') {
+        modal.showModal();
+      } else {
+        // Фолбэк для очень старых браузеров
+        modal.setAttribute('open', '');
+      }
+      
+      // Блокируем скролл фона
+      document.body.style.overflow = 'hidden';
+      
       const closeBtn = modal.querySelector('.ks-close');
       if (closeBtn && closeBtn.focus) closeBtn.focus();
     }
@@ -206,17 +218,15 @@
     _closeModal() {
       const modal = this.shadowRoot.querySelector('.ks-modal');
       if (!modal) return;
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-    }
-
-    _handleKeyDown(event) {
-      if (event.key !== 'Escape') return;
-      const modal = this.shadowRoot.querySelector('.ks-modal.is-open');
-      if (modal) {
-        event.preventDefault();
-        this._closeModal();
+      
+      if (typeof modal.close === 'function') {
+        modal.close();
+      } else {
+        modal.removeAttribute('open');
       }
+      
+      // Возвращаем скролл
+      document.body.style.overflow = '';
     }
 
     _handleAction(action) {
@@ -271,22 +281,30 @@
           :host { display: inline-block; }
           :host([hidden]) { display: none !important; }
 
+          /* Нативный <dialog> решает проблему центрирования и выпадения из потока */
           .ks-modal {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            display: none;
+            display: none; /* Управляется атрибутом open */
             align-items: center;
             justify-content: center;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            border: none;
+            background: transparent;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            padding: 0;
+            margin: 0;
           }
-          .ks-modal.is-open { display: flex; }
-
-          .ks-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            animation: ks-fade-in 0.15s ease;
+          .ks-modal[open] {
+            display: flex;
+          }
+          .ks-modal::backdrop {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(2px);
           }
 
           .ks-dialog {
@@ -301,13 +319,13 @@
             flex-direction: column;
             gap: 12px;
             animation: ks-pop-in 0.2s ease;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
+            overflow-x: hidden; /* Убираем горизонтальный скролл */
             box-sizing: border-box;
             color: #1e293b;
           }
 
-          @keyframes ks-fade-in { from { opacity: 0; } to { opacity: 1; } }
           @keyframes ks-pop-in {
             from { transform: scale(0.96); opacity: 0; }
             to   { transform: scale(1);    opacity: 1; }
@@ -341,7 +359,7 @@
           }
           .ks-textarea {
             width: 100%;
-            height: 160px;
+            height: 120px;
             padding: 12px;
             border: 1px solid #cbd5e0;
             border-radius: 8px;
@@ -352,6 +370,10 @@
             background: #f7fafc;
             box-sizing: border-box;
             resize: vertical;
+            /* Лечим вылезание длинных ссылок */
+            white-space: pre-wrap; 
+            word-break: break-word; 
+            overflow-x: hidden;
           }
           
           .ks-btn {
@@ -359,26 +381,27 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 8px;
             font: inherit;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.15s;
+            box-sizing: border-box;
           }
 
+          /* Фикс невидимого текста (контраст) */
           .ks-btn--primary {
             width: 100%;
-            padding: 10px;
-            font-size: 14px;
             font-weight: 600;
-            border: 1px solid var(--accent, #1e3a8a);
-            background: var(--accent, #1e3a8a);
+            border: 1px solid #2563eb;
+            background: #2563eb;
             color: #ffffff;
           }
           .ks-btn--primary:hover {
-            filter: brightness(0.9);
+            background: #1d4ed8;
+            border-color: #1d4ed8;
           }
 
           .ks-label {
@@ -389,17 +412,24 @@
             margin-top: 4px;
           }
 
+          /* Сетка кнопок почт: ровные кнопки, последний ряд центрируется */
           .ks-mail-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
             width: 100%;
             margin-bottom: 6px;
+            justify-content: center;
           }
           .ks-mail-grid a {
+            flex: 1 1 calc(33.333% - 6px);
+            max-width: calc(33.333% - 6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 8px 6px;
-            font-size: 12.5px;
+            padding: 10px 6px;
+            font-size: 13px;
             font-weight: 500;
             background: #fff;
             color: #2d3748;
@@ -408,6 +438,7 @@
             text-decoration: none;
             transition: all 0.15s;
             white-space: nowrap;
+            box-sizing: border-box;
           }
           .ks-mail-grid a:hover {
             background: #f7fafc;
@@ -421,12 +452,11 @@
             border: 1px dashed #cbd5e0;
             background: #f7fafc;
             color: #718096;
-            font-size: 13px;
           }
           .ks-btn--native:hover {
-            border-color: var(--accent, #1e3a8a);
-            color: var(--accent, #1e3a8a);
-            background: var(--accent-weak, #eaf2fb);
+            border-color: #2563eb;
+            color: #2563eb;
+            background: #eff6ff;
           }
 
           .ks-truncate-note {
@@ -464,7 +494,7 @@
 
           @media (max-width: 640px) {
             .ks-dialog { padding: 20px; }
-            .ks-mail-grid { grid-template-columns: repeat(2, 1fr); }
+            .ks-mail-grid a { flex: 1 1 calc(50% - 4px); max-width: calc(50% - 4px); }
           }
         </style>
       `;
@@ -489,9 +519,8 @@
         ${this.getStyles()}
         <slot></slot>
 
-        <div class="ks-modal" role="dialog" aria-modal="true"
-             aria-hidden="true" aria-labelledby="ks-title">
-          <div class="ks-backdrop" data-ks-close></div>
+        <!-- Заменили div на нативный dialog для идеального центрирования -->
+        <dialog class="ks-modal" aria-labelledby="ks-title">
           <div class="ks-dialog">
             <button type="button" class="ks-close" aria-label="Закрыть"
                     title="Закрыть" data-ks-close>&times;</button>
@@ -541,10 +570,18 @@
               📱 Системное меню
             </button>
           </div>
-        </div>
+        </dialog>
 
         <div class="ks-toast" role="status" aria-live="polite"></div>
       `;
+
+      // Слушатель закрытия нативного dialog (например, по кнопке Esc)
+      const modal = this.shadowRoot.querySelector('.ks-modal');
+      if (modal) {
+        modal.addEventListener('close', () => {
+          document.body.style.overflow = '';
+        });
+      }
 
       this.shadowRoot.querySelectorAll('[data-ks-close]').forEach((el) => {
         el.addEventListener('click', () => this._closeModal());
@@ -592,5 +629,5 @@
     customElements.define('klassik-share', KlassikShare);
   }
 
-  console.log('✅ share.js v1.0.0 загружен');
+  console.log('✅ share.js v1.0.1 загружен');
 })();
