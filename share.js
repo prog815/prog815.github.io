@@ -1,15 +1,13 @@
-// share.js — версия 1.0.2
+// share.js — версия 1.0.3
 // Общая библиотека «Поделиться» проекта «Классик».
 // На мобильных устройствах вызывает системное меню (navigator.share).
 // На десктопах открывает модалку с веб-почтами и копированием.
-// ИСПРАВЛЕНО: Убрано обрезание текста при отправке в веб-почту.
+// ИСПРАВЛЕНО: Если атрибут url передан пустым, ссылка не подставляется в конец.
 
 (() => {
   'use strict';
 
   const METRIKA_COUNTER_ID = 105817342;
-  // Современные почтовики спокойно переваривают длинные URL. 
-  // Оставляем 8000 для защиты от совсем экстремальных случаев.
   const MAX_URL_LENGTH = 8000; 
 
   // ---------- вспомогательное ----------
@@ -25,7 +23,7 @@
 
   function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-           (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent)); // iPadOS
+           (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
   }
 
   function sendAnalytics(catalog, method, emailProvider) {
@@ -94,12 +92,11 @@
   }
 
   function getSafeEmailLinks(title, text, url) {
-    // Формируем полный текст БЕЗ ОБРЕЗАНИЯ
-    const body = text + (text ? '\n\n' : '') + url;
+    // Если url пустой, вообще не добавляем его в текст письма
+    const body = text + (text && url ? '\n\n' + url : '');
     const links = buildEmailLinks(title, body);
 
     const maxLen = Math.max(...Object.values(links).map(l => l.length));
-    // Проверяем только для вывода предупреждения
     const isVeryLong = maxLen > MAX_URL_LENGTH;
 
     return { links, isTruncated: isVeryLong };
@@ -136,7 +133,12 @@
       return this.getAttribute('text') || '';
     }
     get shareUrl() {
-      return this.getAttribute('url') || location.href;
+      // Если атрибут url задан (даже пустой строкой), возвращаем его.
+      // Если атрибута url нет вовсе — берем текущий адрес.
+      if (this.hasAttribute('url')) {
+        return this.getAttribute('url');
+      }
+      return location.href;
     }
 
     _handleClick(event) {
@@ -226,7 +228,9 @@
       const url = this.shareUrl;
 
       if (action === 'copy_text') {
-        copyToClipboard(text + '\n\n' + url).then((ok) => {
+        // Если url пустой, не добавляем лишних переносов
+        const fullText = text + (text && url ? '\n\n' + url : '');
+        copyToClipboard(fullText).then((ok) => {
           if (ok) this._toast('Текст и ссылка скопированы!');
           this._emit('copy_text', null, catalog, text, url);
         });
@@ -425,7 +429,7 @@
 
           .ks-truncate-note {
             font-size: 12px;
-            color: #e11d48; /* Сделали красным для акцента */
+            color: #e11d48;
             margin: -4px 0 4px;
             line-height: 1.4;
             background: #ffe4e6;
@@ -480,11 +484,10 @@
       const url = this.shareUrl;
       const { links: emailLinks, isTruncated } = getSafeEmailLinks(title, text, url);
 
-      const body = text + (text ? '\n\n' : '') + url;
+      const body = text + (text && url ? '\n\n' + url : '');
       const hasNativeShare = typeof navigator.share === 'function';
       const nativeBtnStyle = hasNativeShare ? 'inline-flex' : 'none';
 
-      // Показываем плашку только если текст реально огромный (>8000 символов в URL)
       const truncateNote = isTruncated
         ? '<p class="ks-truncate-note">⚠️ Текст очень длинный. Некоторые веб-почты могут обрезать ссылку. Рекомендуем нажать «Скопировать».</p>'
         : '';
@@ -581,5 +584,5 @@
     customElements.define('klassik-share', KlassikShare);
   }
 
-  console.log('✅ share.js v1.0.2 загружен');
+  console.log('✅ share.js v1.0.3 загружен');
 })();
