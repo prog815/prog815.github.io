@@ -1,13 +1,16 @@
-// share.js — версия 1.0.1
+// share.js — версия 1.0.2
 // Общая библиотека «Поделиться» проекта «Классик».
 // На мобильных устройствах вызывает системное меню (navigator.share).
 // На десктопах открывает модалку с веб-почтами и копированием.
+// ИСПРАВЛЕНО: Убрано обрезание текста при отправке в веб-почту.
 
 (() => {
   'use strict';
 
   const METRIKA_COUNTER_ID = 105817342;
-  const MAX_URL_LENGTH = 1500; // Безопасный лимит для GET-запросов в веб-почты
+  // Современные почтовики спокойно переваривают длинные URL. 
+  // Оставляем 8000 для защиты от совсем экстремальных случаев.
+  const MAX_URL_LENGTH = 8000; 
 
   // ---------- вспомогательное ----------
 
@@ -15,7 +18,7 @@
     const path = window.location.pathname.replace(/index\.html$/i, '');
     const normalized = path.endsWith('/') ? path : path + '/';
     const match = normalized.match(
-      /^\/(okpd2-pp1875|okpd2|oktmo|okved2|okato|okei|okogu|okopf|okfs|okv|oksm|okof|okz|okso)\//
+      /^\/(okpd2-pp1875|okpd2|oktmo|okved2|okato|okei|okogu|okopf|okfs|okv|oksm|okof|okz|okso|res-vchu|foreign-periodicals|svyaz-licenses|ori|trois|fstec-szi)\//
     );
     return match ? match[1] : 'other';
   }
@@ -49,11 +52,8 @@
       gmail: 'https://mail.google.com/mail/?view=cm&fs=1&su=' + s + '&body=' + b,
       yandex: 'https://mail.yandex.ru/compose?subject=' + s + '&body=' + b,
       mailru: 'https://e.mail.ru/compose/?subject=' + s + '&body=' + b,
-      // Outlook (личные аккаунты)
       outlook: 'https://outlook.live.com/mail/0/deeplink/compose?subject=' + s + '&body=' + b,
-      // Yahoo Mail
       yahoo: 'https://compose.mail.yahoo.com/?subject=' + s + '&body=' + b,
-      // Локальный почтовый клиент (Outlook, Thunderbird, Apple Mail и т.п.)
       mailto: 'mailto:?subject=' + s + '&body=' + b
     };
   }
@@ -94,19 +94,15 @@
   }
 
   function getSafeEmailLinks(title, text, url) {
-    let body = text + (text ? '\n\n' : '') + url;
-    let links = buildEmailLinks(title, body);
+    // Формируем полный текст БЕЗ ОБРЕЗАНИЯ
+    const body = text + (text ? '\n\n' : '') + url;
+    const links = buildEmailLinks(title, body);
 
     const maxLen = Math.max(...Object.values(links).map(l => l.length));
-    if (maxLen <= MAX_URL_LENGTH) {
-      return { links, isTruncated: false };
-    }
+    // Проверяем только для вывода предупреждения
+    const isVeryLong = maxLen > MAX_URL_LENGTH;
 
-    const firstLine = text.split('\n')[0] || '';
-    body = firstLine + (firstLine ? '\n\n' : '') + url;
-    links = buildEmailLinks(title, body);
-
-    return { links, isTruncated: true };
+    return { links, isTruncated: isVeryLong };
   }
 
   // ---------- компонент ----------
@@ -146,14 +142,12 @@
     _handleClick(event) {
       const path = event.composedPath();
 
-      // Игнорируем клики внутри самого диалога, тоста или на бэкдропе
       for (const el of path) {
         if (el === this.shadowRoot) break;
         if (el && el.nodeType === 1 && el.classList) {
           if (el.classList.contains('ks-modal') ||
               el.classList.contains('ks-toast') ||
               el.tagName === 'DIALOG') {
-            // Клик по самому диалогу (не по внутренностям) закрывает его
             if (el.tagName === 'DIALOG' && event.target === el) {
                this._closeModal();
             }
@@ -204,11 +198,9 @@
       if (typeof modal.showModal === 'function') {
         modal.showModal();
       } else {
-        // Фолбэк для очень старых браузеров
         modal.setAttribute('open', '');
       }
       
-      // Блокируем скролл фона
       document.body.style.overflow = 'hidden';
       
       const closeBtn = modal.querySelector('.ks-close');
@@ -225,7 +217,6 @@
         modal.removeAttribute('open');
       }
       
-      // Возвращаем скролл
       document.body.style.overflow = '';
     }
 
@@ -281,12 +272,11 @@
           :host { display: inline-block; }
           :host([hidden]) { display: none !important; }
 
-          /* Нативный <dialog> решает проблему центрирования и выпадения из потока */
           .ks-modal {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            display: none; /* Управляется атрибутом open */
+            display: none;
             align-items: center;
             justify-content: center;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -299,9 +289,7 @@
             padding: 0;
             margin: 0;
           }
-          .ks-modal[open] {
-            display: flex;
-          }
+          .ks-modal[open] { display: flex; }
           .ks-modal::backdrop {
             background: rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(2px);
@@ -321,7 +309,7 @@
             animation: ks-pop-in 0.2s ease;
             max-height: 85vh;
             overflow-y: auto;
-            overflow-x: hidden; /* Убираем горизонтальный скролл */
+            overflow-x: hidden;
             box-sizing: border-box;
             color: #1e293b;
           }
@@ -346,17 +334,9 @@
           }
           .ks-close:hover { color: #4a5568; }
 
-          .ks-title {
-            margin: 0;
-            font-size: 18px;
-            color: #0f172a;
-          }
-          .ks-hint {
-            margin: 0;
-            font-size: 13px;
-            color: #718096;
-            line-height: 1.5;
-          }
+          .ks-title { margin: 0; font-size: 18px; color: #0f172a; }
+          .ks-hint { margin: 0; font-size: 13px; color: #718096; line-height: 1.5; }
+          
           .ks-textarea {
             width: 100%;
             height: 120px;
@@ -370,7 +350,6 @@
             background: #f7fafc;
             box-sizing: border-box;
             resize: vertical;
-            /* Лечим вылезание длинных ссылок */
             white-space: pre-wrap; 
             word-break: break-word; 
             overflow-x: hidden;
@@ -391,7 +370,6 @@
             box-sizing: border-box;
           }
 
-          /* Фикс невидимого текста (контраст) */
           .ks-btn--primary {
             width: 100%;
             font-weight: 600;
@@ -404,15 +382,8 @@
             border-color: #1d4ed8;
           }
 
-          .ks-label {
-            font-size: 13px;
-            color: #718096;
-            width: 100%;
-            margin-bottom: -2px;
-            margin-top: 4px;
-          }
+          .ks-label { font-size: 13px; color: #718096; width: 100%; margin-bottom: -2px; margin-top: 4px; }
 
-          /* Сетка кнопок почт: ровные кнопки, последний ряд центрируется */
           .ks-mail-grid {
             display: flex;
             flex-wrap: wrap;
@@ -440,10 +411,7 @@
             white-space: nowrap;
             box-sizing: border-box;
           }
-          .ks-mail-grid a:hover {
-            background: #f7fafc;
-            border-color: #a0aec0;
-          }
+          .ks-mail-grid a:hover { background: #f7fafc; border-color: #a0aec0; }
 
           .ks-btn--native {
             display: none;
@@ -453,17 +421,16 @@
             background: #f7fafc;
             color: #718096;
           }
-          .ks-btn--native:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: #eff6ff;
-          }
+          .ks-btn--native:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
 
           .ks-truncate-note {
             font-size: 12px;
-            color: #a0aec0;
+            color: #e11d48; /* Сделали красным для акцента */
             margin: -4px 0 4px;
             line-height: 1.4;
+            background: #ffe4e6;
+            padding: 8px;
+            border-radius: 6px;
           }
 
           .ks-toast {
@@ -484,17 +451,24 @@
             max-width: 90vw;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
             box-shadow: 0 8px 24px rgba(0,0,0,0.25);
           }
-          .ks-toast.is-visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-          }
+          .ks-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
           @media (max-width: 640px) {
             .ks-dialog { padding: 20px; }
             .ks-mail-grid a { flex: 1 1 calc(50% - 4px); max-width: calc(50% - 4px); }
+          }
+          
+          @media (prefers-color-scheme: dark) {
+             .ks-dialog { background: #111a2c; color: #e6edf7; }
+             .ks-title { color: #e6edf7; }
+             .ks-hint { color: #94a3b8; }
+             .ks-textarea { background: #0b1120; border-color: #1e293b; color: #e6edf7; }
+             .ks-mail-grid a { background: #1e293b; color: #e6edf7; border-color: #334155; }
+             .ks-mail-grid a:hover { background: #334155; }
+             .ks-btn--native { background: #1e293b; color: #94a3b8; border-color: #334155; }
+             .ks-truncate-note { background: rgba(225, 29, 72, 0.2); color: #fda4af; }
           }
         </style>
       `;
@@ -507,30 +481,27 @@
       const { links: emailLinks, isTruncated } = getSafeEmailLinks(title, text, url);
 
       const body = text + (text ? '\n\n' : '') + url;
-
       const hasNativeShare = typeof navigator.share === 'function';
       const nativeBtnStyle = hasNativeShare ? 'inline-flex' : 'none';
 
+      // Показываем плашку только если текст реально огромный (>8000 символов в URL)
       const truncateNote = isTruncated
-        ? '<p class="ks-truncate-note">Текст карточки слишком длинный для письма. В веб-почту будет вставлена только первая строка. Полный текст скопируйте кнопкой ниже.</p>'
+        ? '<p class="ks-truncate-note">⚠️ Текст очень длинный. Некоторые веб-почты могут обрезать ссылку. Рекомендуем нажать «Скопировать».</p>'
         : '';
 
       this.shadowRoot.innerHTML = `
         ${this.getStyles()}
         <slot></slot>
 
-        <!-- Заменили div на нативный dialog для идеального центрирования -->
         <dialog class="ks-modal" aria-labelledby="ks-title">
           <div class="ks-dialog">
-            <button type="button" class="ks-close" aria-label="Закрыть"
-                    title="Закрыть" data-ks-close>&times;</button>
+            <button type="button" class="ks-close" aria-label="Закрыть" title="Закрыть" data-ks-close>&times;</button>
             <h3 class="ks-title" id="ks-title">Отправить коллегам</h3>
             <p class="ks-hint">Полный текст карточки со ссылкой внизу. Можно скопировать и вставить в любой чат или почту.</p>
 
             <textarea class="ks-textarea" readonly aria-label="Текст для отправки"></textarea>
 
-            <button type="button" class="ks-btn ks-btn--primary"
-                    data-ks-action="copy_text">
+            <button type="button" class="ks-btn ks-btn--primary" data-ks-action="copy_text">
               📋 Скопировать текст и ссылку
             </button>
 
@@ -538,35 +509,19 @@
 
             <div class="ks-label">Отправить через веб-почту:</div>
             <div class="ks-mail-grid">
-              <a href="${escHtml(emailLinks.gmail)}" target="_blank"
-                 rel="noopener" data-ks-action="email_gmail"
-                 data-ks-provider="gmail">Gmail</a>
-              <a href="${escHtml(emailLinks.yandex)}" target="_blank"
-                 rel="noopener" data-ks-action="email_yandex"
-                 data-ks-provider="yandex">Яндекс</a>
-              <a href="${escHtml(emailLinks.mailru)}" target="_blank"
-                 rel="noopener" data-ks-action="email_mailru"
-                 data-ks-provider="mailru">Mail.ru</a>
-              <a href="${escHtml(emailLinks.outlook)}" target="_blank"
-                 rel="noopener" data-ks-action="email_outlook"
-                 data-ks-provider="outlook">Outlook</a>
-              <a href="${escHtml(emailLinks.yahoo)}" target="_blank"
-                 rel="noopener" data-ks-action="email_yahoo"
-                 data-ks-provider="yahoo">Yahoo</a>
+              <a href="${escHtml(emailLinks.gmail)}" target="_blank" rel="noopener" data-ks-action="email_gmail" data-ks-provider="gmail">Gmail</a>
+              <a href="${escHtml(emailLinks.yandex)}" target="_blank" rel="noopener" data-ks-action="email_yandex" data-ks-provider="yandex">Яндекс</a>
+              <a href="${escHtml(emailLinks.mailru)}" target="_blank" rel="noopener" data-ks-action="email_mailru" data-ks-provider="mailru">Mail.ru</a>
+              <a href="${escHtml(emailLinks.outlook)}" target="_blank" rel="noopener" data-ks-action="email_outlook" data-ks-provider="outlook">Outlook</a>
+              <a href="${escHtml(emailLinks.yahoo)}" target="_blank" rel="noopener" data-ks-action="email_yahoo" data-ks-provider="yahoo">Yahoo</a>
             </div>
 
             <div class="ks-label">Или откройте в установленной программе:</div>
-            <a href="${escHtml(emailLinks.mailto)}"
-               class="ks-btn ks-btn--native"
-               data-ks-action="email_mailto"
-               data-ks-provider="mailto"
-               data-ks-native="true"
-               style="display: inline-flex;">
+            <a href="${escHtml(emailLinks.mailto)}" class="ks-btn ks-btn--native" data-ks-action="email_mailto" data-ks-provider="mailto" data-ks-native="true" style="display: inline-flex;">
               💻 Почтовый клиент
             </a>
 
-            <button type="button" class="ks-btn ks-btn--native"
-                    data-ks-action="native" style="display: ${nativeBtnStyle};">
+            <button type="button" class="ks-btn ks-btn--native" data-ks-action="native" style="display: ${nativeBtnStyle};">
               📱 Системное меню
             </button>
           </div>
@@ -575,7 +530,6 @@
         <div class="ks-toast" role="status" aria-live="polite"></div>
       `;
 
-      // Слушатель закрытия нативного dialog (например, по кнопке Esc)
       const modal = this.shadowRoot.querySelector('.ks-modal');
       if (modal) {
         modal.addEventListener('close', () => {
@@ -602,9 +556,7 @@
             this.dispatchEvent(new CustomEvent('klassik-share', {
               bubbles: true,
               composed: true,
-              detail: {
-                catalog, method: 'email', email_provider: provider, text: sText, url: sUrl
-              }
+              detail: { catalog, method: 'email', email_provider: provider, text: sText, url: sUrl }
             }));
 
             if (!isNative) {
@@ -629,5 +581,5 @@
     customElements.define('klassik-share', KlassikShare);
   }
 
-  console.log('✅ share.js v1.0.1 загружен');
+  console.log('✅ share.js v1.0.2 загружен');
 })();
