@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prog815.github.io/sitemap.xml
