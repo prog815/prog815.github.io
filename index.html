@@ -628,6 +628,7 @@
   <div class="wrap">
     <ul class="footer__row">
       <li><a href="#content">Все разделы</a></li>
+      <li><a href="https://github.com/prog815/prog815.github.io#readme" target="_blank" rel="noopener">Описание проекта</a></li>
       <li><a href="#top">Наверх ↑</a></li>
     </ul>
     <ul class="footer__row footer__contacts">
@@ -639,7 +640,7 @@
     </ul>
     <ul class="footer__row footer__meta">
       <li>© 2026 Экосистема «Классик»</li>
-      <li>v1.34</li>
+      <li>v1.36</li>
       <li>обновлено 16.11.2026</li>
     </ul>
   </div>
@@ -692,7 +693,6 @@
       else l.removeAttribute('aria-current');
     });
 
-    // На мобиле — подтянуть активный пункт в видимую область (если разделов много и есть свайп)
     var ul = nav.querySelector('ul');
     if (!ul || ul.scrollWidth <= ul.clientWidth) return;
     var active = ul.querySelector('.sectionnav__link.is-active');
@@ -707,7 +707,7 @@
   function update() {
     rafId = 0;
     var navH = nav.offsetHeight || 56;
-    var trigger = navH + 40; // насколько ниже sticky-панели начинается «активный» раздел
+    var trigger = navH + 40;
     var current = sections[0];
     for (var i = 0; i < sections.length; i++) {
       if (sections[i].getBoundingClientRect().top <= trigger) {
@@ -724,10 +724,8 @@
 
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule);
-  // На случай, если страница открыта с уже установленным #hash
   window.addEventListener('hashchange', schedule);
 
-  // Клик — мгновенный отклик (не ждём, пока произойдёт плавный скролл)
   links.forEach(function (l) {
     l.addEventListener('click', function () {
       var id = (l.getAttribute('href') || '').slice(1);
