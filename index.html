@@ -82,55 +82,39 @@
     font-size:13px; color:var(--muted); box-shadow:var(--shadow)}
   .stat b{display:block; font-size:19px; color:var(--text); line-height:1.2}
 
-  /* Quick nav (chips) */
-  .quicknav{position:sticky; top:0; z-index:10; padding:12px 0; margin-top:20px;
-    background:var(--bg-blur); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border)}
-  .quicknav ul{display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none}
-  .quicknav a{display:inline-block; padding:6px 10px; font-size:13px; font-weight:600; text-decoration:none;
-    color:var(--muted); background:var(--card); border:1px solid var(--border); border-radius:999px;
-    transition:color .15s, border-color .15s, background .15s; position:relative}
-  .quicknav a:hover{color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
-  .quicknav a:focus-visible{outline:2px solid var(--accent-ring); outline-offset:2px}
-
-  /* Всплывающая подсказка для чипов */
-  .quicknav a::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    background: var(--card);
-    color: var(--text);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: normal;
-    text-align: left;
-    width: max-content;
-    max-width: 280px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .15s ease, transform .15s ease;
-    z-index: 100;
-    line-height: 1.4;
+  /* Section nav (sticky, 2+ раздела) */
+  .sectionnav{
+    position:sticky; top:0; z-index:10;
+    margin-top:20px;
+    background:var(--bg-blur);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
   }
-  .quicknav a:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(10px);
+  .sectionnav ul{
+    display:flex; flex-wrap:wrap; gap:4px;
+    margin:0; padding:10px 0; list-style:none;
   }
-  /* На тач-устройствах подсказки скрываем */
-  @media (hover: none) {
-    .quicknav a::after {
-      display: none !important;
-    }
+  .sectionnav li{flex:0 0 auto}
+  .sectionnav__link{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:7px 14px; border-radius:999px;
+    font-size:14px; font-weight:600;
+    color:var(--muted); text-decoration:none;
+    white-space:nowrap;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .sectionnav__link:hover{color:var(--text); background:var(--chip)}
+  .sectionnav__link:focus-visible{outline:2px solid var(--accent-ring); outline-offset:2px}
+  .sectionnav__link.is-active{color:var(--accent); background:var(--accent-soft)}
+  .sectionnav__count{
+    font-size:12px; font-weight:600;
+    color:inherit; opacity:.65;
+    font-variant-numeric:tabular-nums;
   }
 
   /* Sections & cards */
   section{margin-top:34px}
+  section[id]{scroll-margin-top:64px}
   h2{display:flex; align-items:center; gap:10px; font-size:20px; margin:0 0 14px; letter-spacing:-.01em}
   .hcount{font-size:12px; font-weight:600; color:var(--muted); background:var(--card);
     border:1px solid var(--border); border-radius:999px; padding:3px 9px}
@@ -178,6 +162,16 @@
 
   @media (max-width:640px){
     .hero{padding-top:36px}
+    .sectionnav ul{
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      overflow-y:hidden;
+      -webkit-overflow-scrolling:touch;
+      scroll-snap-type:x proximity;
+      scrollbar-width:none;
+    }
+    .sectionnav ul::-webkit-scrollbar{display:none}
+    .sectionnav li{scroll-snap-align:start}
   }
 </style>
 
@@ -301,58 +295,26 @@
   </div>
 </header>
 
-<nav class="quicknav" aria-label="Быстрый переход по коду">
+<nav class="sectionnav" aria-label="Разделы страницы">
   <div class="wrap">
     <ul>
-      <li><a href="#okpd2" data-tooltip="Продукция по видам экономической деятельности">ОКПД2</a></li>
-      <li><a href="#pp1875" data-tooltip="Национальный режим в закупках">ПП 1875</a></li>
-      <li><a href="#okei" data-tooltip="Единицы измерения">ОКЕИ</a></li>
-      <li><a href="#okved2" data-tooltip="Виды экономической деятельности">ОКВЭД2</a></li>
-      <li><a href="#okopf" data-tooltip="Организационно-правовые формы">ОКОПФ</a></li>
-      <li><a href="#okfs" data-tooltip="Формы собственности">ОКФС</a></li>
-      <li><a href="#okogu" data-tooltip="Органы государственной власти и управления">ОКОГУ</a></li>
-      <li><a href="#oktmo" data-tooltip="Территории муниципальных образований">ОКТМО</a></li>
-      <li><a href="#okato" data-tooltip="Объекты административно-территориального деления">ОКАТО</a></li>
-      <li><a href="#okof" data-tooltip="Основные фонды">ОКОФ</a></li>
-      <li><a href="#okz" data-tooltip="Занятия">ОКЗ</a></li>
-      <li><a href="#okso" data-tooltip="Специальности по образованию">ОКСО</a></li>
-      <li><a href="#okv" data-tooltip="Валюты">ОКВ</a></li>
-      <li><a href="#oksm" data-tooltip="Страны мира">ОКСМ</a></li>
-      <li><a href="#minjust-unwanted" data-tooltip="Перечень нежелательных организаций">Минюст</a></li>
-      <li><a href="#extremist-materials" data-tooltip="Федеральный список экстремистских материалов">Экстремизм</a></li>
-      <li><a href="#tor-residents" data-tooltip="Реестр резидентов ТОР Оренбургской области">ТОР</a></li>
-      <li><a href="#rostekhnadzor-territorial-organs" data-tooltip="Территориальные органы Ростехнадзора">Ростехнадзор</a></li>
-      <li><a href="#mid-territorial-organs" data-tooltip="Территориальные органы МИД России">МИД</a></li>
-      <li><a href="#advocates-registry" data-tooltip="Сведения из реестра адвокатов субъектов РФ">Адвокаты</a></li>
-      <li><a href="#nko-opo" data-tooltip="Реестр НКО — исполнителей общественно полезных услуг">НКО-ОПУ</a></li>
-      <li><a href="#fstec-licenses" data-tooltip="Реестр лицензий ФСТЭК России (ТЗКИ)">ФСТЭК</a></li>
-      <li><a href="#fstec-szki" data-tooltip="Реестр лицензий на деятельность по разработке и производству средств защиты конфиденциальной информации">ФСТЭК СЗКИ</a></li>
-      <li><a href="#fstec-szi" data-tooltip="Государственный реестр сертифицированных средств защиты информации">ФСТЭК СЗИ</a></li>
-      <li><a href="#sro-registry" data-tooltip="Сведения из Реестра саморегулируемых организаций">СРО</a></li>
-      <li><a href="#political-parties" data-tooltip="Список зарегистрированных политических партий">Партии</a></li>
-      <li><a href="#expert-technicians" data-tooltip="Государственный реестр экспертов-техников">Эксперты</a></li>
-      <li><a href="#foreign-ngo-branches" data-tooltip="Реестр филиалов и представительств иностранных НКО">Иностр. НКО</a></li>
-      <li><a href="#foreign-advocates" data-tooltip="Реестр адвокатов иностранных государств">Иностр. адвокаты</a></li>
-      <li><a href="#licenses-comm" data-tooltip="Реестр лицензий в области связи">Лицензии связи</a></li>
-      <li><a href="#svyaz-licenses" data-tooltip="Информация о предоставлении лицензий в сфере связи">Связь (Инфо)</a></li>
-      <li><a href="#foreign-periodicals" data-tooltip="Реестр разрешений на распространение зарубежных периодических изданий">Зарубежные СМИ</a></li>
-      <li><a href="#res-vchu" data-tooltip="Реестр РЭС и ВЧУ, разрешенных для ввоза">РЭС и ВЧУ</a></li>
-      <li><a href="#private-detectives" data-tooltip="Организации, имеющие лицензию на осуществление частной детективной (сыскной) деятельности">Детективы</a></li>
-      <li><a href="#private-security" data-tooltip="Организации, имеющие лицензию на осуществление частной охранной деятельности">Охрана</a></li>
-      <li><a href="#alcohol-suspensions" data-tooltip="Организации с приостановленными лицензиями (алкоголь)">Алкоголь</a></li>
-      <li><a href="#weapons-licenses" data-tooltip="Организации, имеющие лицензии на осуществление деятельности по хранению и торговле гражданским и служебным оружием, патронами">Оружие</a></li>
-      <li><a href="#notaries" data-tooltip="Сведения, содержащиеся в реестре нотариусов и лиц, сдавших квалификационный экзамен">Нотариусы</a></li>
-      <li><a href="#svh" data-tooltip="Реестр владельцев складов временного хранения">СВХ</a></li>
-      <li><a href="#trois" data-tooltip="Таможенный реестр объектов интеллектуальной собственности">ТРОИС</a></li>
-      <li><a href="#customs-representatives" data-tooltip="Реестр таможенных представителей">Таможня</a></li>
-      <li><a href="#ori" data-tooltip="Реестр организаторов распространения информации в сети «Интернет»">ОРИ</a></li>
+      <li>
+        <a class="sectionnav__link" href="#classifiers">
+          Классификаторы <span class="sectionnav__count">14</span>
+        </a>
+      </li>
+      <li>
+        <a class="sectionnav__link" href="#opendata">
+          Открытые данные <span class="sectionnav__count">28</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
 
 <main class="wrap" id="content">
 
-  <section aria-labelledby="h-classifiers">
+  <section id="classifiers" aria-labelledby="h-classifiers">
     <h2 id="h-classifiers">Классификаторы <span class="hcount">14</span></h2>
     <div class="grid">
 
@@ -457,10 +419,10 @@
     </div>
   </section>
 
-  <section aria-labelledby="h-opendata">
+  <section id="opendata" aria-labelledby="h-opendata">
     <h2 id="h-opendata">Открытые данные <span class="hcount">28</span></h2>
     <div class="grid">
-      
+
       <article class="card" id="minjust-unwanted">
         <div class="card__top"><span class="code">Минюст</span><span class="badge badge--opendata">открытые данные</span></div>
         <h3><a href="https://prog815.github.io/minjust-unwanted/">Перечень нежелательных организаций</a></h3>
@@ -677,8 +639,8 @@
     </ul>
     <ul class="footer__row footer__meta">
       <li>© 2026 Экосистема «Классик»</li>
-      <li>v1.33</li>
-      <li>обновлено 13.11.2026</li>
+      <li>v1.34</li>
+      <li>обновлено 16.11.2026</li>
     </ul>
   </div>
 </footer>
@@ -703,6 +665,77 @@
       try { if (window.gtag) window.gtag("event", "catalog_click", { catalog: code, link_url: a.href, link_text: a.textContent.trim() }); } catch (e) {}
     });
   });
+})();
+</script>
+
+<!-- Scroll-spy для sectionnav: подсветка активного раздела при скролле -->
+<script>
+(function () {
+  var nav = document.querySelector('.sectionnav');
+  if (!nav) return;
+  var links = Array.prototype.slice.call(nav.querySelectorAll('.sectionnav__link'));
+  if (!links.length) return;
+
+  var sections = links.map(function (l) {
+    var id = (l.getAttribute('href') || '').slice(1);
+    return id ? document.getElementById(id) : null;
+  }).filter(Boolean);
+  if (!sections.length) return;
+
+  var rafId = 0;
+
+  function setActive(id) {
+    links.forEach(function (l) {
+      var on = l.getAttribute('href') === '#' + id;
+      l.classList.toggle('is-active', on);
+      if (on) l.setAttribute('aria-current', 'location');
+      else l.removeAttribute('aria-current');
+    });
+
+    // На мобиле — подтянуть активный пункт в видимую область (если разделов много и есть свайп)
+    var ul = nav.querySelector('ul');
+    if (!ul || ul.scrollWidth <= ul.clientWidth) return;
+    var active = ul.querySelector('.sectionnav__link.is-active');
+    if (!active) return;
+    var r = active.getBoundingClientRect();
+    var ur = ul.getBoundingClientRect();
+    if (r.left < ur.left || r.right > ur.right) {
+      active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  function update() {
+    rafId = 0;
+    var navH = nav.offsetHeight || 56;
+    var trigger = navH + 40; // насколько ниже sticky-панели начинается «активный» раздел
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= trigger) {
+        current = sections[i];
+      }
+    }
+    setActive(current.id);
+  }
+
+  function schedule() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  // На случай, если страница открыта с уже установленным #hash
+  window.addEventListener('hashchange', schedule);
+
+  // Клик — мгновенный отклик (не ждём, пока произойдёт плавный скролл)
+  links.forEach(function (l) {
+    l.addEventListener('click', function () {
+      var id = (l.getAttribute('href') || '').slice(1);
+      if (id) setActive(id);
+    });
+  });
+
+  update();
 })();
 </script>
 
